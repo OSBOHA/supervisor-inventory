@@ -21,3 +21,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/front', function () {
+    return view('front');
+});
+Route::get('/show_inventory_result', function () {
+    return view('result');
+});
+Route::get('/show_inventory', function () {
+    return view('results');
+});
