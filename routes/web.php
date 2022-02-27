@@ -21,3 +21,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/notes', [App\Http\Controllers\repeatedNoteController::class, 'index'])->name('notes');
