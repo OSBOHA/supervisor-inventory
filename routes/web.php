@@ -22,4 +22,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/front', function () {
+    return view('front');
+});
+Route::get('/show_inventory_result', function () {
+    return view('result');
+});
+Route::get('/show_inventory', function () {
+    return view('results');
+});
 Route::get('/notes', [App\Http\Controllers\repeatedNoteController::class, 'index'])->name('notes');
