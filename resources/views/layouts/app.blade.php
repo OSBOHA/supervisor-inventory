@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap-icons/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/app.rtl.css')}}">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg')}}" type="image/x-icon">
+    <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />
 </head>
 
 <body>
@@ -42,6 +43,15 @@
     
     @yield('content')
 
+    <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p> Developed by <a href="http://osboha180.com">Osboha 180 </a>  Programers  &copy; </p>
+                    </div>
+                    
+                </div>
+    </footer>
+
 
     <!-- Script -->
     <script src="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
@@ -55,6 +65,8 @@
     console.error(error);
     });
     </script>
+    <script src="assets/vendors/choices.js/choices.min.js"></script>
+    <script src="assets/js/pages/form-element-select.js"></script>
     <script src="assets/js/mazer.js"></script>
 </body>
 

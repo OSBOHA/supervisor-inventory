@@ -15,9 +15,15 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
+    
     return view('welcome');
 });
 
+Route::view('sp', 'supervisor');
+
+
+   
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
