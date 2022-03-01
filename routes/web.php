@@ -24,6 +24,7 @@ Route::view('sp', 'supervisor');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/leaderduty', [App\Http\Controllers\LeaderDutyController::class, 'index']);
 
 Route::get('/front', function () {
     return view('front');
