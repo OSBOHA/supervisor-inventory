@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap-icons/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/app.rtl.css')}}">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg')}}" type="image/x-icon">
+    <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />
 </head>
 
 <body>
@@ -57,6 +58,8 @@
     console.error(error);
     });
     </script>
+    <script src="assets/vendors/choices.js/choices.min.js"></script>
+    <script src="assets/js/pages/form-element-select.js"></script>
     <script src="assets/js/mazer.js"></script>
 </body>
 
