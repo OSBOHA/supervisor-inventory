@@ -40,5 +40,5 @@ Route::get('/show_inventory', function () {
 Route::get('/show', function () {
     return view('show');
 
-
+});
 Route::get('/notes', [App\Http\Controllers\repeatedNoteController::class, 'index'])->name('notes');

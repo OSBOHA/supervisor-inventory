@@ -26,38 +26,32 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>       
-            <div class="card-header text-right subtitle" dir="rtl">
-                        <!-- ======== Timar ======== -->
-                        <div style="width:350px; padding-top:0px; float:right"> 
-                         <div data-timer="-244048" id="count-down">
-                         <div class ="time_circles">
-                            <canvas width="351" hight="87">
-                            <div class="textDiv_Days" style="top: 31px; left:0px; width:87.75;">
-                                <h4 style="font_size :6px;">Days</h4>
-                                <span style="font_size :25px;">0</span>
-                            </div>
-                        </div>
-                         </div>
-                        </div>
-                    </div>
+           
 
 
-            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist" style="padding-left:3%">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="main-info-tab" data-toggle="pill" href="#main-info" role="tab" aria-controls="main-info" aria-selected="true">بيانات القادة</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="main-works-tab" data-toggle="pill" href="#main-works" role="tab" aria-controls="main-works" aria-selected="false">المهام الأساسية</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="news-tab" data-toggle="pill" href="#news" role="tab" aria-controls="news" aria-selected="false">الأخبار</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="audit-tab" data-toggle="pill" href="#audit" role="tab" aria-controls="audit" aria-selected="false">التدقيق (للمراقب)</a>
-                        </li>
-                        
-             </ul>
-                <!-- leader info start -->
+            
+             <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab"
+                                    aria-controls="home" aria-selected="true">بيانات القائد</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab"
+                                    aria-controls="profile" aria-selected="false">المهام الاساسية</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab"
+                                    aria-controls="contact" aria-selected="false">الاخبار</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#audit" role="tab"
+                                    aria-controls="contact" aria-selected="false">التدقيق (للمراقب)</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <p class='my-2'>
+                                    <!-- leader info start -->
                 <section class="section">
                 <div class="tab-pane fade show active" id="main-info" role="tabpanel" aria-labelledby="main-info-tab">
                     <div class="row" id="table-striped">
@@ -173,8 +167,10 @@
                     </div>
                 </section>
                 <!-- leader info end -->
-
-                 <!--leader info start -->
+                                </p>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                 <!--leader info start -->
                  
                 <div class="tab-pane fade show active" id="main-works" role="tabpanel" aria-labelledby="main-info-tab">
                     <div class="row" id="table-striped">
@@ -298,11 +294,14 @@
                         </div>
                     </div>
                     </div>
-                
+
+                    
                 <!-- Striped rows end -->
 
-
-                <!--news start -->           
+                            </div>
+                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                <p class="mt-2">
+                                     <!--news start -->           
                 <div class="tab-pane fade" id="news" role="tabpanel" aria-labelledby="news-tab">
                             <div class="card-columns text-right" dir="rtl" style="font-size:1.1em;">                                <div class="card border-dark p-3 radius" style="max-width:18rem;">
                                     <div class="card-header news-header" style="border-radius:50px;">
@@ -357,8 +356,11 @@
                         </div>
                 
 
-       
- <!-- audit start -->
+                                </p>
+                            </div>
+                            <div class="tab-pane fade" id="audit" role="tabpanel" aria-labelledby="contact-tab">
+                                <p class="mt-2">
+                                         <!-- audit start -->
  <section class="section">
                 <div class="tab-pane fade show active" id="audit" role="tabpanel" aria-labelledby="main-info-tab">
                     <div class="row" id="table-striped">
@@ -464,8 +466,17 @@
                         </div>
                     </div>
                     </div>
-                </section>
-                <!-- audit end -->
+                </section>   
+                                </p>
+                            </div>
+</div>    
+                
+
+                
+
+               
+       
+ 
 
                 <script>
 $(document).ready(function() {

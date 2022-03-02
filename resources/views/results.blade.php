@@ -172,6 +172,30 @@ li{list-style-type: none;}
                             <input type="color" class="form-control" id="btn_change" onchange="change_color()" style="margin-left:10px">
                         </li>
                     </ul>
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab"
+                                    aria-controls="home" aria-selected="true">Home</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab"
+                                    aria-controls="profile" aria-selected="false">Profile</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab"
+                                    aria-controls="contact" aria-selected="false">Contact</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <p class='my-2'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ut nulla
+                                    neque. Ut hendrerit nulla a euismod pretium.
+                                    Fusce venenatis sagittis ex efficitur suscipit. In tempor mattis fringilla. Sed id
+                                    tincidunt orci, et volutpat ligula.
+                                    Aliquam sollicitudin sagittis ex, a rhoncus nisl feugiat quis. Lorem ipsum dolor sit
+                                    amet, consectetur adipiscing elit.
+                                    Nunc ultricies ligula a tempor vulputate. Suspendisse pretium mollis ultrices.</p>
+                            </div>
                     <!-- ============================================================== -->
                     <!-- End Tab Section -->
                     <!-- ============================================================== -->
