@@ -1,58 +1,79 @@
 @extends('layouts.app')
-
-<!DOCTYPE html>
-<html lang="en">
-    @include('auth.includes.header')
-<body>
-	 <div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<form method="POST" action="{{ route('register') }}" class="login100-form validate-form p-l-55 p-r-55 p-t-178">
-                    @csrf
-					  <span class="login100-form-title"> تسجيل جديد</span>					 
-                    <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter your Name" >
-						<input id="name" class="input100" type="text" name="name" @error('name') is-invalid @enderror" placeholder="ادخل الإسم" value="{{ old('name') }}" required autocomplete="name" autofocus>
-                             @error('name')
-                                 <span class="invalid-feedback" role="alert">
-                                     <strong>{{ $message }}</strong>
-                                 </span>
-                             @enderror
-				    </div>
-                    <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter your Email">
-						<input id="email" class="input100" type="text" name="email" @error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="name" autofocus placeholder="ادخل الإيميل">
-                           @error('email')
-                              <span class="invalid-feedback" role="alert">
-                                  <strong>{{ $message }}</strong>
-                              </span>
-                           @enderror
-					</div>
-					<div class="wrap-input100 validate-input m-b-16" data-validate = "Please enter password">
-						<input id="password" class="input100" type="password" name="password" @error('password') is-invalid @enderror" value="{{ old('password') }}" required autocomplete="password" autofocus placeholder="ادخل الرقم السري">
-                            @error('password')
-                               <span class="invalid-feedback role="alert">
-                                    <strong>{{ $message }}</strong>
-                                 </span>
-                           @enderror
-					</div>                
-                    <div class="wrap-input100 validate-input m-b-16" data-validate = "please chose your option">
-                        <select name="rol_id" id="" class="input100">
-                            <option class="input100" selected>تود التسجيل كـ</option>
-                            <option class="input100" value="supervisor">مراقب</option>
-                            <option class="input100" value="advisor">موجه</option>
-                        </select>
+@section('content')
+<div class="container">
+    <div id="auth">
+        <div class="row h-100">
+            <div class="col-6">
+                <div id="auth-left">
+                    <div class="auth-logo">
+                        <!-- <a href="index.html"><img src="{{asset('assets/images/logo/logo.png')}}" alt="Logo"></a> -->
                     </div>
-					<div class="container-login100-form-btn">
-						<button type="submit" class="login100-form-btn">سجل </button>		
-					</div>
-                    <div class="flex-col-c p-t-80 p-b-20">
-                       <span class="txt1 p-b-9">   إن كنت مسجل بالفعل </span>
-                       <a href="{{route('login')}}" class="txt3">سجل الدخول</a>                   
-                   </div>
-				</form>
-			</div>
-		</div>
-	</div>
-    @include('auth.includes.footer')
-    </body>
-</html>
+                    <h1 class="auth-title">{{ __('تسجيل') }}</h1>
+                    <p class="auth-subtitle mb-5"> املأ الحقول التالية لكي تتمكن من التسجيل</p>
+
+                    <form method="POST" action="{{ route('register') }}">
+                        @csrf
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input id="name" type="text" class="form-control form-control-xl @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="ادخل اسمك" required autocomplete="name" autofocus>
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                            <div class="form-control-icon">
+                                <i class="bi bi-person"></i>
+                            </div>
+                        </div>
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input id="email" type="email" class="form-control form-control-xl @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required placeholder="ادخل إيميلك" autocomplete="email">
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            <div class="form-control-icon">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                        </div>
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input id="password" type="password" class="form-control form-control-xl @error('password') is-invalid @enderror" name="password" placeholder="ادخل كلمة السر" required autocomplete="new-password">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            <div class="form-control-icon">
+                                <i class="bi bi-shield-lock"></i>
+                            </div>
+                        </div>
+
+                        <div class="form-group position-relative has-icon-left mb-4">
+                                <select class="form-select form-control form-control-xl" id="basicSelect" placeholder="تسجيل كـ :" >
+                                    <option value="supervisor">مُشــرف</option>
+                                    <option value="advisor">مُــراقب</option>
+                               </select>
+                            <div class="form-control-icon">
+                                <!-- <i class="bi bi-shield-lock"></i> -->
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">{{ __('تسجيل') }}</button>
+                    </form>
+                    <div class="text-center mt-5 text-lg fs-4">
+                        <p class='text-gray-600'> هل لديك حساب مسبقا ؟ اضغط للدخول<a href="{{ route('login') }}"
+                                class="font-bold">
+                                دخول </a></p>
+                                
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 d-none d-lg-block">
+                <div id="auth-right">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+@endsection
 

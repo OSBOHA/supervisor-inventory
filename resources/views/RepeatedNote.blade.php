@@ -1,35 +1,11 @@
 @extends('layouts.app')
-
-<!DOCTYPE html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>osboha180</title>
-    
-<!-- Include Choices CSS -->
-    <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/bootstrap.css">   
-    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="assets/css/app.css">
-    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
-</head>
-
- <body>
-    <div id="main">
-      <header class="mb-3">
-         <a href="#" class="burger-btn d-block d-xl-none">
-             <i class="bi bi-justify fs-3"></i>
-         </a>
-     </header>
-
- <!-- Start Choose The Page -->         
+@section('content')
+ <div class="cotainer"> 
+ <!-- Start Choose The Page -->     
 <div class="page-heading">
     <section class="bootstrap-select">
         <div class="row">
-            <div class="col-12">
+            <div class="col-8">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">الجرد الإسبوعي</h4>
@@ -71,7 +47,7 @@
     <!-- Multiple choices start -->
     <section class="multiple-choices">
         <div class="row">
-            <div class="col-12">
+            <div class="col-8">
                 <div class="card">                   
                     <div class="card-content">
                         <div class="card-body">
@@ -165,9 +141,8 @@
      <script src="assets/vendors/choices.js/choices.min.js"></script>
      <script src="assets/js/pages/form-element-select.js"></script>
      <script src="assets/js/mazer.js"></script>
+     </div> 
 
-   </body>
-</html>
-
+@endsection
 
 
