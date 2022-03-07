@@ -144,6 +144,7 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
+            'file-upload' => 'اختار',
         ],
     ],
 
@@ -158,6 +159,6 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [ ],
 
 ];
