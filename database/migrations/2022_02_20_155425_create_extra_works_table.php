@@ -15,6 +15,11 @@ class CreateExtraWorksTable extends Migration
     {
         Schema::create('extra_works', function (Blueprint $table) {
             $table->id();
+            $table->integer('week_id');
+            $table->integer('supervisor_id');
+            $table->text('activities');
+            $table->string('communicate_with_leaders');
+            $table->string('leaders_didnt_enter_withdraw');
             $table->timestamps();
         });
     }
