@@ -1,66 +1,68 @@
 @extends('layouts.app')
-
 @section('content')
-<!DOCTYPE html>
-<html lang="en"> 
-           @include('auth.includes.header')
-
-<body>
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 ">              
-				<form method="POST" action="{{route('login') }}" class="login100-form validate-form p-l-55 p-r-55 p-t-178">
-                    @csrf
-					<span class="login100-form-title">
-						تسجيل دخول
-					</span>
-                    <div class="wrap-input100 validate-input m-b-16" data-validate="Please enter your email">
-						<input class="input100" type="email" name="email" placeholder="أدخل الإيميل">
-                        @error('email')
+	 <div class="container">
+    <div id="auth">
+        <div class="row h-25">
+            <div class="col-6">
+                <div id="auth-left">
+                    <div class="auth-logo">
+                        <!-- <a href="index.html"><img src="{{asset('assets/images/logo/logo.png')}}" alt="Logo"></a> -->
+                    </div>
+                    <h1 class="auth-title">{{ __('دخول') }}</h1>
+                    <p class="auth-subtitle mb-5">ادخل بياناتك</p>
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input id="email" type="email" class="form-control form-control-xl @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="أدخل الإيميل" required autocomplete="email" autofocus>
+                                @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                        @enderror
-					</div>
-					<div class="wrap-input100 validate-input" data-validate = "Please enter password">
-						<input class="input100  @error('password') is-invalid @enderror" type="password" name="password" placeholder="أدخل كلمة السر">
-                        @error('password')
+                                @enderror
+                            <div class="form-control-icon">
+                                <i class="bi bi-person"></i>
+                            </div>
+                        </div>
+                        <div class="form-group position-relative has-icon-left mb-4">
+                            <input id="password" type="password" class="form-control form-control-xl @error('password') is-invalid @enderror" name="password" placeholder="ادخل كلمة السر" required autocomplete="current-password">
+
+                                @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                        @enderror
-					</div>
-					<div class="text-right p-t-13 p-b-23">
-						<span class="txt1">	هل</span>
-                        @if (Route::has('password.request'))
-                          <a class="txt1" href="{{ route('password.request') }}">
-                                        {{ __('نسيت ؟') }}
-                          </a>
-                        @endif
-						  <a href="#" class="txt2">
-					        اسم المستخدم / كلمة السر  
-					     </a>
-					</div>
-					<div class="container-login100-form-btn">
-						<button type="submit" class="login100-form-btn">
-							ادخل
-						</button>
-					</div>
-					<div class="flex-col-c p-t-80 p-b-20">
-						<span class="txt1 p-b-9">
-							  هل أنت عضو جديد ؟
-						</span>
-						<a href="{{route('register')}}" class="txt3">
-							سجل من هنا
-						</a>
-					</div>
+                                @enderror
+                            <div class="form-control-icon">
+                                <i class="bi bi-shield-lock"></i>
+                            </div>
+                        </div>
 
-				</form>       
-			</div>
-		</div>
+                        <!-- <div class="form-check form-check-lg d-flex align-items-end">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label text-gray-600" for="flexCheckDefault">
+                                اجعلني متصلا
+                            </label>
+                        </div> -->
+
+                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">{{ __('دخول') }}</button>
+                    </form>
+                    <div class="text-center mt-5 text-lg fs-4">
+                        <p class="text-gray-600">ليس لديك حساب، اضغط للتسجيل <a href="{{ route('register')}}"
+                                class="font-bold">
+                            تسجيل</a></p>
+                        <p>
+                            @if (Route::has('password.request'))
+                            <a class="font-bold" href="{{ route('password.request') }}"> {{ __('هل نسيت كلمة السر ؟ اضغط هنا') }}</a></p>
+                            @endif
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 d-none d-lg-block">
+                <div id="auth-right">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 	</div>
-    
-     @include('auth.includes.footer')
- </body>
-    </html>
-@endsection
+ @endsection

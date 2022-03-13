@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 
 });
-Route::view('sp', 'supervisor');
+Route::view('/supervisor-page', 'supervisor');
 
 
 Auth::routes();

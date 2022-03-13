@@ -1,9 +1,11 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Tajawal&display=swap');
+html{
+    font-family: 'Tajawal', sans-serif;
+}
 .Title {
     text-align: center;
     font-weight: bold;
-    background-color: #1787E0;
-    border-radius: 10px 10px 0 0;
+    background-color: #435ebe;
     color: white;
 }
 
