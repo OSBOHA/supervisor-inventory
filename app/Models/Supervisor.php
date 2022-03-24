@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Supervisor extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'current_advisor',
+        'previous_advisor',
+        'team',
+    ];
+   
 }

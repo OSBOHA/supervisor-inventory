@@ -2,21 +2,23 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+  
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\repeatedNoteController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 Auth::routes();
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+});
+
 
 Route::get('/', function () {
     return view('welcome');
+    // return view('auth.register');
 
 });
 Route::view('/supervisor-page', 'supervisor');
@@ -33,7 +35,17 @@ Route::get('/show_inventory_result', function () {
 Route::get('/show_inventory', function () {
     return view('results');
 });
-Route::get('/notes', [App\Http\Controllers\repeatedNoteController::class, 'index'])->name('notes');
+
+Route::resource('notes', repeatedNoteController::class);
+
+// Route::group(['prefix'=>'notes'], function(){
+//    Route::get('/', [repeatedNoteController::class, 'index']);
+//    Route::post('/create', [repeatedNoteController::class, 'create']);
+//    Route::post('/show', [repeatedNoteController::class, 'show']);
+//    Route::post('/update', [repeatedNoteController::class, 'update']);
+//    Route::post('/delete', [repeatedNoteController::class, 'delete']);
+// });
+
 
 // Route::group(['prefix'=>'inventory'], function(){
 //     Route::get('/', [InventoryController::class, 'index']);

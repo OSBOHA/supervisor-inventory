@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Spatie\Permission\Model\Permisstion;
+use Spatie\Permission\Model\Role;
+use Spatie\Permission\PermisstionRegister;
 
 class LoginController extends Controller
 {
