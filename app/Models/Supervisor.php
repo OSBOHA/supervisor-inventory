@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Supervisor extends Model
 {
     use HasFactory;
+    
+     
+            
+                  
 }
+
