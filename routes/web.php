@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Supervisor;
+use App\Models\Leadre;
+use App\Models\LeaderDuty;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LeaderDutyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +28,18 @@ Route::view('/supervisor-page', 'supervisor');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/leaderduty', [App\Http\Controllers\LeaderDutyController::class, 'index']);
+Route::get('/superHome', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/front', function () {
-    return view('front');
+
+Route::get('/supervisorHome', function () {
+        $supervisors = Supervisor::get()->where('user_id', Auth::id());
+        $leader_duties = LeaderDuty::get();
+        $leadres = leadre::get();
+        return view('supervisorHome')
+        ->with('supervisors', $supervisors)
+        ->with('leadres', $leadres)
+        ->with('leader_duties', $leader_duties);
+    return view('supervisorHome');
 });
 Route::get('/show_inventory_result', function () {
     return view('result');
