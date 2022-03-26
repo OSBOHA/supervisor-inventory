@@ -1,16 +1,17 @@
 @extends('layouts.app')
 
 @section('page_title')
-<div class="row"style="direction: ltr"  >
-    <div  class="col-12 col-md-6 order-md-2 order-first" style="direction: rtl">
+<div class="row" style="direction: rtl">
+    <div  class="col-12 col-md-6 order-md-1 order-first" style="direction: rtl">
         <h3>الجرد الأسبوعي</h3>
         <p class="text-subtitle text-muted">لطفاً نقوم بإدخال الجرد الأسبوعي لكل قائد على حدا</p>
     </div>
-    <div class="col-12 col-md-6 order-md-1 order-last" >
-        <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+    <div class="col-12 col-md-6 order-md-2 order-last" style="direction:ltr;" >
+        <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-start">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Leader Duty</li>
+                <li class="breadcrumb-item"><a href="index.html"> Dashboard</a></li>
+
             </ol>
         </nav>
     </div>
@@ -20,9 +21,9 @@
 @section('content')
  <section id="basic-horizontal-layouts">
     <div class="row match-height">
-        <div class="col-md-6 col-12" style="direction: rtl">
+        <div class="col-md-6 col-12" dir="rtl">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" style="background:#dce7f1;">
                     <h4 class="card-title">منشور المتابعة الإسبوعي</h4>
                 </div>
                 <div class="card-content">
@@ -69,9 +70,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-12" style="direction: rtl">
+        <div class="col-md-6 col-12" dir="rtl">
             <div class="card" style="height: 426.219px ">
-                <div class="card-header">
+                <div class="card-header" style="background:#dce7f1; text-align:center;">
                     <h4 class="card-title">الدعم الإعلامي</h4>
                 </div>
                 <div class="card-content">
@@ -116,26 +117,26 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-12" style="direction: rtl">
+        <div class="col-md-6 col-12" dir="rtl">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">إيصال الأخبار</h4>
+                <div class="card-header" >
+                    <h4 class="card-title" style=" padding:15px 7px ; margin: 5px; width:430px; height:50px; background:#dce7f1;">إيصال الأخبار</h4>
                 </div>
-                <div class="card-content">
+                <div class="card-content" >
                     <div class="card-body">
-                        <div class="input-group mb-3">
-                            <label class="input-group-text" for="inputGroupSelect01">أخبار الأسبوع</label>
-                            <select class="form-select" id="inputGroupSelect01">
+                        <div class="input-group mb-3" >
+                            <label class="input-group-text" for="inputGroupSelect01" >أخبار الأسبوع</label>
+                            <select class="form-select" id="inputGroupSelect01" style="direction: rtl; ">
                                 <option class="dropdown-item" style="text-align: right"><span
-                                                class="dropdown-item-emoji">👩‍💻</span>
+                                                class="dropdown-item-emoji"> &nbsp; 👩‍💻 &nbsp;</span>
                                             دورة القادة
                                 </option>
                                 <option class="dropdown-item" style="text-align: right" ><span
-                                                class="dropdown-item-emoji">👥</span>
+                                                class="dropdown-item-emoji">&nbsp; 👥 &nbsp;</span>
                                             النقاش المنهجي
                                 </option>
                                 <option class="dropdown-item" style="text-align: right"><span
-                                                class="dropdown-item-emoji">🖋</span>
+                                                class="dropdown-item-emoji">&nbsp; 🖋 &nbsp; </span>
                                             دورة كتابة الأطروحة
                                 </option>
                             </select>
@@ -165,10 +166,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-12" style="direction: rtl">
+        <div class="col-md-6 col-12" dir="rtl">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title"> جرد قراءة القائد</h4>
+                    <h4 class="card-title" style=" padding:15px 7px ; margin: 5px; text-align:center; width:430px; height:50px; background:#dce7f1;"> جرد قراءة القائد</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
@@ -195,9 +196,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-12" style="direction: rtl">
+        <div class="col-md-6 col-12" dir="rtl">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header" style=" text-align:center; background:#dce7f1;">
                     <h4 class="card-title">العلامات الأولية</h4>
                 </div>
                 <div class="card-content">
@@ -239,10 +240,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-12" style="direction: rtl">
+        <div class="col-md-6 col-12" dir="rtl">
             <div class="card" style="height: 306.219px">
                 <div class="card-header">
-                    <h4 class="card-title">العلامات النهائية</h4>
+                    <h4 class="card-title" style=" padding:15px 7px ; margin: 5px; text-align:center; width:430px; height:50px; background:#dce7f1;">العلامات النهائية</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
@@ -267,10 +268,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-12" style="direction: rtl">
+        <div class="col-md-6 col-12" dir="rtl">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">تدقيق العلامات النهائية</h4>
+                <div class="card-header" style="background:#dce7f1;" >
+                    <h4 class="card-title" >تدقيق العلامات النهائية</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body">
@@ -310,10 +311,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-12" style="direction: rtl">
+        <div class="col-md-6 col-12" dir="rtl">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">إدخال روابط المنسحبين</h4>
+                <div class="card-header"  >
+                    <h4 class="card-title" style=" padding:15px 7px ; margin: 5px; width:430px; height:50px; background:#dce7f1;">إدخال روابط المنسحبين</h4>
                 </div>
                 <div class="card-content">
                     <div class="card-body">

@@ -26,6 +26,7 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>       
+<<<<<<< HEAD
            
 
 
@@ -41,6 +42,26 @@
                             </li>
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#contact" role="tab"
+=======
+             <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title"> عرض نتيجة الجرد</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#main-info" role="tab"
+                                    aria-controls="home" aria-selected="true">بيانات القائد</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#main-works" role="tab"
+                                    aria-controls="profile" aria-selected="false">المهام الاساسية</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="contact-tab" data-bs-toggle="tab" href="#news" role="tab"
+>>>>>>> 78706dc4d9c18457e99cce4e763d59d196bd0fd7
                                     aria-controls="contact" aria-selected="false">الاخبار</a>
                             </li>
                             <li class="nav-item" role="presentation">
@@ -53,6 +74,13 @@
                                 <p class='my-2'>
                                     <!-- leader info start -->
                 <section class="section">
+                                    aria-controls="contact" aria-selected="false">التدقيق(للمراقب)</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="main-info" role="tabpanel" aria-labelledby="home-tab">
+                                <p class='my-2'>
+                                <section class="section">
                 <div class="tab-pane fade show active" id="main-info" role="tabpanel" aria-labelledby="main-info-tab">
                     <div class="row" id="table-striped">
                         <div class="col-12" >
@@ -169,8 +197,13 @@
                 <!-- leader info end -->
                                 </p>
                             </div>
+<<<<<<< HEAD
                             <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                  <!--leader info start -->
+=======
+                            <div class="tab-pane fade" id="main-works" role="tabpanel" aria-labelledby="profile-tab">
+                                <!--leader info start -->
+>>>>>>> 78706dc4d9c18457e99cce4e763d59d196bd0fd7
                  
                 <div class="tab-pane fade show active" id="main-works" role="tabpanel" aria-labelledby="main-info-tab">
                     <div class="row" id="table-striped">
@@ -294,6 +327,7 @@
                         </div>
                     </div>
                     </div>
+<<<<<<< HEAD
 
                     
                 <!-- Striped rows end -->
@@ -302,6 +336,12 @@
                             <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                                 <p class="mt-2">
                                      <!--news start -->           
+=======
+                            </div>
+                            <div class="tab-pane fade" id="news" role="tabpanel" aria-labelledby="contact-tab">
+                                <p class="mt-2">
+                                    <!--news start -->           
+>>>>>>> 78706dc4d9c18457e99cce4e763d59d196bd0fd7
                 <div class="tab-pane fade" id="news" role="tabpanel" aria-labelledby="news-tab">
                             <div class="card-columns text-right" dir="rtl" style="font-size:1.1em;">                                <div class="card border-dark p-3 radius" style="max-width:18rem;">
                                     <div class="card-header news-header" style="border-radius:50px;">
@@ -360,7 +400,11 @@
                             </div>
                             <div class="tab-pane fade" id="audit" role="tabpanel" aria-labelledby="contact-tab">
                                 <p class="mt-2">
+<<<<<<< HEAD
                                          <!-- audit start -->
+=======
+                                     <!-- audit start -->
+>>>>>>> 78706dc4d9c18457e99cce4e763d59d196bd0fd7
  <section class="section">
                 <div class="tab-pane fade show active" id="audit" role="tabpanel" aria-labelledby="main-info-tab">
                     <div class="row" id="table-striped">
@@ -477,6 +521,23 @@
                
        
  
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- leader info start -->
+                
+
+                 
+                
+                <!-- Striped rows end -->
+
+
+                
+       
 
                 <script>
 $(document).ready(function() {
