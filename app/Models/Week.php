@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Week extends Model
 {
     use HasFactory;
+
+    public function ExtraWork()
+    {
+        return $this->hasMany('App\Models\ExtraWork');
+    }  
 }

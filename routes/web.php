@@ -19,7 +19,9 @@ Route::get('/', function () {
     return view('welcome');
 
 });
-Route::view('/supervisor-page', 'supervisor');
+
+//Route::get('/create', [App\Http\controllers\ExtraWorkController::class,'create']);
+Route::resource('/supervisor','ExtraWorkController');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/leaderduty', [App\Http\Controllers\LeaderDutyController::class, 'index']);
