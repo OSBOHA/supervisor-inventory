@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
-    <div class="container"> 
-       
+    <div class="container">
+
         <body>
-        
+
           <div id="main-content" >
              <div class="page-heading">
                 <header class="mb-3">
@@ -15,22 +15,22 @@
 
                    </a>
                 </header>
-            
+
               <div class="page-heading">
               <div class="page-title">
               <div class="row">
-               
-              <div class="col-10"> <h3>  الإضافات على عمل المراقب : </h3> 
+
+              <div class="col-10"> <h3>  الإضافات على عمل المراقب : </h3>
               <br>
 
-              <div class="alert alert-light-danger color-danger"><i class="bi bi-exclamation-circle"></i> 
+              <div class="alert alert-light-danger color-danger"><i class="bi bi-exclamation-circle"></i>
                     في هذا الجزء ستقوم بوضع أي عمل إضافي تقوم به كمراقب <b>( اختياري* )</b> عدا سكرين المنسحبين <b>( إجباري )</b>
               </div>
-              
+
              </div>
-            
-         
-         
+
+
+
             </div>
 
 
@@ -47,19 +47,19 @@
                         <br>
                         <br>
                     <div class="card-body">
-                      <input class="form-control" type="file" id="formFileMultiple" multiple>  
+                      <input class="form-control" type="file" id="formFileMultiple" multiple>
                     </div>
-                        
+
                 </div>
             </div>
-         </div> 
+         </div>
          </section>
         @for ($i = 1; $i < $count = 4; $i++)
             <section class="section">
                 <div class="row">
-                    <div class="col-10"> 
+                    <div class="col-10">
                         <div class="card">
-                    
+
 
                             <div class="card-body">
                              <div class="form-group with-title mb-3">
@@ -72,23 +72,23 @@
                               </div>
                             </div>
 
-                    
+
                         </div>
                     </div>
                 </div>
-            </section> 
-        @endfor  
-     
+            </section>
+        @endfor
+
          <section class="multiple-choices">
          <div class="row">
             <div class="col-10">
                 <div class="card">
-                    
+
                         <div class="card-body">
                         <div class="col-md-12 mb-3">
                            <p class ="lead text-center">
                           <label><h3> <Center> التواصل مع باقي القادة للإطمئنان</Center> </h3>  </label>
-                          
+
                           <input type="radio" name="Leader" id="Leader2_1" value="1"/>  تم <br>
                           <input type="radio" name="Leader" id="Leader2_2" value="0"/> لم يتم <br><br>
 
@@ -115,15 +115,15 @@
                                 <br>
                           <input class="form-control" type="file" id="formFileMultiple" multiple>
                           <br>
-                          
+
                           <div class="buttons">
                           <a href="#" class="btn btn-secondary" style="border-radius: 5000px;"  > حفظ  التغييرات </a>
                           </div>
-                          
-                          
+
+
                         </div>
                         </div>
-                                   
+
                 </div>
             </div>
           </div>
@@ -134,24 +134,24 @@
                     <div class="float-start">
                         <p> Developed by <a href="http://osboha180.com">Osboha 180 </a>  Programers  &copy; </p>
                     </div>
-                    
+
                 </div>
-     
+
          </footer>
-   
-   
+
+
          </div>
 
-            
+
          </div>
-         </div>
-       
          </div>
 
-           
+         </div>
+
+
          </div>
          </div>
-    
+
         </body>
     </div>
 

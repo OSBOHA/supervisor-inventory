@@ -16,7 +16,7 @@ class CreateSupervisorsTable extends Migration
         Schema::create('supervisors', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('current_advisor');
+            $table->integer('current_advisor')->nullable();
             $table->integer('previous_advisor');
             $table->string('team');
             $table->timestamps();

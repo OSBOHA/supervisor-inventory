@@ -7,6 +7,11 @@
     <div class="page-heading">
         <h3> معلومات المراقب</h3>
     </div>
+    @php
+    $t=0;
+@endphp
+@for ($t == 0 && $supervisors as $sp) {
+
     <div class="page-content">
         <section class="row">
             <div class="col-12 col-lg-9">
@@ -22,7 +27,13 @@
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold"> حالتك الان</h6>
-                                        <h6 class="font-extrabold mb-0">مكلف</h6>
+                                        <h6 class="font-extrabold mb-0">
+                                            @if ($sp->current_advisor == null)
+                                                غير مكلف
+                                            @else
+                                                مكلف
+                                            @endif
+                                        </h6>
 
 
                                     </div>
@@ -42,7 +53,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold">موجهك الحالي</h6>
-                                        <h6 class="font-extrabold mb-0">شادن</h6>
+                                        <h6 class="font-extrabold mb-0">">{{ $sp->current_advisor }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -61,7 +72,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold">موجهك السابق</h6>
-                                        <h6 class="font-extrabold mb-0">نصر الدين </h6>
+                                        <h6 class="font-extrabold mb-0">">{{ $sp->previous_advisor }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -80,29 +91,62 @@
                                     </div>
                                     <div class="col-md-8">
                                         <h6 class="text-muted font-semibold"> تاريخ انضمامك</h6>
-                                        <h6 class="font-extrabold mb-0">1\1\2011</h6>
+                                        <h6 class="font-extrabold mb-0">">{{ $sp->created_at }}</h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
+                @php
+                    $i=0;
+                @endphp
+                @foreach ($leader_duties as $ldt)
 
                 </div>
-                <div class="row">
+                <div class="row" style="float: left;">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
                                 <h4> معدلات الافرقة</h4>
                             </div>
                             <div class="card-body">
-                                <div id="chart-profile-visit"></div>
+                                <div id="chart-profile-visit">
+                                    <span>{{$ldt->leader_id}}</span>
+                                    <div>
+                                        <div scope="row">{{++$i}}</div>
+                                        <div>{{ $ldt->week_id }}</div>
+                                        <div>{{ $ldt->final_mark }}</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+                @endforeach
+                @php
+                    $j=0;
+                @endphp
+                @foreach ($leadres as $ld)
+                <div class="row" style="float: right;">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>بيانات القادة</h4>
+                            </div>
+                            <div class="card-body">
+                                <div>
+                                    <span>{{$ld->id}}</span>
+                                    <div>
+                                        <div scope="row">{{++$j}}</div>
+                                        <div>{{ $ld->name }}</div>
+                                        <div>{{ $ld->team }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
 
             </div>
             <div class="col-12 col-lg-3">
@@ -161,6 +205,10 @@
             </div>
         </section>
     </div>
+}
+    @endfor
+
+
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 

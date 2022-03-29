@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Supervisor;
+use App\Models\Leadre;
+use App\Models\LeaderDuty;
+
+
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +29,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+
+    }
+    public function supervisor() {
+        $supervisors = Supervisor::get();
+        $leader_duties = LeaderDuty::get();
+        $leadres = leadre::get();
+        return view('supervisorHome')
+        ->with('supervisors', $supervisors)
+        ->with('leadres', $leadres)
+        ->with('leader_duties', $leader_duties);
     }
 }
