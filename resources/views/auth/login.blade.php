@@ -5,7 +5,7 @@
 <body>
    <div id="auth">
        <div class="row h-25">
-           <div class="col-lg-5 col-12">
+           <div class="col-lg-6 col-12">
                <div id="auth-left">
                    {{-- <div class="auth-logo mb-0 text-center">
                        <h2>Osboha180</h2>
@@ -44,12 +44,12 @@
                                class="font-bold">تسجيل</a></p>
                        <p>
                            @if (Route::has('password.request'))
-                           <a class="lead" href="{{ route('password.request') }}"> {{ __('هل نسيت كلمة السر ؟') }}</a></p>
+                           <a class="fs-6" href="{{ route('password.request') }}"> {{ __('هل نسيت كلمة السر ؟') }}</a></p>
                            @endif
                    </div>
                </div>
            </div>
-           <div class="col-lg-7 d-none d-lg-block" style="background:#ccc;">
+           <div class="col-lg-6 d-none d-lg-block" style="background:#ccc;">
                 <div class="lift-side text-center mt-5 ">
                     <img src="{{asset('assets/images/logo/logo.PNG')}}" alt="logo">
                 </div>

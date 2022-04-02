@@ -5,7 +5,7 @@
         <div id="auth">
     
             <div class="row h-100">
-                <div class="col-lg-5 col-12">
+                <div class="col-lg-6 col-12">
                     <div id="auth-left">
                         {{-- <div class="auth-logo text-center">
                             <h2>Osboha180</h2>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-7 d-none d-lg-block"style="background:#ccc;">
+                <div class="col-lg-6 d-none d-lg-block"style="background:#ccc;">
                     <div class="lift-side text-center mt-5 me-5 ">
                         <img src="{{asset('assets/images/logo/logo.PNG')}}" alt="logo">
                     </div>
