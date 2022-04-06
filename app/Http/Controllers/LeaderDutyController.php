@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\LeaderDuty;
 use Illuminate\Http\Request;
+use App\Traits\MediaTraits;
 
 class LeaderDutyController extends Controller
 {
+    use MediaTraits;
 
     public function index()
     {
@@ -23,6 +25,7 @@ class LeaderDutyController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+
             'team_final_mark'=>'required',
             'current_team_members'=>'required',
             'follow_up_post'=>'required',
@@ -32,14 +35,22 @@ class LeaderDutyController extends Controller
             'elementary_mark'=>'required',
             'final_mark'=>'required',
             'audit_final_mark'=>'required',
-            'withdrawn_ambassadors'=>'required'
+            'withdrawn_ambassadors'=>'required',
+            //'leader_image_1' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
 
         ]);
-
-            $leader_image_1 = $this->createMedia($request->leader_image_1);
-            $leader_image_2 = $this->createMedia($request->leader_image_2);
-            $leader_image_3 = $this->createMedia($request->leader_image_3);
-            $leader_reply_image = $this->createMedia($request->leader_reply_image);
+        if ($request->hasFile('leader_image_1')){
+            $leader_image_1 = $this->createMedia($request->file('leader_image_1'));
+        }
+        if ($request->hasFile('leader_image_2')){
+            $leader_image_2 = $this->createMedia($request->file('leader_image_2'));
+        }
+        if ($request->hasFile('leader_image_3')){
+            $leader_image_3 = $this->createMedia($request->file('leader_image_3'));
+        }
+        if ($request->hasFile('leader_reply_image')){
+            $leader_reply_image = $this->createMedia($request->file('leader_reply_image'));
+        }
 
          $follow_up_array = serialize(array(["$request->follow_up_post",
          "$request->follow_up_standard_1", "$request->follow_up_standard_2", "$request->follow_up_standard_3", "$request->follow_up_standard_4", "$request->follow_up_standard_5", "$request->follow_up_standard_6", "$request->follow_up_standard_7", "$request->follow_up_standard_8", "$request->follow_up_standard_9", "$request->follow_up_standard_10"]));
@@ -50,9 +61,11 @@ class LeaderDutyController extends Controller
 
          $audit_final_mark_array = serialize(array(["$request->audit_final_mark", "$leader_image_1", "$leader_image_2", "$leader_image_3", "$leader_reply_image"]));
 
-         $withdrawn_ambassadors_array = serialize(array(["$request->withdrawn_ambassadors", "$request->num_defective"]));
+         $withdrawn_ambassadors_array = serialize(array($request->withdrawn_ambassadors, $request->num_defective));
 
           $leaderduty= LeaderDuty::create([
+            'leader_id'=> '1',
+            'week_id'=>'2',
             'team_final_mark' =>$request->team_final_mark,
             'current_team_members' =>$request->current_team_members,
             'follow_up_post'=>$follow_up_array,
@@ -66,7 +79,7 @@ class LeaderDutyController extends Controller
 
         ]);
 
-        return redirect()->route('leaderduty.index')->with('success', 'Your Entry Saved');
+        return redirect()->route('index')->with('success', 'Your Entry Saved');
     }
 
 

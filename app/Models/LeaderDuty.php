@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\MediaTraits;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class LeaderDuty extends Model
 {
     protected $fillable=[
+            'leader_id',
+            'week_id',
             'team_final_mark',
             'current_team_members',
             'follow_up_post',
@@ -20,5 +23,5 @@ class LeaderDuty extends Model
             'withdrawn_ambassadors'
 
     ];
-    use HasFactory;
+    use HasFactory; use MediaTraits;
 }

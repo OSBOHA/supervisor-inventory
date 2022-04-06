@@ -35,7 +35,7 @@
 
 @section('content')
  <div id="basic-horizontal-layouts">
-    <form action="{{route('store')}}" method="POST">
+    <form action="{{route('store')}}" enctype="multipart/form-data" method="POST">
         @csrf
 
         <div class="card-body">
@@ -58,39 +58,39 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <div class="form form-horizontal">
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="radio" name="follow_up_post" > نشر
+                                            <input type="radio" name="follow_up_post" value="published"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="follow_up_post" > لم ينشر
+                                            <input type="radio" name="follow_up_post" value="not_published" > لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="follow_up_post" > تم بالنيابة
+                                            <input type="radio" name="follow_up_post" value="published_on_behalf"> تم بالنيابة
                                         </div>
                                         <div class="col-md-4">
-                                        <br> <input type="radio" name="follow_up_post" > غير مستوف المعايير
+                                        <br> <input type="radio" name="follow_up_post" value="missing_standards"> غير مستوف المعايير
                                         </div>
                                         <div class="col-md-8 form-group">
                                         <br><br>
                                             <div>
-                                                <input type="checkbox" name="follow_up_standard_1" > نشره الأحد في وقت مناسب<br>
-                                                <input type="checkbox" name="follow_up_standard_2" > تاغ للسفراء<br>
-                                                <input type="checkbox" name="follow_up_standard_3" > ذكر رقم الإسبوع والشهر<br>
-                                                <input type="checkbox" name="follow_up_standard_4" > عبارة تشجيعية<br>
-                                                <input type="checkbox" name="follow_up_standard_5" > صورة مناسبة<br>
-                                                <input type="checkbox" name="follow_up_standard_6" > سؤال واضح عن الإنجاز<br>
-                                                <input type="checkbox" name="follow_up_standard_7" > التذكير بوضع الأطروحة في السفراء<br>
-                                                <input type="checkbox" name="follow_up_standard_8" > تعليق منفصل لكل سفير<br>
-                                                <input type="checkbox" name="follow_up_standard_9" > تعليق الاخبار<br>
-                                                <input type="checkbox" name="follow_up_standard_10" > أسبوع مخفف<br>
+                                                <input type="checkbox" name="follow_up_standard_1" value="time"> نشره الأحد في وقت مناسب<br>
+                                                <input type="checkbox" name="follow_up_standard_2" value="tag"> تاغ للسفراء<br>
+                                                <input type="checkbox" name="follow_up_standard_3" value="week_num"> ذكر رقم الإسبوع والشهر<br>
+                                                <input type="checkbox" name="follow_up_standard_4" value="quote"> عبارة تشجيعية<br>
+                                                <input type="checkbox" name="follow_up_standard_5" value="image"> صورة مناسبة<br>
+                                                <input type="checkbox" name="follow_up_standard_6" value="question"> سؤال واضح عن الإنجاز<br>
+                                                <input type="checkbox" name="follow_up_standard_7" value="thesis"> التذكير بوضع الأطروحة في السفراء<br>
+                                                <input type="checkbox" name="follow_up_standard_8" value="Ambassador_comment"> تعليق منفصل لكل سفير<br>
+                                                <input type="checkbox" name="follow_up_standard_9" value="news_comment"> تعليق الاخبار<br>
+                                                <input type="checkbox" name="follow_up_standard_10" value="lite_week"> أسبوع مخفف<br>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                             </div>
                         </div>
                     </div>
                 </div>
@@ -102,36 +102,36 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <div class="form form-horizontal">
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="radio" name="support_post" > نشر
+                                            <input type="radio" name="support_post" value="published"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="support_post" > لم ينشر
+                                            <input type="radio" name="support_post" value="not_published"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="support_post" > تم بالنيابة
+                                            <input type="radio" name="support_post" value="published_on_behalf"> تم بالنيابة
                                         </div>
                                         <div class="col-md-4">
-                                        <br> <input type="radio" name="support_post"> غير مستوف المعايير
+                                        <br> <input type="radio" name="support_post" value="missing_standards"> غير مستوف المعايير
                                         </div>
                                         <div class="col-md-8 form-group"> <br><br>
                                             <div>
-                                                <input type="checkbox" name="support_standard_1" > نشره في وقت مناسب (الخميس)<br>
-                                                <input type="checkbox" name="support_standard_2" > تاغ للسفراء<br>
-                                                <input type="checkbox" name="support_standard_3" > السؤال عن كيفية الدعم<br>
-                                                <input type="checkbox" name="support_standard_4" > صورة مناسبة<br>
-                                                <input type="checkbox" name="support_standard_5" > ذكر طريقة التصويت<br>
-                                                <input type="checkbox" name="support_standard_6" > إعادة المنشن يوم الجمعة<br>
-                                                <input type="checkbox" name="support_standard_7" > ذكر خيارات الدعم <br>
-                                                <input type="checkbox" name="support_standard_8" > أسبوع مخفف <br>
+                                                <input type="checkbox" name="support_standard_1" value="time"> نشره في وقت مناسب (الخميس)<br>
+                                                <input type="checkbox" name="support_standard_2" value="tag"> تاغ للسفراء<br>
+                                                <input type="checkbox" name="support_standard_3" value="question"> السؤال عن كيفية الدعم<br>
+                                                <input type="checkbox" name="support_standard_4" value="image"> صورة مناسبة<br>
+                                                <input type="checkbox" name="support_standard_5" value="voting_method"> ذكر طريقة التصويت<br>
+                                                <input type="checkbox" name="support_standard_6" value="re-mention"> إعادة المنشن يوم الجمعة<br>
+                                                <input type="checkbox" name="support_standard_7" value="support_options"> ذكر خيارات الدعم <br>
+                                                <input type="checkbox" name="support_standard_8" value="lite_week"> أسبوع مخفف <br>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -160,21 +160,21 @@
                                     </option>
                                 </select>
                             </div>
-                            <form class="form form-horizontal">
+                            <div class="form form-horizontal">
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                        <br> <input type="radio" name="news" > نشر
+                                        <br> <input type="radio" name="news" value="published"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <br> <input type="radio" name="news" > لم ينشر
+                                            <br> <input type="radio" name="news" value="not_published"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <br> <input type="radio" name="news" > غير مستوف المعايير
+                                            <br> <input type="radio" name="news" value="missing_standards"> غير مستوف المعايير
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -186,19 +186,19 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <div class="form form-horizontal">
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <input type="radio"  name="leader_reading" > قرأ<br>
-                                            <input type="radio"  name="leader_reading" > لم يقرأ<br>
-                                            <input type="radio"  name="leader_reading" > لم يكمل الورد<br>
-                                            <input type="radio"  name="leader_reading" > قرأ ولم يصوت في مجموعة الرقابة<br>
-                                            <input type="radio"  name="leader_reading" > تم التصويت بعد إغلاق الموقع<br>
+                                            <input type="radio"  name="leader_reading" value="read"> قرأ<br>
+                                            <input type="radio"  name="leader_reading" value="didn't_read"> لم يقرأ<br>
+                                            <input type="radio"  name="leader_reading" value="un_completed"> لم يكمل الورد<br>
+                                            <input type="radio"  name="leader_reading" value="missing_leaders_voting"> قرأ ولم يصوت في مجموعة الرقابة<br>
+                                            <input type="radio"  name="leader_reading" value="late_voting"> تم التصويت بعد إغلاق الموقع<br>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -210,33 +210,33 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <div class="form form-horizontal">
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="radio" name="elementary_mark" > نشر
+                                            <input type="radio" name="elementary_mark" value="published" > نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="elementary_mark" > لم ينشر
+                                            <input type="radio" name="elementary_mark" value="not_published"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="elementary_mark" > تم بالنيابة
+                                            <input type="radio" name="elementary_mark" value="published_on_behalf"> تم بالنيابة
                                         </div>
                                         <div class="col-md-4">
-                                        <br> <input type="radio" name="elementary_mark" > غير مستوف المعايير
+                                        <br> <input type="radio" name="elementary_mark" value="missing_standards"> غير مستوف المعايير
                                         </div>
                                         <div class="col-md-8 form-group"> <br><br>
                                             <div>
-                                                <input type="checkbox" name="elementary_standard_1" > نشره في وقت مناسب<br>
-                                                <input type="checkbox" name="elementary_standard_2" > تاغ للسفراء<br>
-                                                <input type="checkbox" name="elementary_standard_3" > ذكر النقص للسفراء<br>
-                                                <input type="checkbox" name="elementary_standard_4" > صورة من الموقع<br>
-                                                <input type="checkbox" name="elementary_standard_5" > أسبوع مخفف<br>
+                                                <input type="checkbox" name="elementary_standard_1" value="time"> نشره في وقت مناسب<br>
+                                                <input type="checkbox" name="elementary_standard_2" value="tag"> تاغ للسفراء<br>
+                                                <input type="checkbox" name="elementary_standard_3" value="shortage"> ذكر النقص للسفراء<br>
+                                                <input type="checkbox" name="elementary_standard_4" value="image"> صورة من الموقع<br>
+                                                <input type="checkbox" name="elementary_standard_5" value="lite_week"> أسبوع مخفف<br>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -248,17 +248,17 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <div class="form form-horizontal">
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="radio" name="final_mark" > نشر <br> <br>
-                                            <input type="radio" name="final_mark" > لم ينشر <br> <br>
-                                            <input type="radio" name="final_mark" > تم بالنيابة <br> <br>
+                                            <input type="radio" name="final_mark" value="published"> نشر <br> <br>
+                                            <input type="radio" name="final_mark" value="not_published"> لم ينشر <br> <br>
+                                            <input type="radio" name="final_mark" value="published_on_behalf"> تم بالنيابة <br> <br>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -270,17 +270,17 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <div class="form form-horizontal">
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <input type="radio" name="audit_final_mark" > تم
+                                            <input type="radio" name="audit_final_mark" value="done"> تم
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="radio" name="audit_final_mark" >  لم يتم
+                                            <input type="radio" name="audit_final_mark" value="not_done">  لم يتم
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="radio" name="audit_final_mark" >  لم يكن التدقيق لهذا القائد هذا الإسبوع
+                                            <input type="radio" name="audit_final_mark" value="off_audit">  لم يكن التدقيق لهذا القائد هذا الإسبوع
                                         </div>
                                         <div class="col-md-8 form-group"> <br>
                                             <div>
@@ -291,11 +291,14 @@
 
                                                 <label>سكرين لرد القائد على رسالتك</label> <br>
                                                 <input type="file" name="leader_reply_image" class="form-control radius">
+                                                @error('file')
+                                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -307,13 +310,13 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form form-horizontal">
+                            <div class="form form-horizontal">
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <input type="radio" name="withdrawn_ambassadors" > تم الإدخال  <br> <br>
-                                            <input type="radio" name="withdrawn_ambassadors" >  لم يتم الإدخال  <br> <br>
-                                            <input type="radio" name="withdrawn_ambassadors" >  لا يوجد لديه منسحبين <br> <br>
+                                            <input type="radio" name="withdrawn_ambassadors" value="done"> تم الإدخال  <br> <br>
+                                            <input type="radio" name="withdrawn_ambassadors" value="not_done">  لم يتم الإدخال  <br> <br>
+                                            <input type="radio" name="withdrawn_ambassadors" value="no_withdrawn">  لا يوجد لديه منسحبين <br> <br>
                                         </div>
                                         <div class="col-md-8 form-group"> <br>
                                             <div>
@@ -323,7 +326,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
