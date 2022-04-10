@@ -16,8 +16,15 @@ Route::get('/', function () {
 Route::view('/supervisor-page', 'supervisor');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/leaderduty', [App\Http\Controllers\LeaderDutyController::class, 'index']);
-
+//Route::get('/leaderduty', [App\Http\Controllers\LeaderDutyController::class, 'index']);
+Route::group(['prefix'=>'leaderduty'], function(){
+    Route::get('/', [App\Http\Controllers\LeaderDutyController::class, 'index'])->name('index');
+    Route::post('/create', [App\Http\Controllers\LeaderDutyController::class, 'create']);
+    Route::post('/store', [App\Http\Controllers\LeaderDutyController::class, 'store'])->name('store');
+    Route::get('/show', [App\Http\Controllers\LeaderDutyController::class, 'show']);
+    Route::post('/update', [App\Http\Controllers\LeaderDutyController::class, 'update']);
+    Route::post('/delete', [App\Http\Controllers\LeaderDutyController::class, 'delete']);
+});
 Route::get('/front', function () {
     return view('front');
 });
