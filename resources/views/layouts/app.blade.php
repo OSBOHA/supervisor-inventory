@@ -40,9 +40,9 @@
 
 
         <!-- Script -->
+        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
-
         <script src="{{asset('assets/vendors/ckeditor/ckeditor.js')}}"></script>
         <script>
             ClassicEditor
@@ -54,7 +54,8 @@
         <script src="assets/vendors/choices.js/choices.min.js"></script>
         <script src="assets/js/pages/form-element-select.js"></script>
         <script src="assets/js/mazer.js"></script>
-        
+        <script src="assets/js/leaderduty.js"></script>
+
 </body>
 
 </html>

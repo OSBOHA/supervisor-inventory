@@ -13,14 +13,6 @@
             </div>
             <div class="sidebar-menu">
                 <ul class="menu">
-                    <li class="sidebar-item active ">
-                        <a href="#" class='sidebar-link'>
-                            <i class="bi bi-grid-fill"></i>
-                            <span>Leader Duty</span>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="menu">
                     <li class="sidebar-item  has-sub">
                         <a href="#" class='sidebar-link'>
                             <h5><i class="bi bi-person-circle"></i></h5>
