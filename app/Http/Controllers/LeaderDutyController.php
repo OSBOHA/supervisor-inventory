@@ -30,36 +30,42 @@ class LeaderDutyController extends Controller
             'current_team_members'=>'required',
             'follow_up_post'=>'required',
             'support_post'=>'required',
-            'news'=>'required',
             'leader_reading'=>'required',
             'elementary_mark'=>'required',
             'final_mark'=>'required',
             'audit_final_mark'=>'required',
             'withdrawn_ambassadors'=>'required',
-            //'leader_image_1' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
 
         ]);
+
         if ($request->hasFile('leader_image_1')){
             $leader_image_1 = $this->createMedia($request->file('leader_image_1'));
-        }
+        } else {$leader_image_1= "null";}
+
         if ($request->hasFile('leader_image_2')){
             $leader_image_2 = $this->createMedia($request->file('leader_image_2'));
-        }
+        } else {$leader_image_2= "null";}
+
         if ($request->hasFile('leader_image_3')){
             $leader_image_3 = $this->createMedia($request->file('leader_image_3'));
-        }
+        } else {$leader_image_3= "null";}
+
         if ($request->hasFile('leader_reply_image')){
             $leader_reply_image = $this->createMedia($request->file('leader_reply_image'));
-        }
+        } else {$leader_reply_image= "null";}
+
+
 
          $follow_up_array = serialize(array(["$request->follow_up_post",
          "$request->follow_up_standard_1", "$request->follow_up_standard_2", "$request->follow_up_standard_3", "$request->follow_up_standard_4", "$request->follow_up_standard_5", "$request->follow_up_standard_6", "$request->follow_up_standard_7", "$request->follow_up_standard_8", "$request->follow_up_standard_9", "$request->follow_up_standard_10"]));
 
          $support_array = serialize(array(["$request->support_post", "$request->support_standard_1", "$request->support_standard_2", "$request->support_standard_3", "$request->support_standard_4", "$request->support_standard_5", "$request->support_standard_6", "$request->support_standard_7"]));
 
+         $news_array = serialize(array([" leader, $request->news_leader", "discussion, $request->news_discussion", "writing, $request->news_writing" ]));
+
          $elementary_mark_array = serialize(array(["$request->elementary_mark", "$request->elementary_standard_1", "$request->elementary_standard_2", "$request->elementary_standard_3", "$request->elementary_standard_4", "$request->elementary_standard_5"]));
 
-         $audit_final_mark_array = serialize(array(["$request->audit_final_mark", "$leader_image_1", "$leader_image_2", "$leader_image_3", "$leader_reply_image"]));
+         $audit_final_mark_array = serialize(array([ $request->audit_final_mark, $leader_image_1, $leader_image_2, $leader_image_3, $leader_reply_image ]));
 
          $withdrawn_ambassadors_array = serialize(array($request->withdrawn_ambassadors, $request->num_defective));
 
@@ -70,7 +76,7 @@ class LeaderDutyController extends Controller
             'current_team_members' =>$request->current_team_members,
             'follow_up_post'=>$follow_up_array,
             'support_post' =>$support_array,
-            'news' =>$request->news,
+            'news' =>$news_array,
             'leader_reading' =>$request->leader_reading,
             'elementary_mark' =>$elementary_mark_array,
             'final_mark' =>$request->final_mark,
