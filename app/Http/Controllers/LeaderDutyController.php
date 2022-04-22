@@ -95,9 +95,9 @@ class LeaderDutyController extends Controller
         //$leaderduty= LeaderDuty::create([
           //  'support_post'=>$support_post,
     //]);
-       // $leaderduty=LeaderDuty::all([
-         //   'support_post'=>unserialize($support_post),
-        //]);
+        //$leaderduty=LeaderDuty::all([
+            //'support_post'=>unserialize($support_array),
+       // ]);
 
         $leaderduty=LeaderDuty::all();
         return view('result',compact('leaderduty'));
