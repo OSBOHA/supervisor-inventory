@@ -24,4 +24,15 @@ class LeaderDuty extends Model
 
     ];
     use HasFactory; use MediaTraits;
+
+    public function Leadre()
+    {
+        return $this->belongsTo('App\Models\Leadre','leader_id');
+    }
+    
+    public function Week()
+    {
+        return $this->belongsTo('App\Models\Week','week_id');
+    }
+
 }
