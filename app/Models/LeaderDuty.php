@@ -24,4 +24,9 @@ class LeaderDuty extends Model
 
     ];
     use HasFactory; use MediaTraits;
+
+    public function leader() {
+        return $this->belongsTo('\App\Models\Leader', 'id' , 'leader_id');
+    }
+
 }

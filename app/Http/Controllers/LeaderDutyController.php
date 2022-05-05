@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LeaderDuty;
+use App\Models\Leader as Leader;
 use Illuminate\Http\Request;
 use App\Traits\MediaTraits;
 
@@ -12,7 +13,8 @@ class LeaderDutyController extends Controller
 
     public function index()
     {
-        return view('LeaderDuty');
+        $leader= Leader::latest()->orderBy('created_at', 'DESC')->paginate(6);
+        return view('LeaderDuty', compact('leader'));
     }
 
 
@@ -35,6 +37,10 @@ class LeaderDutyController extends Controller
             'final_mark'=>'required',
             'audit_final_mark'=>'required',
             'withdrawn_ambassadors'=>'required',
+            'leader_image_1' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'leader_image_2' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'leader_image_3' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'leader_reply_image' => 'image|mimes:jpeg,png,jpg,gif,svg',
 
         ]);
 
