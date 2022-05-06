@@ -98,8 +98,11 @@ class LeaderDutyController extends Controller
         //$leaderduty=LeaderDuty::all([
             //'support_post'=>unserialize($support_array),
        // ]);
-
-        $leaderduty=LeaderDuty::all();
+        //$leaderduty=LeaderDuty::where('week_id','1')->first();
+        $leaderduty=LeaderDuty::latest('week_id')->first();
+        
+        //$leaderduty=LeaderDuty::all();
+       // dd($leaderduty);
         return view('result',compact('leaderduty'));
 
     }

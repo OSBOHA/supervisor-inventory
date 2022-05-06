@@ -10,6 +10,7 @@ class Leadre extends Model
     use HasFactory;
 
     protected $fillable = [
+        'name',
         ' supervisor_id',
         'advisor_id',
         'team',
