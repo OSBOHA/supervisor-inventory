@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap-icons/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/app.rtl.css')}}">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/toastify/toastify.css')}}">
     <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />
 </head>
 
@@ -54,6 +55,8 @@
         </script>
         <script src="assets/vendors/choices.js/choices.min.js"></script>
         <script src="assets/js/pages/form-element-select.js"></script>
+        <script src="{{asset('assets/vendors/toastify/toastify.js')}}"></script>
+        <script src="{{asset('assets/js/extensions/toastify.js')}}"></script>
         <script src="assets/js/mazer.js"></script>
         <script src="assets/js/leaderduty.js"></script>
 

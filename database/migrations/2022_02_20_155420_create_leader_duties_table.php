@@ -25,7 +25,7 @@ class CreateLeaderDutiesTable extends Migration
             $table->string('audit_final_mark');
             $table->string('withdrawn_ambassadors');
             $table->string('leader_reading');
-            $table->double('team_final_mark',3, 2);
+            $table->double('team_final_mark', 4, 2);
             $table->integer('current_team_members');
 
             $table->timestamps();
