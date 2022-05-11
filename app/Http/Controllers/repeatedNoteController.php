@@ -13,10 +13,10 @@ class repeatedNoteController extends Controller
     
     public function index()
     {
-        $Leader = Leader::where('supervisor_id', Auth::id());
-        $week_id = Week::latest('id')->first()->id;
+        // $Leader = Leader::where('supervisor_id', Auth::id());
+        // $week_id = Week::latest('id')->first()->id;
         $data = RepeatedNote::get();
-        return view('repeatNotes.index', compact('data', 'leader'));
+        return view('repeatNotes.index', compact('data'));
     }
 
    

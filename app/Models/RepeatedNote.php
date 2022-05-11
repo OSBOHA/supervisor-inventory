@@ -18,4 +18,13 @@ class RepeatedNote extends Model
         'deputized_for',
         'light_week',
   ];
+  public function supervisor() 
+  {
+    return $this->belongsTo('\App\Models\Supervisor', 'supervisor_id');
+  }
+
+  public function week() 
+  {
+    return $this->belongsTo('\App\Models\Week', 'week_id');
+  }
 }
