@@ -5,24 +5,29 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\RepeatedNote;
-use App\Models\Leader;
 use App\Models\Week;
+use App\Models\Leader;
 
 class repeatedNoteController extends Controller
 {
-    
-    public function index()
+    public function __construct()
     {
-        // $Leader = Leader::where('supervisor_id', Auth::id());
-        // $week_id = Week::latest('id')->first()->id;
-        $data = RepeatedNote::get();
-        return view('repeatNotes.index', compact('data'));
+        $this->middleware('auth');
+    }
+
+    public function index()
+    {       
+        $data = RepeatedNote::all();
+        $Leaders = Leader::where('supervisor_id', Auth::id());
+        $week_id = Week::latest('id')->first()->id;
+        return view('repeatNotes.index', compact('data', 'Leaders', 'week_id'));
     }
 
    
     public function create()
     {
-        return view('repeatNotes.create');
+        $Leaders = Leader::all();
+        return view('repeatNotes.create' , compact('Leaders'));
     }
 
     
@@ -30,27 +35,24 @@ class repeatedNoteController extends Controller
     {
         $request->validate([
             
-            'supervisor_id'=>'required',
-            'week_id'=>'required',
-            'didnt_publish_news'=>'required',
+            'didnt_publish_news'   =>'required',
             'elementary_marks_late'=>'required',
-            'post_late'=>'required',
-            'deputized_for'=>'required',
-            'light_week'=>'required',
+            'post_late'            =>'required',
+            'deputized_for'        =>'required',
+            'light_week'           =>'required',
         ]);
 
         $data = RepeatedNote::create([
          
-            // 'supervisor_id'        =>'2',
-            // 'week_id'              =>'2',
+            'supervisor_id'        => Auth::id(),
+            'week_id'              => '2',
             'post_late'            =>implode(',' , $request->post_late),
             'light_week'           =>implode(',' , $request->light_week),
             'didnt_publish_news'   =>implode(',' , $request->didnt_publish_news),
             'deputized_for'        =>implode(',' , $request->deputized_for),
             'elementary_marks_late'=>implode(',' , $request->elementary_marks_late),
         ]);
-         return redirect()->route('index')->with('success', 'Your Entry Saved');    
-        // var_dump($data);
+         return redirect()->route('notes.index')->with('success', 'Your Entry Saved');    
     }
 
     
