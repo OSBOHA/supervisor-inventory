@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\LeaderDuty;
+use App\Models\Leader as Leader;
+use App\Models\Week as Week;
+use App\Models\News as News;
 use Illuminate\Http\Request;
 use App\Traits\MediaTraits;
+use Illuminate\Support\Facades\Auth;
 
 class LeaderDutyController extends Controller
 {
@@ -12,7 +16,10 @@ class LeaderDutyController extends Controller
 
     public function index()
     {
-        return view('LeaderDuty');
+        $leader= Leader::where('supervisor_id' ,Auth::id())->latest()->orderBy('created_at', 'DESC')->paginate(6);
+        $week_id= Week::latest('id')->first()->id;
+        $news= News::where('week_id', $week_id)->orderBy('created_at', 'DESC')->paginate(3);
+        return view('LeaderDuty', compact('leader', 'news'));
     }
 
 
@@ -26,6 +33,7 @@ class LeaderDutyController extends Controller
     {
         $request->validate([
 
+            'leader_id'=>'required',
             'team_final_mark'=>'required',
             'current_team_members'=>'required',
             'follow_up_post'=>'required',
@@ -35,24 +43,28 @@ class LeaderDutyController extends Controller
             'final_mark'=>'required',
             'audit_final_mark'=>'required',
             'withdrawn_ambassadors'=>'required',
+            'leader_message_1' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'leader_message_2' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'leader_message_3' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'leader_reply_message' => 'image|mimes:jpeg,png,jpg,gif,svg',
 
         ]);
 
-        if ($request->hasFile('leader_image_1')){
-            $leader_image_1 = $this->createMedia($request->file('leader_image_1'));
-        } else {$leader_image_1= "null";}
+        if ($request->hasFile('leader_message_1')){
+            $leader_message_1 = $this->createMedia($request->file('leader_message_1'));
+        } else {$leader_message_1= "null";}
 
-        if ($request->hasFile('leader_image_2')){
-            $leader_image_2 = $this->createMedia($request->file('leader_image_2'));
-        } else {$leader_image_2= "null";}
+        if ($request->hasFile('leader_message_2')){
+            $leader_message_2 = $this->createMedia($request->file('leader_message_2'));
+        } else {$leader_message_2= "null";}
 
-        if ($request->hasFile('leader_image_3')){
-            $leader_image_3 = $this->createMedia($request->file('leader_image_3'));
-        } else {$leader_image_3= "null";}
+        if ($request->hasFile('leader_message_3')){
+            $leader_message_3 = $this->createMedia($request->file('leader_message_3'));
+        } else {$leader_message_3= "null";}
 
-        if ($request->hasFile('leader_reply_image')){
-            $leader_reply_image = $this->createMedia($request->file('leader_reply_image'));
-        } else {$leader_reply_image= "null";}
+        if ($request->hasFile('leader_reply_message')){
+            $leader_reply_message = $this->createMedia($request->file('leader_reply_message'));
+        } else {$leader_reply_message= "null";}
 
 
 
@@ -65,13 +77,13 @@ class LeaderDutyController extends Controller
 
          $elementary_mark_array = serialize(array(["$request->elementary_mark", "$request->elementary_standard_1", "$request->elementary_standard_2", "$request->elementary_standard_3", "$request->elementary_standard_4", "$request->elementary_standard_5"]));
 
-         $audit_final_mark_array = serialize(array([ $request->audit_final_mark, $leader_image_1, $leader_image_2, $leader_image_3, $leader_reply_image ]));
+         $audit_final_mark_array = serialize(array([ $request->audit_final_mark, $leader_message_1, $leader_message_2, $leader_message_3, $leader_reply_message ]));
 
          $withdrawn_ambassadors_array = serialize(array($request->withdrawn_ambassadors, $request->num_defective));
 
           $leaderduty= LeaderDuty::create([
-            'leader_id'=> '1',
-            'week_id'=>'2',
+            'leader_id'=> $request->leader_id ,
+            'week_id'=> Week::latest('id')->first()->id,
             'team_final_mark' =>$request->team_final_mark,
             'current_team_members' =>$request->current_team_members,
             'follow_up_post'=>$follow_up_array,

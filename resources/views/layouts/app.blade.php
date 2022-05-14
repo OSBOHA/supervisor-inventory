@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap-icons/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/app.rtl.css')}}">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/toastify/toastify.css')}}">
     <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />
 </head>
 
@@ -41,6 +42,7 @@
 
         <!-- Script -->
         <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
         <script src="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('assets/vendors/ckeditor/ckeditor.js')}}"></script>
@@ -53,6 +55,8 @@
         </script>
         <script src="assets/vendors/choices.js/choices.min.js"></script>
         <script src="assets/js/pages/form-element-select.js"></script>
+        <script src="{{asset('assets/vendors/toastify/toastify.js')}}"></script>
+        <script src="{{asset('assets/js/extensions/toastify.js')}}"></script>
         <script src="assets/js/mazer.js"></script>
         <script src="assets/js/leaderduty.js"></script>
 

@@ -25,4 +25,9 @@ class leader extends Model
       return $this->belongsTo('\App\Models\Supervisor', 'advisor_id');
   }
 
+
+    // public function duty(){
+
+    //     return $this->hasMany('\App\Models\LeaderDuty');
+    //     }
 }
