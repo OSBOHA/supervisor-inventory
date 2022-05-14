@@ -8,4 +8,32 @@ use Illuminate\Database\Eloquent\Model;
 class Supervisor extends Model
 {
     use HasFactory;
+
+    protected $fillable=[
+        'user_id',
+        'team',
+        'current_advisor',
+        'previous_advisor',
+  ];
+
+
+    public function leader()
+    {
+      return $this->hasMany('App\Models\Leader');
+    }
+
+    public function notes()
+    {
+        return $this->hasMany('App\Models\RepeatedNote');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('\App\Models\User', 'user_id');
+    }
+
+    public function Advisor()
+    {
+        return $this->belongsTo('\App\Models\Advisor', 'current_advisor');
+    }
 }
