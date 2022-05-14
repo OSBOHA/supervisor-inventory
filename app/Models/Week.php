@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Week extends Model
 {
     use HasFactory;
+
+
 }
