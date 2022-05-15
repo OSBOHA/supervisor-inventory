@@ -11,6 +11,7 @@ class LeaderDuty extends Model
     protected $fillable=[
             'leader_id',
             'week_id',
+            'supervisor_id',
             'team_final_mark',
             'current_team_members',
             'follow_up_post',
