@@ -41,11 +41,28 @@
 
         <div class="card-body">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
+                    <div class="btn-group dropstart">
+                        <button type="button" class="btn btn-light"
+                            data-bs-toggle="dropdown" aria-expanded="false" style="background:#dce7f1; color:#25396f; font-size: 18px;font-weight: 700;">
+                            اختر اسم القائد
+                            <select type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"      data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="dropdown-menu">
+                                    <option class="dropdown-item" ></option>
+                                    @foreach ($leader as $item )
+                                    <option class="dropdown-item" >{{$item->name}}</option>
+                                    @endforeach
+                                </div>
+                            </select>
+                        </button>
+                    </div>
+                </div>
+                <div class="w-100"></div>
+                <div class="col-sm-4"><br>
                     <h6>عدد الفريق</h6>
                     <input class="form-control" name="current_team_members" type="number" min="0" max="30" placeholder="ادخل عدد أعضاء الفريق الحالي">
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4"><br>
                     <h6>معدل الفريق</h6>
                     <input class="form-control" name="team_final_mark" type="number" min="0" max="100" placeholder="ادخل معدل الفريق">
                 </div>
@@ -63,16 +80,16 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="radio" name="follow_up_post" value="published"> نشر
+                                            <input type="radio" id="follow_up" name="follow_up_post" value="published" onclick="follow_up_disable()"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="follow_up_post" value="not_published" > لم ينشر
+                                            <input type="radio" id="follow_up" name="follow_up_post" value="not_published" onclick="follow_up_disable()"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="follow_up_post" value="published_on_behalf"> تم بالنيابة
+                                            <input type="radio" id="follow_up" name="follow_up_post" value="published_on_behalf" onclick="follow_up_disable()"> تم بالنيابة
                                         </div>
                                         <div class="col-md-4">
-                                        <br> <input type="radio" name="follow_up_post" value="missing_standards" onclick="follow_up_enable()"> غير مستوف المعايير
+                                        <br> <input type="radio" id="follow_up" name="follow_up_post" value="missing_standards" onclick="follow_up_enable()"> غير مستوف المعايير
                                         </div>
                                         <div class="col-md-8 form-group">
                                         <br><br>
@@ -107,13 +124,13 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="radio" name="support_post" value="published"> نشر
+                                            <input type="radio"  name="support_post" value="published" onclick="support_disable()"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="support_post" value="not_published"> لم ينشر
+                                            <input type="radio" name="support_post" value="not_published" onclick="support_disable()"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="support_post" value="published_on_behalf"> تم بالنيابة
+                                            <input type="radio" name="support_post" value="published_on_behalf" onclick="support_disable()"> تم بالنيابة
                                         </div>
                                         <div class="col-md-4">
                                         <br> <input type="radio" name="support_post" value="missing_standards" onclick="support_enable()"> غير مستوف المعايير
@@ -138,7 +155,7 @@
                 </div>
             </div>
             <div class="col-md-6 col-12" dir="rtl">
-                <div class="card" {{--style="height: 247.031px;"--}}>
+                <div class="card" style="height: 247.031px;">
                     <div class="card-header" style="background:#dce7f1;" >
                         <h4 class="card-title" >إيصال الأخبار</h4>
                     </div>
@@ -148,7 +165,7 @@
                                 <label class="input-group-text" for="inputGroupSelect01" >أخبار الأسبوع</label>
 
                                 <select class="form-select" id="newselect" onselect="newsSelect()" style="direction: rtl">
-                                    <option value="empty" ></option>
+                                    <option value="empty" >اختر خبر الأسبوع من قائمة الأخبار</option>
                                     <option class="dropdown-item" value="leader" style="text-align: right"><span
                                                     class="dropdown-item-emoji"> &nbsp; 👩‍💻 &nbsp;</span>
                                                 دورة القادة
@@ -163,47 +180,57 @@
                                     </option>
                                 </select>
                             </div>
-                            <div class="form form-horizontal" id="leader_select">
+                            {{-- <div class="form form-horizontal" id="">
                                 <div class="form-body">
                                     <div class="row">
+                                      <br><br><h5>اختر خبر الأسبوع من قائمة الأخبار</h5>
+                                    </div>
+                                </div>
+                            </div> --}}
+                            <div class="form form-horizontal" id="leader_select" style="display: none" >
+                                <div class="form-body">
+                                    <div class="row">
+                                        <h5>دورة القادة</h5>
                                         <div class="col-md-4">
-                                        <br> <input type="radio" name="news_leader" value="published"> نشر
+                                         <input type="radio" name="news_leader" value="published"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <br> <input type="radio" name="news_leader" value="not_published"> لم ينشر
+                                            <input type="radio" name="news_leader" value="not_published"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <br> <input type="radio" name="news_leader" value="missing_standards"> غير مستوف المعايير
+                                             <input type="radio" name="news_leader" value="missing_standards"> غير مستوف المعايير
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form form-horizontal" id="discussion_select">
+                            <div class="form form-horizontal" id="discussion_select" style="display: none">
                                 <div class="form-body">
                                     <div class="row">
+                                        <h5> دورة النقاش المهنجي</h5>
                                         <div class="col-md-4">
-                                        <br> <input type="radio" name="news_discussion" value="published"> نشر
+                                            <input type="radio" name="news_discussion" value="published"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <br> <input type="radio" name="news_discussion" value="not_published"> لم ينشر
+                                            <input type="radio" name="news_discussion" value="not_published"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <br> <input type="radio" name="news_discussion" value="missing_standards"> غير مستوف المعايير
+                                            <input type="radio" name="news_discussion" value="missing_standards"> غير مستوف المعايير
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form form-horizontal" id="writing_select">
+                            <div class="form form-horizontal" id="writing_select" style="display: none">
                                 <div class="form-body">
                                     <div class="row">
+                                        <h5>دورة كتابة الأطروحة</h5>
                                         <div class="col-md-4">
-                                        <br> <input type="radio" name="news_writing" value="published"> نشر
+                                            <input type="radio" name="news_writing" value="published"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <br> <input type="radio" name="news_writing" value="not_published"> لم ينشر
+                                            <input type="radio" name="news_writing" value="not_published"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <br> <input type="radio" name="news_writing" value="missing_standards"> غير مستوف المعايير
+                                            <input type="radio" name="news_writing" value="missing_standards"> غير مستوف المعايير
                                         </div>
                                     </div>
                                 </div>
@@ -247,13 +274,13 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="radio" name="elementary_mark" value="published" > نشر
+                                            <input type="radio" name="elementary_mark" value="published" onclick="elementary_disable()"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="elementary_mark" value="not_published"> لم ينشر
+                                            <input type="radio" name="elementary_mark" value="not_published" onclick="elementary_disable()"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="elementary_mark" value="published_on_behalf"> تم بالنيابة
+                                            <input type="radio" name="elementary_mark" value="published_on_behalf" onclick="elementary_disable()"> تم بالنيابة
                                         </div>
                                         <div class="col-md-4">
                                         <br> <input type="radio" name="elementary_mark" value="missing_standards" onclick="elementary_enable()"> غير مستوف المعايير

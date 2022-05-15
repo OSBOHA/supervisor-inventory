@@ -1,19 +1,39 @@
-function follow_up_enable() {
+function follow_up_enable(value) {
+        for( i=1 ; i< 11; i++){
+        var  follow_up_standard = "follow_up_standard_"+i;
+        document.getElementById(follow_up_standard).disabled = false;
+        }
+}
+function follow_up_disable() {
     for( i=1 ; i< 11; i++){
-       var  follow_up_standard = "follow_up_standard_"+i;
-       document.getElementById(follow_up_standard).disabled = false;
+        var  follow_up_standard = "follow_up_standard_"+i;
+        document.getElementById(follow_up_standard).disabled = true;
     }
 }
+
 function support_enable() {
     for( i=1 ; i< 9; i++){
        var  support_standard = "support_standard_"+i;
        document.getElementById(support_standard).disabled = false;
     }
 }
+function support_disable() {
+    for( i=1 ; i< 9; i++){
+       var  support_standard = "support_standard_"+i;
+       document.getElementById(support_standard).disabled = true;
+    }
+}
+
 function elementary_enable() {
     for( i=1 ; i< 6; i++){
        var  elementary_standard = "elementary_standard_"+i;
        document.getElementById(elementary_standard).disabled = false;
+    }
+}
+function elementary_disable() {
+    for( i=1 ; i< 6; i++){
+       var  elementary_standard = "elementary_standard_"+i;
+       document.getElementById(elementary_standard).disabled = true;
     }
 }
 

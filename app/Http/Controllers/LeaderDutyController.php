@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\LeaderDuty;
+use App\Models\Week;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Leader as Leader;
 use Illuminate\Http\Request;
 use App\Traits\MediaTraits;
 
@@ -12,7 +15,8 @@ class LeaderDutyController extends Controller
 
     public function index()
     {
-        return view('LeaderDuty');
+        $leader= Leader::latest()->orderBy('created_at', 'DESC')->paginate(6);
+        return view('LeaderDuty', compact('leader'));
     }
 
 
@@ -35,6 +39,10 @@ class LeaderDutyController extends Controller
             'final_mark'=>'required',
             'audit_final_mark'=>'required',
             'withdrawn_ambassadors'=>'required',
+            'leader_image_1' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'leader_image_2' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'leader_image_3' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'leader_reply_image' => 'image|mimes:jpeg,png,jpg,gif,svg',
 
         ]);
 
@@ -71,6 +79,7 @@ class LeaderDutyController extends Controller
 
           $leaderduty= LeaderDuty::create([
             'leader_id'=> '1',
+            'supervisor_id'=>Auth::id(),
             'week_id'=>'2',
             'team_final_mark' =>$request->team_final_mark,
             'current_team_members' =>$request->current_team_members,
@@ -89,27 +98,47 @@ class LeaderDutyController extends Controller
     }
 
 
-    public function show( leaderduty $leaderduty )
+    public function show( leaderduty $leaderduty,Request $request )
     {
-        //$support_post=unserialize($support_post);
-        //$leaderduty= LeaderDuty::create([
-          //  'support_post'=>$support_post,
-    //]);
-        //$leaderduty=LeaderDuty::all([
-            //'support_post'=>unserialize($support_array),
-       // ]);
-        //$leaderduty=LeaderDuty::where('week_id','1')->first();
-        $leaderduty=LeaderDuty::latest('week_id')->first();
+       $week=Week::latest()->first();
+       $leaderduty=LeaderDuty::where('week_id',$week->id)->where('supervisor_id',Auth::id())->get();
+           foreach($leaderduty as $duty){
+            $follow_up_post1= unserialize($duty->follow_up_post1);
+            echo'<pre>';
+            print_r($follow_up_post1);
+            echo'</pre>';
+            $support_post1=unserialize($duty->support_post1);
+            //echo'<pre>';
+            var_dump($support_post1);
+            //echo'</pre>';
+            $news_leader1=unserialize($duty->news_leader);
+            //echo'<pre>';
+            var_dump($news_leader1);
+            //echo'</pre>';
+            $elementary_mark1=unserialize($duty->elementary_mark);
+            echo'<pre>';
+            print_r($elementary_mark1);
+            echo'</pre>';
+            $audit_final_mark1=unserialize($duty->audit_final_mark);
+            echo'<pre>';
+            print_r($audit_final_mark1);
+            echo'</pre>';
+            $withdrawn_ambassadors1=unserialize($duty->withdrawn_ambassadors);
+            echo'<pre>';
+            print_r($withdrawn_ambassadors1);
+            echo'</pre>';
+            return view('result',compact('leaderduty','follow_up_post1','support_post1','news_leader1','elementary_mark1','audit_final_mark1','withdrawn_ambassadors1'));
+
+        }; 
         
-        //$leaderduty=LeaderDuty::all();
-       // dd($leaderduty);
-        return view('result',compact('leaderduty'));
+
 
     }
 
 
     public function edit(leaderduty $leaderduty)
     {
+ 
         //
     }
 

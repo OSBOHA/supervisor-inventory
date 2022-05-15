@@ -14,9 +14,9 @@ class Advisor extends Model
         'team',
     ];
 
-    public function Leadre()
+    public function leader()
     {
-        return $this->hasMany('App\Models\Leadre','advisor_id');
+        return $this->hasMany('App\Models\Leader','advisor_id');
     }
 
     public function Supervisor()

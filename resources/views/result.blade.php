@@ -50,6 +50,13 @@
                                             aria-labelledby="leader_data">
                                             <p class='my-2'>
                                                         <div class="table-responsive">
+                                                            <div>
+                                                            @if($message=Session::get('success'))
+                                                                <div class="alert alert-primary" role="alert">
+                                                                     {{$message}}
+                                                                </div>
+                                                              @endif
+                                                            </div>
                                                     <table class="table table-striped mb-0" dir="rtl" >
                                                         <thead>
                                                             <tr>
@@ -62,6 +69,7 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                        
                                                         @php
                                                             $i=0;
                                                         @endphp
@@ -69,7 +77,7 @@
                                                             
                                                             <tr>
                                                                 <td class="text-bold-500">  {{++ $i}} </td>
-                                                                <td>{{$item->Leadre->name}}</td>
+                                                                <td>{{$item->leader->name}}</td>
                                                                 <td class="text-bold-500">{{$item->leader_id}}</td>
                                                                 <td>{{$item->current_team_members}}</td>
                                                                 <td></td>
@@ -111,11 +119,13 @@
                                                         @foreach($leaderduty as $item)
                                                         <tr>
                                                             <td class="text-bold-500">{{++ $i}}</td>
-                                                            <td>{{$item->Leadre->name}}</td>
+                                                            <td>
+                                                                 {{ $item->Leader->name}}
+                                                             </td>
                                                             <td class="text-bold-500">{{$item->leader_reading}}</td>
-                                                            <td>{{$item->follow_up_post}}</td>
-                                                            <td>{{$item->support_post}}</td>
-                                                            <td>{{$item->elementary_mark}}</td>
+                                                            <td>{{$item->$follow_up_post1}}</td>
+                                                            <td>{{$item->$support_post1}}</td>
+                                                            <td>{{$item->$elementary_mark1}}</td>
                                                             <td>{{$item->final_mark}}</td>
                                                         </tr>
                                                                                                      
@@ -145,7 +155,7 @@
                                                         @foreach($leaderduty as $item)
                                                         <tr>
                                                             <td class="text-bold-500"> {{++ $i}}</td>
-                                                            <td>{{$item->Leadre->name}}</td>
+                                                            <td>{{$item->Leader->name}}</td>
                                                             <td class="text-bold-500"></td>
                                                             <td>{{$item->audit_final_mark}}</td>
                                                             
@@ -153,6 +163,8 @@
                                                         </tr>
                                                                                           
                                                         @endforeach
+                                                        
+                                                        
                                                     </tbody>
                                                 </table>
                                              </div>

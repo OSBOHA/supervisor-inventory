@@ -1,15 +1,15 @@
 <?php
-
 namespace App\Models;
-
 use App\Traits\MediaTraits;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class LeaderDuty extends Model
 {
+    use HasFactory; 
+    use MediaTraits;
     protected $fillable=[
             'leader_id',
+            'supervisor_id',
             'week_id',
             'team_final_mark',
             'current_team_members',
@@ -20,14 +20,12 @@ class LeaderDuty extends Model
             'elementary_mark',
             'final_mark',
             'audit_final_mark',
-            'withdrawn_ambassadors'
-
+            'withdrawn_ambassadors',
     ];
-    use HasFactory; use MediaTraits;
 
-    public function Leadre()
+    public function Leader()
     {
-        return $this->belongsTo('App\Models\Leadre','leader_id');
+        return $this->belongsTo('App\Models\Leader','leader_id');
     }
     
     public function Week()

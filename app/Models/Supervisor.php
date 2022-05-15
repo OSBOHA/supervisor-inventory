@@ -15,9 +15,9 @@ class Supervisor extends Model
         'previous_advisor',
     ];
 
-    public function Leadre()
+    public function Leader()
     {
-        return $this->hasMany('App\Models\Leadre','supervisor_id');
+        return $this->hasMany('App\Models\Leader','supervisor_id');
     }
 
     public function RepeatedNote()
