@@ -17,6 +17,7 @@ class CreateLeaderDutiesTable extends Migration
             $table->id();
             $table->integer('leader_id');
             $table->integer('week_id');
+            $table->integer('supervisor_id');
             $table->string('follow_up_post');
             $table->string('support_post');
             $table->string('news');

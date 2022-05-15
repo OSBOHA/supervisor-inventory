@@ -84,6 +84,7 @@ class LeaderDutyController extends Controller
           $leaderduty= LeaderDuty::create([
             'leader_id'=> $request->leader_id ,
             'week_id'=> Week::latest('id')->first()->id,
+            'supervisor_id'=>Auth::id(),
             'team_final_mark' =>$request->team_final_mark,
             'current_team_members' =>$request->current_team_members,
             'follow_up_post'=>$follow_up_array,
