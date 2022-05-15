@@ -40,10 +40,17 @@ Route::get('/show', function () {
     return view('show');
 
 });
-// Route::get('/notes', [App\Http\Controllers\repeatedNoteController::class, 'index'])->name('notes');
-Route::get('/notes', function () {
- return view('RepeatedNote');
-});
+
+//  Route::group(['prefix'=>'notes'], function(){
+//     Route::get('/','repeatedNoteController@index')->name('index');
+//     Route::post('/create','repeatedNoteController@create')->name('notes.create');
+//     Route::post('/store','repeatedNoteController@store')->name('store');
+//     Route::get('/show/{id}','repeatedNoteController@show')->name('show');
+//     Route::post('/update','repeatedNoteController@update')->name('update');
+//     Route::post('/delete/{id}','repeatedNoteController@delete')->name('delete');
+//     });  
+    Route::resource('notes', repeatedNoteController::class); 
+
 
 // Route::group(['prefix'=>'inventory'], function(){
 //     Route::get('/', [InventoryController::class, 'index']);

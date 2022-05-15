@@ -11,6 +11,7 @@ class LeaderDuty extends Model
             'leader_id',
             'supervisor_id',
             'week_id',
+            'supervisor_id',
             'team_final_mark',
             'current_team_members',
             'follow_up_post',
@@ -31,6 +32,10 @@ class LeaderDuty extends Model
     public function Week()
     {
         return $this->belongsTo('App\Models\Week','week_id');
+    }
+
+    public function week_num() {
+        return $this->belongsTo('\App\Models\Week');
     }
 
 }

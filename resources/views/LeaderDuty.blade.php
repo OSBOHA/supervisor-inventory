@@ -2,7 +2,7 @@
 @extends('layouts.sidebar')
 
 @section('page_title')
-<div class="container" style="padding-top:2%">
+{{-- <div class="container" style="padding-top:2%">
     <div class="row">
         <div class="card-body">
         @if (count($errors)> 0)
@@ -15,8 +15,9 @@
         </ul>
         @endif
         </div>
-      </div>
-</div>
+    </div>
+</div> --}}
+
 <div class="row" style="direction: rtl">
     <div  class="col-12 col-md-6 order-md-1 order-first" style="direction: rtl">
         <h3>الجرد الأسبوعي</h3>
@@ -36,35 +37,31 @@
 
 @section('content')
  <div id="basic-horizontal-layouts">
-    <form action="{{route('store')}}" enctype="multipart/form-data" method="POST">
+    <form id="leader_duty" action="{{route('store')}}" enctype="multipart/form-data" method="POST">
         @csrf
 
         <div class="card-body">
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="btn-group dropstart">
-                        <button type="button" class="btn btn-light"
-                            data-bs-toggle="dropdown" aria-expanded="false" style="background:#dce7f1; color:#25396f; font-size: 18px;font-weight: 700;">
-                            اختر اسم القائد
-                            <select type="button" class="btn btn-light dropdown-toggle dropdown-toggle-split"      data-bs-toggle="dropdown" aria-expanded="false">
-                                <div class="dropdown-menu">
-                                    <option class="dropdown-item" ></option>
-                                    @foreach ($leader as $item )
-                                    <option class="dropdown-item" >{{$item->name}}</option>
-                                    @endforeach
-                                </div>
-                            </select>
-                        </button>
+                <div class="col-sm-4">
+                    <h6>القائد</h6>
+                    <div class="input-group mb-3" >
+                        <label class="input-group-text" for="inputGroupSelect01" style="border-radius:0rem .25rem .25rem 0rem"> اختر اسم القائد</label>
+                        <select class="form-select" style="border-radius:.25rem 0rem 0rem .25rem" name="leader_id" dir="rtl">
+                            <option class="dropdown-item" ></option>
+                            @foreach ($leader as $item )
+                            <option class="dropdown-item" value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
-                <div class="w-100"></div>
-                <div class="col-sm-4"><br>
+                {{-- <div class="w-100"></div> --}}
+                <div class="col-sm-4">
                     <h6>عدد الفريق</h6>
                     <input class="form-control" name="current_team_members" type="number" min="0" max="30" placeholder="ادخل عدد أعضاء الفريق الحالي">
                 </div>
-                <div class="col-sm-4"><br>
+                <div class="col-sm-4">
                     <h6>معدل الفريق</h6>
-                    <input class="form-control" name="team_final_mark" type="number" min="0" max="100" placeholder="ادخل معدل الفريق">
+                    <input class="form-control" name="team_final_mark" type="number" min="0" max="100" step="0.01" placeholder="ادخل معدل الفريق">
                 </div>
             </div>
         </div>
@@ -163,31 +160,31 @@
                         <div class="card-body">
                             <div class="input-group mb-3" >
                                 <label class="input-group-text" for="inputGroupSelect01" >أخبار الأسبوع</label>
-
                                 <select class="form-select" id="newselect" onselect="newsSelect()" style="direction: rtl">
                                     <option value="empty" >اختر خبر الأسبوع من قائمة الأخبار</option>
-                                    <option class="dropdown-item" value="leader" style="text-align: right"><span
-                                                    class="dropdown-item-emoji"> &nbsp; 👩‍💻 &nbsp;</span>
-                                                دورة القادة
-                                    </option>
-                                    <option class="dropdown-item" value="discussion" style="text-align: right" ><span
-                                                    class="dropdown-item-emoji">&nbsp; 👥 &nbsp;</span>
-                                                النقاش المنهجي
-                                    </option>
-                                    <option class="dropdown-item" value="writing" style="text-align: right"><span
-                                                    class="dropdown-item-emoji">&nbsp; 🖋 &nbsp; </span>
-                                                دورة كتابة الأطروحة
-                                    </option>
+                                    @foreach ($news as $item)
+                                    @if ($item->title == 'leader')
+                                        <option class="dropdown-item" value="leader" style="text-align: right"><span
+                                                  class="dropdown-item-emoji"> &nbsp; 👩‍💻 &nbsp;</span>
+                                                    دورة القادة
+                                        </option>
+                                    @endif
+                                    @if ($item->title == 'discussion')
+                                        <option class="dropdown-item" value="discussion" style="text-align: right" ><span
+                                            class="dropdown-item-emoji">&nbsp; 👥 &nbsp;</span>
+                                         النقاش المنهجي
+                                        </option>
+                                    @endif
+                                    @if ($item->title == 'writing')
+                                        <option class="dropdown-item" value="writing" style="text-align: right"><span
+                                            class="dropdown-item-emoji">&nbsp; 🖋 &nbsp; </span>
+                                        دورة كتابة الأطروحة
+                                        </option>
+                                    @endif
+                                    @endforeach
                                 </select>
                             </div>
-                            {{-- <div class="form form-horizontal" id="">
-                                <div class="form-body">
-                                    <div class="row">
-                                      <br><br><h5>اختر خبر الأسبوع من قائمة الأخبار</h5>
-                                    </div>
-                                </div>
-                            </div> --}}
-                            <div class="form form-horizontal" id="leader_select" style="display: none" >
+                            <div class="form form-horizontal" id="leader_select" style="display: none">
                                 <div class="form-body">
                                     <div class="row">
                                         <h5>دورة القادة</h5>
@@ -334,23 +331,23 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <input type="radio" name="audit_final_mark" value="done"> تم
+                                            <input type="radio" name="audit_final_mark" value="done" onclick="image_upload_enable()"> تم
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="radio" name="audit_final_mark" value="not_done">  لم يتم
+                                            <input type="radio" name="audit_final_mark" value="not_done" onclick="image_upload_disable()">  لم يتم
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="radio" name="audit_final_mark" value="off_audit">  لم يكن التدقيق لهذا القائد هذا الإسبوع
+                                            <input type="radio" name="audit_final_mark" value="off_audit" onclick="image_upload_disable()">  لم يكن التدقيق لهذا القائد هذا الإسبوع
                                         </div>
                                         <div class="col-md-8 form-group"> <br>
                                             <div>
                                                 <label>سكرين للتواصل مع القائد</label><br>
-                                                <input type="file" name="leader_image_1" class="form-control radius"><br>
-                                                <input type="file" name="leader_image_2" class="form-control radius"><br>
-                                                <input type="file" name="leader_image_3" class="form-control radius"><br>
+                                                <input type="file" id="leader_message_1" name="leader_message_1" class="form-control radius" disabled><br>
+                                                <input type="file" id="leader_message_2" name="leader_message_2" class="form-control radius" disabled><br>
+                                                <input type="file" id="leader_message_3" name="leader_message_3" class="form-control radius" disabled><br>
 
                                                 <label>سكرين لرد القائد على رسالتك</label> <br>
-                                                <input type="file" name="leader_reply_image" class="form-control radius">
+                                                <input type="file" id="leader_reply_message" name="leader_reply_message" class="form-control radius" disabled>
                                                 @error('file')
                                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                                 @enderror
@@ -374,14 +371,14 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <input type="radio" name="withdrawn_ambassadors" value="done"> تم الإدخال  <br> <br>
-                                            <input type="radio" name="withdrawn_ambassadors" value="not_done">  لم يتم الإدخال  <br> <br>
-                                            <input type="radio" name="withdrawn_ambassadors" value="no_withdrawn">  لا يوجد لديه منسحبين <br> <br>
+                                            <input type="radio" name="withdrawn_ambassadors" value="done" onclick="withdrawn_number_enable()"> تم الإدخال  <br> <br>
+                                            <input type="radio" name="withdrawn_ambassadors" value="not_done" onclick="withdrawn_number_enable()">  لم يتم الإدخال  <br> <br>
+                                            <input type="radio" name="withdrawn_ambassadors" value="no_withdrawn" onclick="withdrawn_number_disable()">  لا يوجد لديه منسحبين <br> <br>
                                         </div>
                                         <div class="col-md-8 form-group"> <br>
                                             <div>
                                                 <label>عدد المنسحبين</label>
-                                                <input type="number" name="num_defective" min="1" max="30" class="form-control radius">
+                                                <input type="number" id="withdrawn_number" name="num_defective" min="1" max="30" class="form-control radius" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -391,10 +388,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <button type="submit"  class="btn btn-success rounded-pill" style="width:575px">حفظ</button>
+            <div class="col-12 col-md-4">
+                <button id="save" type="submit"  class="btn btn-outline-success btn-block btn-lg rounded-pill" {{--style="width:575px"--}}>حفظ</button>
             </div>
         </div>
     </form>
+    {{-- <div class="col-md-6 col-12">
+        <div class="col-12 col-md-4">
+            <button id="top-left" class="btn btn-outline-primary btn-block btn-lg rounded-pill">التحقق</button>
+        </div>
+    </div> --}}
 </div>
 @endsection

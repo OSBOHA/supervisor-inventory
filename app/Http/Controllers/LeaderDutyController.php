@@ -7,8 +7,11 @@ use App\Models\Week  as Week;
 use App\Models\News as News;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Leader as Leader;
+use App\Models\Week as Week;
+use App\Models\News as News;
 use Illuminate\Http\Request;
 use App\Traits\MediaTraits;
+use Illuminate\Support\Facades\Auth;
 
 class LeaderDutyController extends Controller
 {
