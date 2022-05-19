@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/app.rtl.css')}}">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg')}}" type="image/x-icon">
     <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />
+    <link rel="stylesheet" href="assets/css/pages/email.css">
 </head>
 
 <body>

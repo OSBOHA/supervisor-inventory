@@ -15,6 +15,7 @@ Route::get('/', function () {
 });
 Route::view('/supervisor-page', 'supervisor');
 
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::get('/leaderduty', [App\Http\Controllers\LeaderDutyController::class, 'index']);
 Route::group(['prefix'=>'leaderduty'], function(){
@@ -35,6 +36,8 @@ Route::get('/show_inventory', function () {
     return view('results');
 
 });
+Route::get('/msg', 'MessageController@listAllMessages')->name('message') ;
+
 
 Route::get('/show', function () {
     return view('show');
