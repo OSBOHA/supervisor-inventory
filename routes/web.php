@@ -41,15 +41,15 @@ Route::get('/show', function () {
 
 });
 
-//  Route::group(['prefix'=>'notes'], function(){
-//     Route::get('/','repeatedNoteController@index')->name('index');
-//     Route::post('/create','repeatedNoteController@create')->name('notes.create');
-//     Route::post('/store','repeatedNoteController@store')->name('store');
-//     Route::get('/show/{id}','repeatedNoteController@show')->name('show');
-//     Route::post('/update','repeatedNoteController@update')->name('update');
-//     Route::post('/delete/{id}','repeatedNoteController@delete')->name('delete');
-//     });  
-    Route::resource('notes', repeatedNoteController::class); 
+ Route::group(['prefix'=>'notes'], function(){
+     Route::get('/show/{id}',    'repeatedNoteController@show')->name('show');
+     Route::post('/store',       'repeatedNoteController@store')->name('store');
+     Route::get('/',             'repeatedNoteController@index')->name('index');
+     Route::get('/create',      'repeatedNoteController@create')->name('create');
+     Route::post('/update',     'repeatedNoteController@update')->name('update');
+     Route::post('/delete/{id}','repeatedNoteController@delete')->name('delete');
+    });  
+    // Route::resource('notes', repeatedNoteController::class); 
 
 
 // Route::group(['prefix'=>'inventory'], function(){

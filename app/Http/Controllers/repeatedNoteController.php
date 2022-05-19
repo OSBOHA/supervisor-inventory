@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\RepeatedNote;
-use App\Models\Week;
-use App\Models\Leader;
+use App\Models\Week as Week;
+use App\Models\Leader as Leader;
 
 class repeatedNoteController extends Controller
 {
@@ -18,41 +18,31 @@ class repeatedNoteController extends Controller
     public function index()
     {       
         $data = RepeatedNote::all();
-        $Leaders = Leader::where('supervisor_id', Auth::id());
+        $leaders = Leader::where('supervisor_id' ,Auth::id())->latest()->orderBy('created_at', 'DESC')->paginate(6);
         $week_id = Week::latest('id')->first()->id;
-        return view('repeatNotes.index', compact('data', 'Leaders', 'week_id'));
+        return view('repeatNotes.index', compact('data', 'leaders', 'week_id'));
     }
 
    
     public function create()
     {
-        $Leaders = Leader::all();
-        return view('repeatNotes.create' , compact('Leaders'));
+        $leaders = Leader::all();
+        return view('repeatNotes.create' , compact('leaders'));
     }
 
     
     public function store(Request $request)
-    {
-        $request->validate([
-            
-            'didnt_publish_news'   =>'required',
-            'elementary_marks_late'=>'required',
-            'post_late'            =>'required',
-            'deputized_for'        =>'required',
-            'light_week'           =>'required',
+    {   
+        $data = RepeatedNote::create([     
+            'supervisor_id'        =>Auth::id(),
+            'week_id'              =>Week::latest('id')->first()->id,
+            'post_late'            =>implode(' ، ' , $request->post_late),
+            'light_week'           =>implode(' ، ' , $request->light_week),
+            'didnt_publish_news'   =>implode(' ، ' , $request->didnt_publish_news),
+            'deputized_for'        =>implode(' ، ' , $request->deputized_for),
+            'elementary_marks_late'=>implode(' ، ' , $request->elementary_marks_late),
         ]);
-
-        $data = RepeatedNote::create([
-         
-            'supervisor_id'        => Auth::id(),
-            'week_id'              => '2',
-            'post_late'            =>implode(',' , $request->post_late),
-            'light_week'           =>implode(',' , $request->light_week),
-            'didnt_publish_news'   =>implode(',' , $request->didnt_publish_news),
-            'deputized_for'        =>implode(',' , $request->deputized_for),
-            'elementary_marks_late'=>implode(',' , $request->elementary_marks_late),
-        ]);
-         return redirect()->route('notes.index')->with('success', 'Your Entry Saved');    
+         return redirect()->route('index');    
     }
 
     

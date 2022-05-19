@@ -32,16 +32,16 @@
                 @foreach ($data as $item)
                 <tr>
                     <th scope="row">{{++$i}}</th>
-                    <td>{{ $item['supervisor_id'] }}</td>
+                    <td>{{ $item['supervisor_id']}}</td>
                     <td>{{ $item['week_id'] }}</td>
-                    <td>{{ $item['didnt_publish_news'] }}</td>
+                    <td>{{ $item['didnt_publish_news']}}</td>
                     <td>{{ $item['post_late'] }}</td>
                     <td>{{ $item['elementary_marks_late'] }}</td>
                     <td>{{ $item['deputized_for'] }}</td>
-                    <td>{{ $item['light_week'] }}</td>       
-            </tr>
+                    <td>{{ $item['light_week'] }}</td>
+              </tr>
             @endforeach 
-        </tbody>
+     </tbody>
 
       </table>
    </div>
