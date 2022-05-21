@@ -12,14 +12,7 @@ class Message extends Model
         'body',
         'sender_id',
         'receiver_id',
-        'status',
-            
-
-    ];
-    use HasFactory; 
-  
-       public function Userr() {
-        return $this->belongsTo('\App\Models\User ', 'sender_id' , 'receiver_id');
-    }
-
+        'status'
+];
+    use HasFactory;
 }

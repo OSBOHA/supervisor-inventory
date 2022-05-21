@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 // Route::group(['middlewarw' => ['auth']], function() {
-//     // Logout Route 
+//     // Logout Route
 //     Route::get('/logout', 'logoutController@perform')->name('logout.perform');
 // });
 Route::get('/', function () {
@@ -29,6 +29,9 @@ Route::group(['prefix'=>'leaderduty'], function(){
 Route::get('/front', function () {
     return view('front');
 });
+
+Route::get('/chatbox', [App\Http\Controllers\MessageController::class, 'listMessage']);
+
 Route::get('/show_inventory_result', function () {
     return view('result');
 });
