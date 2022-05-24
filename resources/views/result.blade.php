@@ -7,6 +7,14 @@
     <div class="page-heading">
         <h3>  نتائج الجرد</h3>
     </div>
+
+    <div class="form-group">
+            <label for="exampleFormControlInput1"></label>
+        </div>
+
+
+
+
     <div class="page-content">
         <section class="row">
             <div class="col-12 col-lg-9">
@@ -42,6 +50,13 @@
                                             aria-labelledby="leader_data">
                                             <p class='my-2'>
                                                         <div class="table-responsive">
+                                                            <div>
+                                                            @if($message=Session::get('success'))
+                                                                <div class="alert alert-primary" role="alert">
+                                                                     {{$message}}
+                                                                </div>
+                                                              @endif
+                                                            </div>
                                                     <table class="table table-striped mb-0" dir="rtl" >
                                                         <thead>
                                                             <tr>
@@ -54,87 +69,24 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <tr>
-                                                                <td class="text-bold-500"> 1</td>
-                                                                <td></td>
-                                                                <td class="text-bold-500"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td><a href="#"><i
-                                                                            class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                            data-feather="mail"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-bold-500">2</td>
-                                                                <td></td>
-                                                                <td class="text-bold-500"> </td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td><a href="#"><i
-                                                                            class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                            data-feather="mail"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-bold-500">3</td>
-                                                                <td></td>
-                                                                <td class="text-bold-500"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td><a href="#"><i
-                                                                            class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                            data-feather="mail"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-bold-500">4</td>
-                                                                <td></td>
-                                                                <td class="text-bold-500"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td><a href="#"><i
-                                                                            class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                            data-feather="mail"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-bold-500">5</td>
-                                                                <td></td>
-                                                                <td class="text-bold-500"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td><a href="#"><i
-                                                                            class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                            data-feather="mail"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-bold-500">6</td>
-                                                                <td></td>
-                                                                <td class="text-bold-500"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td><a href="#"><i
-                                                                            class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                            data-feather="mail"></i></a></td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="text-bold-500">7</td>
-                                                                <td></td>
-                                                                <td class="text-bold-500"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td><a href="#"><i
-                                                                            class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                            data-feather="mail"></i></a></td>
-                                                            </tr> 
-                                                            <tr>
-                                                                <td class="text-bold-500">8</td>
-                                                                <td></td>
-                                                                <td class="text-bold-500"></td>
-                                                                <td></td>
-                                                                <td></td>
-                                                                <td><a href="#"><i
-                                                                            class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                            data-feather="mail"></i></a></td>
-                                                            </tr>                                             
                                                         
+                                                        @php
+                                                            $i=0;
+                                                        @endphp
+                                                        @foreach($leaderduty as $item)
+                                                            
+                                                            <tr>
+                                                                <td class="text-bold-500">  {{++ $i}} </td>
+                                                                <td>{{$item->leader->name}}</td>
+                                                                <td class="text-bold-500">{{$item->leader_id}}</td>
+                                                                <td>{{$item->current_team_members}}</td>
+                                                                <td></td>
+                                                                <td>{{$item->team_final_mark}}</td>
+                                                            </tr>
+  
+                                                                                                     
+                                                            @endforeach
+
                                                         </tbody>
                                                     </table>
                                                 </div>    
@@ -153,113 +105,35 @@
                                                             <th>القائد</th>
                                                             <th>قراءة القائد</th>
                                                             <th>منشور المتابعة </th>
-                                                            <th>عدد منشور الدعم</th>
+                                                            <th> منشور الدعم</th>
                                                             <th>العلامات الاولية</th>
                                                             <th>العلامات النهائية</th>
 
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+
+                                                        @php
+                                                            $i=0;
+                                                        @endphp
+                                                        @foreach($leaderduty as $item)
                                                         <tr>
-                                                            <td class="text-bold-500"> 1</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
+                                                            <td class="text-bold-500">{{++ $i}}</td>
+                                                            <td>
+                                                                 {{ $item->Leader->name}}
+                                                             </td>
+                                                            <td class="text-bold-500">{{$item->leader_reading}}</td>
+                                                            <td>{{$item->$follow_up_post1}}</td>
+                                                            <td>{{$item->$support_post1}}</td>
+                                                            <td>{{$item->$elementary_mark1}}</td>
+                                                            <td>{{$item->final_mark}}</td>
                                                         </tr>
-                                                        <tr>
-                                                            <td class="text-bold-500">2</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"> </td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-bold-500">3</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-bold-500">4</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-bold-500">5</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-bold-500">6</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-bold-500">7</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr> 
-                                                        <tr>
-                                                            <td class="text-bold-500">8</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr>                                             
-                                                    
+                                                                                                     
+                                                        @endforeach
                                                     </tbody>
                                                 </table>
                                              </div>
                                         </div>
-
-
-
-
-                                       
-
-
 
                                         <div class="tab-pane fade" id="audit" role="tabpanel"
                                         aria-labelledby="leader_news">
@@ -275,80 +149,22 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        @php
+                                                            $i=0;
+                                                        @endphp
+                                                        @foreach($leaderduty as $item)
                                                         <tr>
-                                                            <td class="text-bold-500"> 1</td>
-                                                            <td></td>
+                                                            <td class="text-bold-500"> {{++ $i}}</td>
+                                                            <td>{{$item->Leader->name}}</td>
                                                             <td class="text-bold-500"></td>
-                                                            <td></td>
+                                                            <td>{{$item->audit_final_mark}}</td>
                                                             
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
+                                                            <td></td>
                                                         </tr>
-                                                        <tr>
-                                                            <td class="text-bold-500">2</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"> </td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-bold-500">3</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-bold-500">4</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-bold-500">5</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-bold-500">6</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-bold-500">7</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr> 
-                                                        <tr>
-                                                            <td class="text-bold-500">8</td>
-                                                            <td></td>
-                                                            <td class="text-bold-500"></td>
-                                                            <td></td>
-                                                            <td><a href="#"><i
-                                                                        class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                                        data-feather="mail"></i></a></td>
-                                                        </tr>                                             
-                                                    
+                                                                                          
+                                                        @endforeach
+                                                        
+                                                        
                                                     </tbody>
                                                 </table>
                                              </div>
