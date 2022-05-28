@@ -17,11 +17,11 @@ class CreateRepeatedNotesTable extends Migration
             $table->id();
             $table->string('supervisor_id');
             $table->integer('week_id');
-            $table->string('didnt_publish_news');
-            $table->string(' post_late');
-            $table->string('elementary_marks_late');
-            $table->string('deputized_for');
-            $table->string('light_week');
+            $table->text('didnt_publish_news')->nullable();
+            $table->string('post_late')->nullable();
+            $table->string('elementary_marks_late')->nullable();
+            $table->string('deputized_for')->nullable();
+            $table->string('light_week')->nullable();
 
             $table->timestamps();
         });

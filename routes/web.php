@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 // Route::group(['middlewarw' => ['auth']], function() {
-//     // Logout Route 
+//     // Logout Route
 //     Route::get('/logout', 'logoutController@perform')->name('logout.perform');
 // });
 Route::get('/', function () {
@@ -14,6 +14,7 @@ Route::get('/', function () {
 
 });
 Route::view('/supervisor-page', 'supervisor');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::get('/leaderduty', [App\Http\Controllers\LeaderDutyController::class, 'index']);
@@ -28,6 +29,9 @@ Route::group(['prefix'=>'leaderduty'], function(){
 Route::get('/front', function () {
     return view('front');
 });
+
+Route::get('/chatbox', [App\Http\Controllers\MessageController::class, 'listMessage']);
+
 Route::get('/show_inventory_result', function () {
     return view('result');
 });
@@ -35,15 +39,24 @@ Route::get('/show_inventory', function () {
     return view('results');
 
 });
+Route::get('/msg', 'MessageController@listAllMessages')->name('message') ;
+
 
 Route::get('/show', function () {
     return view('show');
 
 });
-// Route::get('/notes', [App\Http\Controllers\repeatedNoteController::class, 'index'])->name('notes');
-Route::get('/notes', function () {
- return view('RepeatedNote');
-});
+
+ Route::group(['prefix'=>'notes'], function(){
+     Route::get('/show/{id}',    'repeatedNoteController@show')->name('show');
+     Route::post('/store',       'repeatedNoteController@store')->name('store');
+     Route::get('/',             'repeatedNoteController@index')->name('index');
+     Route::get('/create',      'repeatedNoteController@create')->name('create');
+     Route::post('/update',     'repeatedNoteController@update')->name('update');
+     Route::post('/delete/{id}','repeatedNoteController@delete')->name('delete');
+    });  
+    // Route::resource('notes', repeatedNoteController::class); 
+
 
 // Route::group(['prefix'=>'inventory'], function(){
 //     Route::get('/', [InventoryController::class, 'index']);

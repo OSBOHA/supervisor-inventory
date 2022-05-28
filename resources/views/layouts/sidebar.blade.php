@@ -71,6 +71,14 @@
 
                     </li>
 
+                    <li class="sidebar-item  ">
+                        <a href="{{ url('/chatbox') }}" class='sidebar-link'>
+                            <i class="bi bi-chat-dots"></i>
+                            <span>صندوق الرسائل</span>
+                        </a>
+
+                    </li>
+
 
                 </ul>
 
