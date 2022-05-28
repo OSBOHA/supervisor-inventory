@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\LeaderDuty;
-use App\Models\Week  as Week;
-use App\Models\News as News;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Leader as Leader;
 use App\Models\Week as Week;
 use App\Models\News as News;
@@ -146,36 +143,23 @@ class LeaderDutyController extends Controller
     public function show( leaderduty $leaderduty,Request $request )
     {
        $week=Week::latest()->first();
-       $leaderduty=LeaderDuty::where('week_id',$week->id)->where('supervisor_id',Auth::id())->get();
-           foreach($leaderduty as $duty){
-            $follow_up_post1= unserialize($duty->follow_up_post1);
-            echo'<pre>';
-            print_r($follow_up_post1);
-            echo'</pre>';
-            $support_post1=unserialize($duty->support_post1);
-            //echo'<pre>';
-            var_dump($support_post1);
-            //echo'</pre>';
-            $news_leader1=unserialize($duty->news_leader);
-            //echo'<pre>';
-            var_dump($news_leader1);
-            //echo'</pre>';
-            $elementary_mark1=unserialize($duty->elementary_mark);
-            echo'<pre>';
-            print_r($elementary_mark1);
-            echo'</pre>';
-            $audit_final_mark1=unserialize($duty->audit_final_mark);
-            echo'<pre>';
-            print_r($audit_final_mark1);
-            echo'</pre>';
-            $withdrawn_ambassadors1=unserialize($duty->withdrawn_ambassadors);
-            echo'<pre>';
-            print_r($withdrawn_ambassadors1);
-            echo'</pre>';
-            return view('result',compact('leaderduty','follow_up_post1','support_post1','news_leader1','elementary_mark1','audit_final_mark1','withdrawn_ambassadors1'));
+       $originalLeaderduty=LeaderDuty::where('week_id',$week->id)->where('supervisor_id',Auth::id())->get();
+       $duty=[];
+       $leaderduty['originalLeaderduty']=$originalLeaderduty;
+        // print_r($leaderduty['originalLeaderduty'][0]->leader_id); die();
+        foreach( $leaderduty['originalLeaderduty'] as $duty){
+           // print_r($duty->follow_up_post); die();
+            
+            $duty->follow_up_post= unserialize($duty->follow_up_post);
+            $duty->support_post=unserialize($duty->support_post);
+            $duty->news_leader=unserialize($duty->news_leader);
+            $duty->elementary_mark=unserialize($duty->elementary_mark);
+            $duty->audit_final_mark=unserialize($duty->audit_final_mark);
+            $duty->withdrawn_ambassadors=unserialize($duty->withdrawn_ambassadors);
+        }
+        //print_r($leaderduty['originalLeaderduty'][0]->follow_up_post); die();
+        return view('result')->with('leaderduty',$leaderduty);
 
-        }; 
-        
 
 
     }

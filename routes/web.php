@@ -49,7 +49,7 @@ Route::get('/show', function () {
 
  Route::group(['prefix'=>'notes'], function(){
      Route::get('/show/{id}',    'repeatedNoteController@show')->name('show');
-     Route::post('/store',       'repeatedNoteController@store')->name('store');
+     Route::post('/store',       'repeatedNoteController@store')->name('notesstore');
      Route::get('/',             'repeatedNoteController@index')->name('index');
      Route::get('/create',      'repeatedNoteController@create')->name('create');
      Route::post('/update',     'repeatedNoteController@update')->name('update');

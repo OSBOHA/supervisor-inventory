@@ -18,5 +18,18 @@ class MessageController extends Controller
         return view('chatbox', compact(['messages']));
 
     }
+    public function listAllMessages(){
+
+        $data = DB::table('messages')
+          ->select('title','body','created_at')
+          ->where('sender_id', Auth::id())
+          ->orWhere('receiver_id', Auth::id())
+          ->orderBy('created_at', 'DESC')->get('title','body','created_at');
+        //dd($data);
+
+
+        return view('message', compact('data'));
+
+    }
 
 }
