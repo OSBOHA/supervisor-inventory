@@ -2,22 +2,6 @@
 @extends('layouts.sidebar')
 
 @section('page_title')
-{{-- <div class="container" style="padding-top:2%">
-    <div class="row">
-        <div class="card-body">
-        @if (count($errors)> 0)
-        <ul>
-            @foreach ($errors->all() as $item)
-             <li>
-              {{$item}}
-             </li>
-            @endforeach
-        </ul>
-        @endif
-        </div>
-    </div>
-</div> --}}
-
 <div class="row" style="direction: rtl">
     <div  class="col-12 col-md-6 order-md-1 order-first" style="direction: rtl">
         <h3>الجرد الأسبوعي</h3>
@@ -32,36 +16,61 @@
             </ol>
         </nav>
     </div>
+    <div class="w-100"></div>
+    @if(session()->has('message'))
+       <div class="alert alert-success " style="justify-content: center;">
+        {{ session()->get('message') }}
+       </div>
+    @endif
 </div>
 @endsection
 
 @section('content')
- <div id="basic-horizontal-layouts">
-    <form id="leader_duty" action="{{route('store')}}" enctype="multipart/form-data" method="POST">
-        @csrf
+@if (count($errors)> 0)
+    <div class="container" style="padding-top:2%">
+        <div class="row">
+            <div class=" col-md-6 alert alert-danger" style="justify-content: center;">
+            <ul>
+                @foreach ($errors->all() as $item)
+                <li>
+                {{$item}}
+                </li>
+                @endforeach
+            </ul>
+            </div>
+        </div>
+    </div>
+    @endif
 
+ <div id="basic-horizontal-layouts">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-sm-4">
+                <h6>القائد</h6>
+                <div class="input-group mb-3" >
+                    <label class="input-group-text" for="inputGroupSelect01" style="border-radius:0rem .25rem .25rem 0rem"> اختر اسم القائد</label>
+                    <select class="form-select" id="leader_id" style="border-radius:.25rem 0rem 0rem .25rem" onchange="newrecord()" dir="rtl"  >
+                        <option class="dropdown-item" ></option>
+                        @foreach ($leader as $item )
+                        <option class="dropdown-item" value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form id="leader_duty"  class="form_hidden" action="{{route('store')}}" enctype="multipart/form-data" method="POST">
+        @csrf
+        <input type="hidden" name="leader_id" id="leader_id_set">
         <div class="card-body">
             <div class="row">
                 <div class="col-sm-4">
-                    <h6>القائد</h6>
-                    <div class="input-group mb-3" >
-                        <label class="input-group-text" for="inputGroupSelect01" style="border-radius:0rem .25rem .25rem 0rem"> اختر اسم القائد</label>
-                        <select class="form-select" style="border-radius:.25rem 0rem 0rem .25rem" name="leader_id" dir="rtl">
-                            <option class="dropdown-item" ></option>
-                            @foreach ($leader as $item )
-                            <option class="dropdown-item" value="{{$item->id}}">{{$item->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                {{-- <div class="w-100"></div> --}}
-                <div class="col-sm-4">
                     <h6>عدد الفريق</h6>
-                    <input class="form-control" name="current_team_members" type="number" min="0" max="30" placeholder="ادخل عدد أعضاء الفريق الحالي">
+                    <input class="form-control" id="current_team_members" name="current_team_members" type="number" min="0" max="30" placeholder="ادخل عدد أعضاء الفريق الحالي" required>
                 </div>
                 <div class="col-sm-4">
                     <h6>معدل الفريق</h6>
-                    <input class="form-control" name="team_final_mark" type="number" min="0" max="100" step="0.01" placeholder="ادخل معدل الفريق">
+                    <input class="form-control" name="team_final_mark" type="number" min="0" max="100" step="0.01" placeholder="ادخل معدل الفريق" required>
                 </div>
             </div>
         </div>
@@ -155,7 +164,17 @@
                 <div class="card" style="height: 247.031px;">
                     <div class="card-header" style="background:#dce7f1;" >
                         <h4 class="card-title" >إيصال الأخبار</h4>
+                        <p id="error_msg" style="color: red"></p>
                     </div>
+                    @if(count($news) < 1)
+                    <div class="form form-horizontal" style="padding-top: 30px">
+                        <div class="form-body">
+                            <div class="row">
+                                <h5 style="text-align:center">لا يوجد أخبار لهذا الأسبوع</h5>
+                            </div>
+                        </div>
+                    </div>
+                    @else
                     <div class="card-content" >
                         <div class="card-body">
                             <div class="input-group mb-3" >
@@ -164,19 +183,19 @@
                                     <option value="empty" >اختر خبر الأسبوع من قائمة الأخبار</option>
                                     @foreach ($news as $item)
                                     @if ($item->title == 'leader')
-                                        <option class="dropdown-item" value="leader" style="text-align: right"><span
+                                        <option class="dropdown-item leader" id="leader" value="leader" style="text-align: right"><span
                                                   class="dropdown-item-emoji"> &nbsp; 👩‍💻 &nbsp;</span>
                                                     دورة القادة
                                         </option>
                                     @endif
                                     @if ($item->title == 'discussion')
-                                        <option class="dropdown-item" value="discussion" style="text-align: right" ><span
+                                        <option class="dropdown-item discussion" id="discussion" value="discussion" style="text-align: right" ><span
                                             class="dropdown-item-emoji">&nbsp; 👥 &nbsp;</span>
                                          النقاش المنهجي
                                         </option>
                                     @endif
                                     @if ($item->title == 'writing')
-                                        <option class="dropdown-item" value="writing" style="text-align: right"><span
+                                        <option class="dropdown-item writing" id="writing" value="writing" style="text-align: right"><span
                                             class="dropdown-item-emoji">&nbsp; 🖋 &nbsp; </span>
                                         دورة كتابة الأطروحة
                                         </option>
@@ -184,18 +203,20 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form form-horizontal" id="leader_select" style="display: none">
+
+
+                            <div class="form form-horizontal"  id="leader_select" style="display: none">
                                 <div class="form-body">
                                     <div class="row">
                                         <h5>دورة القادة</h5>
                                         <div class="col-md-4">
-                                         <input type="radio" name="news_leader" value="published"> نشر
+                                            <input type="radio" class="news_leader" name="news_leader" value="published" > نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="news_leader" value="not_published"> لم ينشر
+                                            <input type="radio" class="news_leader" name="news_leader" value="not_published"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                             <input type="radio" name="news_leader" value="missing_standards"> غير مستوف المعايير
+                                            <input type="radio" class="news_leader" name="news_leader" value="missing_standards"> غير مستوف المعايير
                                         </div>
                                     </div>
                                 </div>
@@ -205,13 +226,13 @@
                                     <div class="row">
                                         <h5> دورة النقاش المهنجي</h5>
                                         <div class="col-md-4">
-                                            <input type="radio" name="news_discussion" value="published"> نشر
+                                            <input type="radio" class="news_discussion" name="news_discussion" value="published"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="news_discussion" value="not_published"> لم ينشر
+                                            <input type="radio" class="news_discussion" name="news_discussion" value="not_published"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="news_discussion" value="missing_standards"> غير مستوف المعايير
+                                            <input type="radio" class="news_discussion" name="news_discussion" value="missing_standards"> غير مستوف المعايير
                                         </div>
                                     </div>
                                 </div>
@@ -221,19 +242,20 @@
                                     <div class="row">
                                         <h5>دورة كتابة الأطروحة</h5>
                                         <div class="col-md-4">
-                                            <input type="radio" name="news_writing" value="published"> نشر
+                                            <input type="radio" class="news_writing" name="news_writing" value="published" > نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="news_writing" value="not_published"> لم ينشر
+                                            <input type="radio" class="news_writing" name="news_writing" value="not_published" > لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="news_writing" value="missing_standards"> غير مستوف المعايير
+                                            <input type="radio" class="news_writing" name="news_writing" value="missing_standards" > غير مستوف المعايير
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>
             <div class="col-md-6 col-12" dir="rtl">
@@ -378,7 +400,7 @@
                                         <div class="col-md-8 form-group"> <br>
                                             <div>
                                                 <label>عدد المنسحبين</label>
-                                                <input type="number" id="withdrawn_number" name="num_defective" min="1" max="30" class="form-control radius" disabled>
+                                                <input type="number" id="withdrawn_number" name="num_defective" min="1" max="30" class="form-control radius" disabled required>
                                             </div>
                                         </div>
                                     </div>
@@ -389,14 +411,9 @@
                 </div>
             </div>
             <div class="col-12 col-md-4">
-                <button id="save" type="submit"  class="btn btn-outline-success btn-block btn-lg rounded-pill" {{--style="width:575px"--}}>حفظ</button>
+                <button id="save" type="submit"  onclick="news_Check()" class="btn btn-outline-success btn-block btn-lg rounded-pill" {{--style="width:575px"--}}>حفظ</button>
             </div>
         </div>
     </form>
-    {{-- <div class="col-md-6 col-12">
-        <div class="col-12 col-md-4">
-            <button id="top-left" class="btn btn-outline-primary btn-block btn-lg rounded-pill">التحقق</button>
-        </div>
-    </div> --}}
 </div>
 @endsection

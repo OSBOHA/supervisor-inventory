@@ -9,7 +9,6 @@ class Week extends Model
 {
     use HasFactory;
 
-
     protected $fillable = [
         'title',
         'supervisor_timer ',
@@ -36,5 +35,9 @@ class Week extends Model
         return $this->hasMany('App\Models\News','week_id');
     }
 
-        
+    public function repeatnote()
+    {
+        return $this->hasMany('App\Models\RepeatedNote');
+    }
+    
 }

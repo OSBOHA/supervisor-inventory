@@ -7,15 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class leader extends Model
 {
-
     use HasFactory;
+
+
     protected $fillable = [
         'supervisor_id',
         'advisor_id',
         'team',
         'type',
     ];
+
    
+
+
 
 //   public function supervisor()
 //   {
