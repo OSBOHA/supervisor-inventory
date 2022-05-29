@@ -7,35 +7,28 @@ use Illuminate\Database\Eloquent\Model;
 
 class leader extends Model
 {
-    use HasFactory;
 
-<<<<<<< HEAD
+    use HasFactory;
     protected $fillable = [
-        ' supervisor_id',
+        'supervisor_id',
         'advisor_id',
         'team',
         'type',
     ];
-=======
-    protected $fillable=[
-        'supervisor_id',
-        'advisor_id',
-        'team',
-  ];
+   
 
-  public function supervisor()
-  {
-      return $this->belongsTo('\App\Models\Supervisor', 'supervisor_id');
-  }
+//   public function supervisor()
+//   {
+//       return $this->belongsTo('\App\Models\Supervisor', 'supervisor_id');
+//   }
 
-  public function advisor()
-  {
-      return $this->belongsTo('\App\Models\Supervisor', 'advisor_id');
-  }
+//   public function advisor()
+//   {
+//       return $this->belongsTo('\App\Models\Supervisor', 'advisor_id');
+//   }
 
 
     // public function duty(){
->>>>>>> ec31487b2289f261dfea3df7c3dcf9a704078c99
 
     public function LeaderDuty()
     {
