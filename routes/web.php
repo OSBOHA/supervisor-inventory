@@ -21,7 +21,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix'=>'leaderduty'], function(){
     Route::get('/', [App\Http\Controllers\LeaderDutyController::class, 'index'])->name('index');
     Route::post('/create', [App\Http\Controllers\LeaderDutyController::class, 'create']);
-    Route::post('/store', [App\Http\Controllers\LeaderDutyController::class, 'store'])->name('store');
+    Route::post('/duty-store', [App\Http\Controllers\LeaderDutyController::class, 'store'])->name('store');
     Route::get('/show', [App\Http\Controllers\LeaderDutyController::class, 'show']);
     Route::post('/update', [App\Http\Controllers\LeaderDutyController::class, 'update']);
     Route::post('/delete', [App\Http\Controllers\LeaderDutyController::class, 'delete']);
@@ -54,8 +54,8 @@ Route::get('/show', function () {
      Route::get('/create',      'repeatedNoteController@create')->name('create');
      Route::post('/update',     'repeatedNoteController@update')->name('update');
      Route::post('/delete/{id}','repeatedNoteController@delete')->name('delete');
-    });  
-    // Route::resource('notes', repeatedNoteController::class); 
+    });
+    // Route::resource('notes', repeatedNoteController::class);
 
 
 // Route::group(['prefix'=>'inventory'], function(){

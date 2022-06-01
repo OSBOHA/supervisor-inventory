@@ -149,7 +149,7 @@ class LeaderDutyController extends Controller
         // print_r($leaderduty['originalLeaderduty'][0]->leader_id); die();
         foreach( $leaderduty['originalLeaderduty'] as $duty){
            // print_r($duty->follow_up_post); die();
-            
+
             $duty->follow_up_post= unserialize($duty->follow_up_post);
             $duty->support_post=unserialize($duty->support_post);
             $duty->news_leader=unserialize($duty->news_leader);
@@ -167,7 +167,7 @@ class LeaderDutyController extends Controller
 
     public function edit(leaderduty $leaderduty)
     {
- 
+
         //
     }
 
