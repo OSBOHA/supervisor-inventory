@@ -59,10 +59,10 @@
                                     <div class="fonticon-wrap d-inline me-3">
                                         <svg class="bi" width="1.5em" height="1.5em" fill="currentColor">
                                             <use
-                                                xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#trash" />
+                                                xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#envelope" />
                                         </svg>
                                     </div>
-                                    <label><h6> الرسائل المحذوفة</h6> </label>
+                                    <label><h6> رسائل الاعتراض</h6> </label>
                                 </a>
                             </div>
                         </div>
@@ -118,12 +118,12 @@
                                     </div>
                                 </div>
                                 <br>
-
+                           
                              @php
                               $i = 0;
                              @endphp
+                             
                                 @foreach($data as $item)
-
                                  <div class="email-user-list list-group ps ">
                                     <ul class="users-list-wrapper media-list">
                                         <li class="media mail-read">
@@ -144,12 +144,18 @@
                                             </div>
                                             
                                             <div class="media-body">
-                                                <div class="user-details">
+
+                                            <div hidden> {{$name = DB::table('users')->select('name')->where('id', '=', $item->sender_id)->get()}}</div>
+                                            @foreach ($name as $namm)
+                                               <div class="user-details">
                                                     <div class="mail-items">
-                                                        <span class="list-group-item-text text-truncate">{{$item->title}} </span>
+                                                        <h6 class="list-group-item-text text-truncate">
+                                                            
+                                                        {{ $namm->name}} </h6>
                                                     </div>
-                                                    
-                                                </div>
+                                               </div>
+                                            
+                                              
                                                 <div class="mail-message">
                                                     <p class="list-group-item-text truncate mb-0">{{$item->body}}</p>
                                                     
@@ -159,15 +165,22 @@
                                                         </span>
                                                     </div>
                                                 </div>
+                                                
+                                                
+                                                
+                                              
                                             </div>
                                             <div>
                                                 <span class="float-left">
-                                                    <dt class="mail-date">{{$item->created_at}}</dt>
+                                                    <dt class="mail-date">{{date('d-m',strtotime($item->created_at)) }}</dt>
                                                 </span>
                                             </div>
+                                            @endforeach 
                                         </li>
                                     </ul>
+                                
                                 @endforeach
+                                
                             </div>
                         </div>
                     </div>
