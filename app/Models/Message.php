@@ -15,4 +15,5 @@ class Message extends Model
         'status'
 ];
     use HasFactory;
+    public $timestamps=false;
 }

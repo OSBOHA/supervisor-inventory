@@ -31,6 +31,9 @@ Route::get('/front', function () {
 });
 
 Route::get('/chatbox', [App\Http\Controllers\MessageController::class, 'listMessage']);
+Route::view('/addM', 'chatbox');
+Route::post('/addM', [App\Http\Controllers\MessageController::class, 'addMessage']);
+
 
 Route::get('/show_inventory_result', function () {
     return view('result');
