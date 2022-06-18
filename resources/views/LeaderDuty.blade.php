@@ -12,7 +12,6 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item active" aria-current="page">Leader Duty</li>
                 <li class="breadcrumb-item"><a href="index.html"> Dashboard</a></li>
-
             </ol>
         </nav>
     </div>
@@ -45,12 +44,18 @@
  <div id="basic-horizontal-layouts">
     <div class="card-body">
         <div class="row">
+        <div class="row justify-content-sm-center" >
+            <div class="alert col-sm-6 " id="leader_name_select" style="background:#dce7f1; text-align: center;">
+                <h5>اختر القائد الذي تريد إدخال الجرد الإسبوعي له </h5>
+            </div>
+        </div>
+            <div class="w-100"></div>
             <div class="col-sm-4">
                 <h6>القائد</h6>
                 <div class="input-group mb-3" >
-                    <label class="input-group-text" for="inputGroupSelect01" style="border-radius:0rem .25rem .25rem 0rem"> اختر اسم القائد</label>
+                    <label class="input-group-text" for="inputGroupSelect01" style="border-radius:0rem .25rem .25rem 0rem"> اسم القائد</label>
                     <select class="form-select" id="leader_id" style="border-radius:.25rem 0rem 0rem .25rem" onchange="newrecord()" dir="rtl"  >
-                        <option class="dropdown-item" ></option>
+                        <option class="dropdown-item" value="empty">اختر اسم القائد</option>
                         @foreach ($leader as $item )
                         <option class="dropdown-item" value="{{$item->id}}" >{{$item->name}}</option>
                         @endforeach
@@ -94,30 +99,30 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="radio" id="follow_up" name="follow_up_post" value="published" onclick="follow_up_disable()"> نشر
+                                            <input type="radio" id="follow_up" name="follow_up_post" value="تم النشر" onclick="follow_up_disable()"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" id="follow_up" name="follow_up_post" value="not_published" onclick="follow_up_disable()"> لم ينشر
+                                            <input type="radio" id="follow_up" name="follow_up_post" value="لم يتم النشر" onclick="follow_up_disable()"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" id="follow_up" name="follow_up_post" value="published_on_behalf" onclick="follow_up_disable()"> تم بالنيابة
+                                            <input type="radio" id="follow_up" name="follow_up_post" value="تم بالنيابة" onclick="follow_up_disable()"> تم بالنيابة
                                         </div>
                                         <div class="col-md-4">
-                                        <br> <input type="radio" class="follow_up_missing_standards" id="follow_up" name="follow_up_post" value="missing_standards" onclick="follow_up_enable()"> غير مستوف المعايير
+                                        <br> <input type="radio" class="follow_up_missing_standards" id="follow_up" name="follow_up_post" value="غير مستوف المعايير" onclick="follow_up_enable()"> غير مستوف المعايير
                                         </div>
                                         <div class="col-md-8 form-group">
                                         <br><br>
                                             <div>
-                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_1" name="follow_up_standard_1" value="time" disabled> نشره الأحد في وقت مناسب<br>
-                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_2" name="follow_up_standard_2" value="tag" disabled> تاغ للسفراء<br>
-                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_3" name="follow_up_standard_3" value="week_num" disabled> ذكر رقم الإسبوع والشهر<br>
-                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_4" name="follow_up_standard_4" value="quote" disabled> عبارة تشجيعية<br>
-                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_5" name="follow_up_standard_5" value="image" disabled> صورة مناسبة<br>
-                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_6" name="follow_up_standard_6" value="question" disabled> سؤال واضح عن الإنجاز<br>
-                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_7" name="follow_up_standard_7" value="thesis" disabled> التذكير بوضع الأطروحة في السفراء<br>
-                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_8" name="follow_up_standard_8" value="Ambassador_comment" disabled> تعليق منفصل لكل سفير<br>
-                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_9" name="follow_up_standard_9" value="news_comment" disabled> تعليق الاخبار<br>
-                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_10" name="follow_up_standard_10" value="lite_week" disabled> أسبوع مخفف<br>
+                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_1" name="follow_up_standard_1" value="وقت النشر" disabled> نشره الأحد في وقت مناسب<br>
+                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_2" name="follow_up_standard_2" value="تاغ" disabled> تاغ للسفراء<br>
+                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_3" name="follow_up_standard_3" value="رقم الأسبوع والشهر" disabled> ذكر رقم الإسبوع والشهر<br>
+                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_4" name="follow_up_standard_4" value="عبارة تشجيعية" disabled> عبارة تشجيعية<br>
+                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_5" name="follow_up_standard_5" value="الصورة" disabled> صورة مناسبة<br>
+                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_6" name="follow_up_standard_6" value="سؤال عن الإنجاز" disabled> سؤال واضح عن الإنجاز<br>
+                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_7" name="follow_up_standard_7" value="وضع الأطروحة في مجموعة السفراء" disabled> التذكير بوضع الأطروحة في السفراء<br>
+                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_8" name="follow_up_standard_8" value="تعليق لكل سفير" disabled> تعليق منفصل لكل سفير<br>
+                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_9" name="follow_up_standard_9" value="تعليق الأخبار" disabled> تعليق الاخبار<br>
+                                                <input type="checkbox" class="follow_up_standard" id="follow_up_standard_10" name="follow_up_standard_10" value="أسبوع مخفف" disabled> أسبوع مخفف<br>
                                             </div>
                                         </div>
                                     </div>
@@ -139,27 +144,27 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="radio"  name="support_post" value="published" onclick="support_disable()"> نشر
+                                            <input type="radio"  name="support_post" value="تم النشر" onclick="support_disable()"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="support_post" value="not_published" onclick="support_disable()"> لم ينشر
+                                            <input type="radio" name="support_post" value="لم يتم النشر" onclick="support_disable()"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="support_post" value="published_on_behalf" onclick="support_disable()"> تم بالنيابة
+                                            <input type="radio" name="support_post" value="تم بالنيابة" onclick="support_disable()"> تم بالنيابة
                                         </div>
                                         <div class="col-md-4">
-                                        <br> <input type="radio" class="support_missing_standards" name="support_post" value="missing_standards" onclick="support_enable()"> غير مستوف المعايير
+                                        <br> <input type="radio" class="support_missing_standards" name="support_post" value="غير مستوف المعايير" onclick="support_enable()"> غير مستوف المعايير
                                         </div>
                                         <div class="col-md-8 form-group"> <br><br>
                                             <div>
-                                                <input type="checkbox" class="support_standard" id="support_standard_1" name="support_standard_1" value="time" disabled> نشره في وقت مناسب (الخميس)<br>
-                                                <input type="checkbox" class="support_standard" id="support_standard_2" name="support_standard_2" value="tag" disabled> تاغ للسفراء<br>
-                                                <input type="checkbox" class="support_standard" id="support_standard_3" name="support_standard_3" value="question" disabled> السؤال عن كيفية الدعم<br>
-                                                <input type="checkbox" class="support_standard" id="support_standard_4" name="support_standard_4" value="image" disabled> صورة مناسبة<br>
-                                                <input type="checkbox" class="support_standard" id="support_standard_5" name="support_standard_5" value="voting_method" disabled> ذكر طريقة التصويت<br>
-                                                <input type="checkbox" class="support_standard" id="support_standard_6" name="support_standard_6" value="re-mention" disabled> إعادة المنشن يوم الجمعة<br>
-                                                <input type="checkbox" class="support_standard" id="support_standard_7" name="support_standard_7" value="support_options" disabled> ذكر خيارات الدعم <br>
-                                                <input type="checkbox" class="support_standard" id="support_standard_8" name="support_standard_8" value="lite_week" disabled> أسبوع مخفف <br>
+                                                <input type="checkbox" class="support_standard" id="support_standard_1" name="support_standard_1" value="وقت النشر" disabled> نشره في وقت مناسب (الخميس)<br>
+                                                <input type="checkbox" class="support_standard" id="support_standard_2" name="support_standard_2" value="التاغ" disabled> تاغ للسفراء<br>
+                                                <input type="checkbox" class="support_standard" id="support_standard_3" name="support_standard_3" value="سؤال عن الدعم" disabled> السؤال عن كيفية الدعم<br>
+                                                <input type="checkbox" class="support_standard" id="support_standard_4" name="support_standard_4" value="الصورة" disabled> صورة مناسبة<br>
+                                                <input type="checkbox" class="support_standard" id="support_standard_5" name="support_standard_5" value="طريقة التصويت" disabled> ذكر طريقة التصويت<br>
+                                                <input type="checkbox" class="support_standard" id="support_standard_6" name="support_standard_6" value="منشن يوم الجمعة" disabled> إعادة المنشن يوم الجمعة<br>
+                                                <input type="checkbox" class="support_standard" id="support_standard_7" name="support_standard_7" value="خيارات الدعم" disabled> ذكر خيارات الدعم <br>
+                                                <input type="checkbox" class="support_standard" id="support_standard_8" name="support_standard_8" value="أسبوع مخفف" disabled> أسبوع مخفف <br>
                                             </div>
                                         </div>
                                     </div>
@@ -221,13 +226,13 @@
                                     <div class="row">
                                         <h5>دورة القادة</h5>
                                         <div class="col-md-4">
-                                            <input type="radio" class="news_leader" name="news_leader" value="published" > نشر
+                                            <input type="radio" class="news_leader" name="news_leader" value="تم النشر" > نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" class="news_leader" name="news_leader" value="not_published"> لم ينشر
+                                            <input type="radio" class="news_leader" name="news_leader" value="لم يتم النشر"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" class="news_leader" name="news_leader" value="missing_standards"> غير مستوف المعايير
+                                            <input type="radio" class="news_leader" name="news_leader" value="غير مستوف المعايير"> غير مستوف المعايير
                                         </div>
                                     </div>
                                 </div>
@@ -237,13 +242,13 @@
                                     <div class="row">
                                         <h5> دورة النقاش المهنجي</h5>
                                         <div class="col-md-4">
-                                            <input type="radio" class="news_discussion" name="news_discussion" value="published"> نشر
+                                            <input type="radio" class="news_discussion" name="news_discussion" value="تم النشر"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" class="news_discussion" name="news_discussion" value="not_published"> لم ينشر
+                                            <input type="radio" class="news_discussion" name="news_discussion" value="لم يتم النشر"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" class="news_discussion" name="news_discussion" value="missing_standards"> غير مستوف المعايير
+                                            <input type="radio" class="news_discussion" name="news_discussion" value="غير مستوف المعايير"> غير مستوف المعايير
                                         </div>
                                     </div>
                                 </div>
@@ -253,13 +258,13 @@
                                     <div class="row">
                                         <h5>دورة كتابة الأطروحة</h5>
                                         <div class="col-md-4">
-                                            <input type="radio" class="news_writing" name="news_writing" value="published" > نشر
+                                            <input type="radio" class="news_writing" name="news_writing" value="تم النشر" > نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" class="news_writing" name="news_writing" value="not_published" > لم ينشر
+                                            <input type="radio" class="news_writing" name="news_writing" value="لم يتم النشر" > لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" class="news_writing" name="news_writing" value="missing_standards" > غير مستوف المعايير
+                                            <input type="radio" class="news_writing" name="news_writing" value="غير مستوف المعايير" > غير مستوف المعايير
                                         </div>
                                     </div>
                                 </div>
@@ -280,11 +285,11 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <input type="radio"  name="leader_reading" value="read"> قرأ<br>
-                                            <input type="radio"  name="leader_reading" value="didn't_read"> لم يقرأ<br>
-                                            <input type="radio"  name="leader_reading" value="un_completed"> لم يكمل الورد<br>
-                                            <input type="radio"  name="leader_reading" value="missing_leaders_voting"> قرأ ولم يصوت في مجموعة الرقابة<br>
-                                            <input type="radio"  name="leader_reading" value="late_voting"> تم التصويت بعد إغلاق الموقع<br>
+                                            <input type="radio"  name="leader_reading" value="قرأ"> قرأ<br>
+                                            <input type="radio"  name="leader_reading" value="لم يقرأ"> لم يقرأ<br>
+                                            <input type="radio"  name="leader_reading" value="لم يكمل الورد"> لم يكمل الورد<br>
+                                            <input type="radio"  name="leader_reading" value="لم يصوت في مجموعة الرقابة"> قرأ ولم يصوت في مجموعة الرقابة<br>
+                                            <input type="radio"  name="leader_reading" value="تأخر بالتصويت"> تم التصويت بعد إغلاق الموقع<br>
                                         </div>
                                     </div>
                                 </div>
@@ -305,24 +310,24 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="radio" name="elementary_mark" value="published" onclick="elementary_disable()"> نشر
+                                            <input type="radio" name="elementary_mark" value="تم النشر" onclick="elementary_disable()"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="elementary_mark" value="not_published" onclick="elementary_disable()"> لم ينشر
+                                            <input type="radio" name="elementary_mark" value="لم يتم النشر" onclick="elementary_disable()"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="elementary_mark" value="published_on_behalf" onclick="elementary_disable()"> تم بالنيابة
+                                            <input type="radio" name="elementary_mark" value="تم بالنيابة" onclick="elementary_disable()"> تم بالنيابة
                                         </div>
                                         <div class="col-md-4">
-                                        <br> <input type="radio" class="elementary_missing_standards" name="elementary_mark" value="missing_standards" onclick="elementary_enable()"> غير مستوف المعايير
+                                        <br> <input type="radio" class="elementary_missing_standards" name="elementary_mark" value="غير مستوف المعايير" onclick="elementary_enable()"> غير مستوف المعايير
                                         </div>
                                         <div class="col-md-8 form-group"> <br><br>
                                             <div>
-                                                <input type="checkbox" class="elementary_standard" id="elementary_standard_1" name="elementary_standard_1" value="time" disabled> نشره في وقت مناسب<br>
-                                                <input type="checkbox" class="elementary_standard" id="elementary_standard_2" name="elementary_standard_2" value="tag" disabled> تاغ للسفراء<br>
-                                                <input type="checkbox" class="elementary_standard" id="elementary_standard_3" name="elementary_standard_3" value="shortage" disabled> ذكر النقص للسفراء<br>
-                                                <input type="checkbox" class="elementary_standard" id="elementary_standard_4" name="elementary_standard_4" value="image" disabled> صورة من الموقع<br>
-                                                <input type="checkbox" class="elementary_standard" id="elementary_standard_5" name="elementary_standard_5" value="lite_week" disabled> أسبوع مخفف<br>
+                                                <input type="checkbox" class="elementary_standard" id="elementary_standard_1" name="elementary_standard_1" value="وقت النشر" disabled> نشره في وقت مناسب<br>
+                                                <input type="checkbox" class="elementary_standard" id="elementary_standard_2" name="elementary_standard_2" value="التاغ" disabled> تاغ للسفراء<br>
+                                                <input type="checkbox" class="elementary_standard" id="elementary_standard_3" name="elementary_standard_3" value="ذكر النقص للسفراء" disabled> ذكر النقص للسفراء<br>
+                                                <input type="checkbox" class="elementary_standard" id="elementary_standard_4" name="elementary_standard_4" value="الصورة" disabled> صورة من الموقع<br>
+                                                <input type="checkbox" class="elementary_standard" id="elementary_standard_5" name="elementary_standard_5" value="أسبوع مخفف" disabled> أسبوع مخفف<br>
                                             </div>
                                         </div>
                                     </div>
@@ -343,9 +348,9 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="radio" name="final_mark" value="published"> نشر <br> <br>
-                                            <input type="radio" name="final_mark" value="not_published"> لم ينشر <br> <br>
-                                            <input type="radio" name="final_mark" value="published_on_behalf"> تم بالنيابة <br> <br>
+                                            <input type="radio" name="final_mark" value="تم النشر"> نشر <br> <br>
+                                            <input type="radio" name="final_mark" value="لم يتم النشر"> لم ينشر <br> <br>
+                                            <input type="radio" name="final_mark" value="تم بالنيابة"> تم بالنيابة <br> <br>
                                         </div>
                                     </div>
                                 </div>
@@ -366,13 +371,13 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <input type="radio" class="audit_final_mark_done" name="audit_final_mark" value="done" onclick="image_upload_enable()"> تم
+                                            <input type="radio" class="audit_final_mark_done" name="audit_final_mark" value="تم التدقيق" onclick="image_upload_enable()"> تم
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="radio" name="audit_final_mark" value="not_done" onclick="image_upload_disable()">  لم يتم
+                                            <input type="radio" name="audit_final_mark" value="لم يتم التدقيق" onclick="image_upload_disable()">  لم يتم
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="radio" name="audit_final_mark" value="off_audit" onclick="image_upload_disable()">  لم يكن التدقيق لهذا القائد هذا الإسبوع
+                                            <input type="radio" name="audit_final_mark" value="لم يكن التدقيق لهذا القائد" onclick="image_upload_disable()">  لم يكن التدقيق لهذا القائد هذا الإسبوع
                                         </div>
                                         <div class="col-md-8 form-group"> <br>
                                             <div>
@@ -406,9 +411,9 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <input type="radio" name="withdrawn_ambassadors" value="done" onclick="withdrawn_number_enable()"> تم الإدخال  <br> <br>
-                                            <input type="radio" name="withdrawn_ambassadors" value="not_done" onclick="withdrawn_number_enable()">  لم يتم الإدخال  <br> <br>
-                                            <input type="radio" name="withdrawn_ambassadors" value="no_withdrawn" onclick="withdrawn_number_disable()">  لا يوجد لديه منسحبين <br> <br>
+                                            <input type="radio" name="withdrawn_ambassadors" value="تم الإدخال" onclick="withdrawn_number_enable()"> تم الإدخال  <br> <br>
+                                            <input type="radio" name="withdrawn_ambassadors" value="لم يتم الإدخال" onclick="withdrawn_number_enable()">  لم يتم الإدخال  <br> <br>
+                                            <input type="radio" name="withdrawn_ambassadors" value="لا يوجد منسحبين" onclick="withdrawn_number_disable()">  لا يوجد لديه منسحبين <br> <br>
                                         </div>
                                         <div class="col-md-8 form-group"> <br>
                                             <div>

@@ -46,17 +46,15 @@
         <script src="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('assets/vendors/ckeditor/ckeditor.js')}}"></script>
-        <script>
+        {{-- <script>
             ClassicEditor
                 .create(document.querySelector('#editor'))
                 .catch(error => {
                     console.error(error);
                 });
-        </script>
+        </script> --}}
         <script src="assets/vendors/choices.js/choices.min.js"></script>
         <script src="assets/js/pages/form-element-select.js"></script>
-        <script src="{{asset('assets/vendors/toastify/toastify.js')}}"></script>
-        <script src="{{asset('assets/js/extensions/toastify.js')}}"></script>
         <script src="assets/js/mazer.js"></script>
         <script src="assets/js/leaderduty.js"></script>
 
