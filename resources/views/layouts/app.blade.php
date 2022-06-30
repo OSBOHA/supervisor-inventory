@@ -15,11 +15,11 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-
     <link rel="stylesheet" href="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap-icons/bootstrap-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/app.rtl.css')}}">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg')}}" type="image/x-icon">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/toastify/toastify.css')}}">
     <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />
     <link rel="stylesheet" href="assets/css/pages/email.css">
 </head>
@@ -46,13 +46,13 @@
         <script src="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
         <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('assets/vendors/ckeditor/ckeditor.js')}}"></script>
-        <script>
+        {{-- <script>
             ClassicEditor
                 .create(document.querySelector('#editor'))
                 .catch(error => {
                     console.error(error);
                 });
-        </script>
+        </script> --}}
         <script src="assets/vendors/choices.js/choices.min.js"></script>
         <script src="assets/js/pages/form-element-select.js"></script>
         <script src="assets/js/mazer.js"></script>
