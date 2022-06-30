@@ -3,8 +3,11 @@ function newrecord() {
     document.getElementById('leader_duty').reset();
     document.getElementById('leader_id_set').value = leader_id;
     document.getElementById('leader_duty').hidden = false;
-    if ( leader_id == '') {
+    if ( leader_id == 'empty') {
         document.getElementById('leader_duty').hidden = true;
+        document.getElementById('leader_name_select').style.display = 'block';
+    } else{
+        document.getElementById('leader_name_select').style.display = 'none';
     }
 }
 
