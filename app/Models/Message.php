@@ -13,7 +13,8 @@ class Message extends Model
         'sender_id',
         'receiver_id',
         'status'
-    ];
+];
+    public $timestamps=false;
     public function User() 
     {
        return $this->belongsTo(App\Models\User::class);

@@ -1,5 +1,8 @@
 <?php
 namespace App\Http\Controllers;
+
+use App\Models\Message;
+use App\Models\Supervisor;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Message;
@@ -31,6 +34,25 @@ class MessageController extends Controller
           ->orderBy('created_at', 'DESC')->get('sender_id','body','created_at');
         
         return view('message', compact('data'));
+
+    }
+
+    public function addMessage(Request $req)
+    {
+        //$id = Auth::id();
+        $id=1;
+        $supervisor = Supervisor::
+            select('current_advisor') ->where('user_id', $id)
+            ->value('current_advisor');
+        $message = new Message;
+        // $message->title=$req->name;
+        $message->body=$req->body;
+        $message->title ='';
+        $message->sender_id=$id;
+        $message->receiver_id=$supervisor;
+        $message->status=0;
+        $message->save();
+        return redirect('chatbox');
 
     }
 
