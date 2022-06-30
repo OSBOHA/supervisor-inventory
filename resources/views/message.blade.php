@@ -2,6 +2,7 @@
 @extends('layouts.sidebar')
 
 @section('content')
+
 <div class="container" style="padding-top:2%"> 
  <div class="page-heading email-application">
      <div class="page-title">
@@ -156,19 +157,17 @@
                                                </div>
                                             
                                               
-                                                <div class="mail-message">
-                                                    <p class="list-group-item-text truncate mb-0">{{$item->body}}</p>
+                                                <div class="mail-message">  
+                                                <a href="{{ url('/chatbox') }}" >
+                                                    <p class="list-group-item-text truncate mb-0">{{$item->body}} </p>
                                                     
                                                    <div class="mail-meta-item">
                                                         <span class="float-right">
                                                             <span class="bullet bullet-success bullet-sm"></span>
                                                         </span>
                                                     </div>
+                                                </a>   
                                                 </div>
-                                                
-                                                
-                                                
-                                              
                                             </div>
                                             <div>
                                                 <span class="float-left">
