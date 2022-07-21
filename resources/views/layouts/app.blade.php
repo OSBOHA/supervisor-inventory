@@ -53,10 +53,11 @@
                     console.error(error);
                 });
         </script> --}}
-        <script src="assets/vendors/choices.js/choices.min.js"></script>
+        <script src="assets/js/leaderduty.js"></script>
         <script src="assets/js/pages/form-element-select.js"></script>
         <script src="assets/js/mazer.js"></script>
-        <script src="assets/js/leaderduty.js"></script>
+        <script src="assets/vendors/choices.js/choices.min.js"></script>
+
 
 </body>
 

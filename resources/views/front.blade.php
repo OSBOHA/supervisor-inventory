@@ -96,6 +96,9 @@
                             <div class="card-header">
                                 <h4> معدلات الافرقة</h4>
                             </div>
+
+
+
                             <div class="card-body">
                                 <div id="chart-profile-visit"></div>
                             </div>
@@ -161,6 +164,21 @@
             </div>
         </section>
     </div>
+
+    @foreach ($leader as $item)
+        <input type="hidden" class="leader" value="{{$item->name}}"><br>
+        @php
+            $final_mark = DB::table('leader_duties')->where('supervisor_id' ,Auth::id())->where('leader_id', $item->id)->orderBy('created_at', 'DESC')->paginate(1);
+        @endphp
+        @if ($final_mark->isempty())
+         <input type="hidden" class="final_mark" value= "0" > <br>
+         @else
+            @foreach ( $final_mark as $row)
+            <input type="hidden" class="final_mark" value="{{ $row->team_final_mark}}"><br>
+            @endforeach
+         @endif
+    @endforeach
+
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 
