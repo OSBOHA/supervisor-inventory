@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-sm-4">
                     <h6>معدل الفريق</h6>
-                    <input class="form-control team_final_mark" name="team_final_mark" type="number" min="0" max="100" step="0.01" placeholder="ادخل معدل الفريق" required>
+                    <input class="form-control team_final_mark" name="team_final_mark" type="number" min="0" max="100.00" step="0.01" placeholder="ادخل معدل الفريق" required>
                 </div>
                 <div class="w-100"></div>
                 <div class="col-sm-4">
@@ -91,6 +91,7 @@
                 <div class="card">
                     <div class="card-header" style="background:#dce7f1;">
                         <h4 class="card-title">منشور المتابعة الإسبوعي</h4>
+                        <p id="follow_up_msg" style="color: red"></p>
                         <p id="follow_up_missing_standard_msg" style="color: red"></p>
                     </div>
                     <div class="card-content">
@@ -99,16 +100,16 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="radio" id="follow_up" name="follow_up_post" value="تم النشر" onclick="follow_up_disable()"> نشر
+                                            <input type="radio" class="follow_up" name="follow_up_post" value="تم النشر" onclick="follow_up_disable()"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" id="follow_up" name="follow_up_post" value="لم يتم النشر" onclick="follow_up_disable()"> لم ينشر
+                                            <input type="radio" class="follow_up" name="follow_up_post" value="لم يتم النشر" onclick="follow_up_disable()"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" id="follow_up" name="follow_up_post" value="تم بالنيابة" onclick="follow_up_disable()"> تم بالنيابة
+                                            <input type="radio" class="follow_up" name="follow_up_post" value="تم بالنيابة" onclick="follow_up_disable()"> تم بالنيابة
                                         </div>
                                         <div class="col-md-4">
-                                        <br> <input type="radio" class="follow_up_missing_standards" id="follow_up" name="follow_up_post" value="غير مستوف المعايير" onclick="follow_up_enable()"> غير مستوف المعايير
+                                        <br> <input type="radio" class="follow_up_missing_standards follow_up" id="follow_up" name="follow_up_post" value="غير مستوف المعايير" onclick="follow_up_enable()"> غير مستوف المعايير
                                         </div>
                                         <div class="col-md-8 form-group">
                                         <br><br>
@@ -136,6 +137,7 @@
                 <div class="card" style="height: 426.219px;">
                     <div class="card-header" style="background:#dce7f1;">
                         <h4 class="card-title">الدعم الإعلامي</h4>
+                        <p id="support_msg" style="color: red"></p>
                         <p id="support_missing_standard_msg" style="color: red"></p>
                     </div>
                     <div class="card-content">
@@ -144,16 +146,16 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="radio"  name="support_post" value="تم النشر" onclick="support_disable()"> نشر
+                                            <input type="radio" class="support_post" name="support_post" value="تم النشر" onclick="support_disable()"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="support_post" value="لم يتم النشر" onclick="support_disable()"> لم ينشر
+                                            <input type="radio" class="support_post" name="support_post" value="لم يتم النشر" onclick="support_disable()"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="support_post" value="تم بالنيابة" onclick="support_disable()"> تم بالنيابة
+                                            <input type="radio" class="support_post" name="support_post" value="تم بالنيابة" onclick="support_disable()"> تم بالنيابة
                                         </div>
                                         <div class="col-md-4">
-                                        <br> <input type="radio" class="support_missing_standards" name="support_post" value="غير مستوف المعايير" onclick="support_enable()"> غير مستوف المعايير
+                                        <br> <input type="radio" class="support_missing_standards support_post" name="support_post" value="غير مستوف المعايير" onclick="support_enable()"> غير مستوف المعايير
                                         </div>
                                         <div class="col-md-8 form-group"> <br><br>
                                             <div>
@@ -278,6 +280,7 @@
                 <div class="card">
                     <div class="card-header" style="background:#dce7f1;">
                         <h4 class="card-title"> جرد قراءة القائد</h4>
+                        <p id="leader_reading_msg" style="color: red"></p>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -285,11 +288,11 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <input type="radio"  name="leader_reading" value="قرأ"> قرأ<br>
-                                            <input type="radio"  name="leader_reading" value="لم يقرأ"> لم يقرأ<br>
-                                            <input type="radio"  name="leader_reading" value="لم يكمل الورد"> لم يكمل الورد<br>
-                                            <input type="radio"  name="leader_reading" value="لم يصوت في مجموعة الرقابة"> قرأ ولم يصوت في مجموعة الرقابة<br>
-                                            <input type="radio"  name="leader_reading" value="تأخر بالتصويت"> تم التصويت بعد إغلاق الموقع<br>
+                                            <input type="radio" class="leader_reading" name="leader_reading" value="قرأ"> قرأ<br>
+                                            <input type="radio" class="leader_reading" name="leader_reading" value="لم يقرأ"> لم يقرأ<br>
+                                            <input type="radio" class="leader_reading" name="leader_reading" value="لم يكمل الورد"> لم يكمل الورد<br>
+                                            <input type="radio" class="leader_reading" name="leader_reading" value="لم يصوت في مجموعة الرقابة"> قرأ ولم يصوت في مجموعة الرقابة<br>
+                                            <input type="radio" class="leader_reading" name="leader_reading" value="تأخر بالتصويت"> تم التصويت بعد إغلاق الموقع<br>
                                         </div>
                                     </div>
                                 </div>
@@ -302,6 +305,7 @@
                 <div class="card">
                     <div class="card-header" style="background:#dce7f1;">
                         <h4 class="card-title">العلامات الأولية</h4>
+                        <p id="elementary_mark_msg" style="color: red"></p>
                         <p id="elementary_missing_standard_msg" style="color: red"></p>
                     </div>
                     <div class="card-content">
@@ -310,16 +314,16 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <input type="radio" name="elementary_mark" value="تم النشر" onclick="elementary_disable()"> نشر
+                                            <input type="radio" class="elementary_mark" name="elementary_mark" value="تم النشر" onclick="elementary_disable()"> نشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="elementary_mark" value="لم يتم النشر" onclick="elementary_disable()"> لم ينشر
+                                            <input type="radio" class="elementary_mark" name="elementary_mark" value="لم يتم النشر" onclick="elementary_disable()"> لم ينشر
                                         </div>
                                         <div class="col-md-4">
-                                            <input type="radio" name="elementary_mark" value="تم بالنيابة" onclick="elementary_disable()"> تم بالنيابة
+                                            <input type="radio" class="elementary_mark" name="elementary_mark" value="تم بالنيابة" onclick="elementary_disable()"> تم بالنيابة
                                         </div>
                                         <div class="col-md-4">
-                                        <br> <input type="radio" class="elementary_missing_standards" name="elementary_mark" value="غير مستوف المعايير" onclick="elementary_enable()"> غير مستوف المعايير
+                                        <br> <input type="radio" class="elementary_missing_standards elementary_mark" name="elementary_mark" value="غير مستوف المعايير" onclick="elementary_enable()"> غير مستوف المعايير
                                         </div>
                                         <div class="col-md-8 form-group"> <br><br>
                                             <div>
@@ -341,6 +345,7 @@
                 <div class="card" style="height: 306.219px">
                     <div class="card-header" style="background:#dce7f1;">
                         <h4 class="card-title">العلامات النهائية</h4>
+                        <p id="final_mark_msg" style="color: red"></p>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -348,9 +353,9 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <input type="radio" name="final_mark" value="تم النشر"> نشر <br> <br>
-                                            <input type="radio" name="final_mark" value="لم يتم النشر"> لم ينشر <br> <br>
-                                            <input type="radio" name="final_mark" value="تم بالنيابة"> تم بالنيابة <br> <br>
+                                            <input type="radio" class="final_mark" name="final_mark" value="تم النشر"> نشر <br> <br>
+                                            <input type="radio" class="final_mark" name="final_mark" value="لم يتم النشر"> لم ينشر <br> <br>
+                                            <input type="radio" class="final_mark" name="final_mark" value="تم بالنيابة"> تم بالنيابة <br> <br>
                                         </div>
                                     </div>
                                 </div>
@@ -364,6 +369,7 @@
                     <div class="card-header" style="background:#dce7f1;">
                         <h4 class="card-title" >تدقيق العلامات النهائية</h4>
                         <p id="audit_final_mark_msg" style="color: red"></p>
+                        <p id="audit_final_mark_upload_pic_msg" style="color: red"></p>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -371,13 +377,13 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <input type="radio" class="audit_final_mark_done" name="audit_final_mark" value="تم التدقيق" onclick="image_upload_enable()"> تم
+                                            <input type="radio" class="audit_final_mark_done audit_final_mark" name="audit_final_mark" value="تم التدقيق" onclick="image_upload_enable()"> تم
                                         </div>
                                         <div class="col-md-3">
-                                            <input type="radio" name="audit_final_mark" value="لم يتم التدقيق" onclick="image_upload_disable()">  لم يتم
+                                            <input type="radio" class="audit_final_mark" name="audit_final_mark" value="لم يتم التدقيق" onclick="image_upload_disable()">  لم يتم
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="radio" name="audit_final_mark" value="لم يكن التدقيق لهذا القائد" onclick="image_upload_disable()">  لم يكن التدقيق لهذا القائد هذا الإسبوع
+                                            <input type="radio" class="audit_final_mark" name="audit_final_mark" value="لم يكن التدقيق لهذا القائد" onclick="image_upload_disable()">  لم يكن التدقيق لهذا القائد هذا الإسبوع
                                         </div>
                                         <div class="col-md-8 form-group"> <br>
                                             <div>
@@ -404,6 +410,9 @@
                 <div class="card">
                     <div class="card-header" style="background:#dce7f1;" >
                         <h4 class="card-title">إدخال روابط المنسحبين</h4>
+                        <p id="withdrawn_ambassadors_msg" style="color: red"></p>
+                        <p id="withdrawn_number_required_msg" style="color: red"></p>
+                        <p id="withdrawn_number_msg" style="color: red"></p>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -411,9 +420,9 @@
                                 <div class="form-body">
                                     <div class="row">
                                         <div class="col-md-8">
-                                            <input type="radio" name="withdrawn_ambassadors" value="تم الإدخال" onclick="withdrawn_number_enable()"> تم الإدخال  <br> <br>
-                                            <input type="radio" name="withdrawn_ambassadors" value="لم يتم الإدخال" onclick="withdrawn_number_enable()">  لم يتم الإدخال  <br> <br>
-                                            <input type="radio" name="withdrawn_ambassadors" value="لا يوجد منسحبين" onclick="withdrawn_number_disable()">  لا يوجد لديه منسحبين <br> <br>
+                                            <input type="radio" class="withdrawn_ambassadors_done withdrawn_ambassadors" name="withdrawn_ambassadors" value="تم الإدخال" onclick="withdrawn_number_enable()"> تم الإدخال  <br> <br>
+                                            <input type="radio" class="withdrawn_ambassadors_not_done withdrawn_ambassadors" name="withdrawn_ambassadors" value="لم يتم الإدخال" onclick="withdrawn_number_enable()">  لم يتم الإدخال  <br> <br>
+                                            <input type="radio" class="withdrawn_ambassadors" name="withdrawn_ambassadors" value="لا يوجد منسحبين" onclick="withdrawn_number_disable()">  لا يوجد لديه منسحبين <br> <br>
                                         </div>
                                         <div class="col-md-8 form-group"> <br>
                                             <div>

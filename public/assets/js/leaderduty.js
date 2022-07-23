@@ -100,17 +100,17 @@ function Check() {
     var newsDiscussionSelected = document.querySelector('input[name="news_discussion"]:checked');
     var newsWritingSelected = document.querySelector('input[name="news_writing"]:checked');
     if (newsDiscussionSelected == null || newsWritingSelected == null || newsLeaderSelected == null) {
-        document.getElementById('error_msg').innerHTML = "يجب إدخال أخبار الأسبوع كافة";
+        $('#error_msg').text('يجب إدخال أخبار الأسبوع كافة');
     }
 
     if ($('.current_team_members').val() > 30 || $('.current_team_members').val() < 1  || $('.current_team_members').val() == '') {
         $('.current_team_members').css('background-color', '#f08080d4');
-        document.getElementById('team_member_msg').innerHTML = "عدد الأعضاء يجب أن يكون بين (1) و (30)";
+        $('#team_member_msg').text('عدد الأعضاء يجب أن يكون بين (1) و (30)');
     }
 
     if ($('.team_final_mark').val() > 100 || $('.team_final_mark').val() < 0 || $('.team_final_mark').val() == '' ) {
         $('.team_final_mark').css('background-color', '#f08080d4');
-        document.getElementById('team_mark_msg').innerHTML = "معدل الفريق يجب أن يكون بين (0) و (100)";
+        $('#team_mark_msg').text('معدل الفريق يجب أن يكون بين (0) و (100)');
     }
 
     if ( $('.follow_up_missing_standards').is(':checked') && $('.follow_up_standard').prop('required')) {
@@ -127,8 +127,42 @@ function Check() {
 
     if ( $('.audit_final_mark_done').is(':checked') &&
          ( $('#leader_message_1').prop('required') || $('#leader_reply_message').prop('required')) ) {
-        $('#audit_final_mark_msg').text(' يجب إرفاق صورة واحدة على الأقل لتواصلك مع القائد وصورة لرد القائد');
+        $('#audit_final_mark_upload_pic_msg').text(' يجب إرفاق صورة واحدة على الأقل لتواصلك مع القائد وصورة لرد القائد');
     }
+
+    if ( ($('.withdrawn_ambassadors_done').is(':checked') || $('.withdrawn_ambassadors_not_done').is(':checked'))
+         && $('#withdrawn_number').prop('required')
+         && ( $('#withdrawn_number').val() > 30 || $('#withdrawn_number').val() < 1 || $('#withdrawn_number').val() == '' )) {
+        $('#withdrawn_number_required_msg').text(' يجب إدخال عدد الأعضاء المنسحبين، وأن يكون بين (1) و (30)');
+    }
+
+    if ( $('.follow_up').is(':checked') == 0) {
+         $('#follow_up_msg').text('هذا الحقل مطلوب');
+    }
+
+    if ( $('.support_post').is(':checked') == 0 ) {
+         $('#support_msg').text('هذا الحقل مطلوب');
+    }
+
+    if ( $('.leader_reading').is(':checked') == 0) {
+        $('#leader_reading_msg').text('هذا الحقل مطلوب');
+   }
+
+   if ( $('.elementary_mark').is(':checked') == 0 ) {
+    $('#elementary_mark_msg').text('هذا الحقل مطلوب');
+   }
+
+   if ( $('.final_mark').is(':checked') == 0 ) {
+    $('#final_mark_msg').text('هذا الحقل مطلوب');
+   }
+
+   if ( $('.audit_final_mark').is(':checked') == 0 ) {
+    $('#audit_final_mark_msg').text('هذا الحقل مطلوب');
+   }
+
+   if ( $('.withdrawn_ambassadors').is(':checked') == 0 ) {
+    $('#withdrawn_ambassadors_msg').text('هذا الحقل مطلوب');
+   }
 
 }
 
