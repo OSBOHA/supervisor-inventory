@@ -42,7 +42,7 @@ class repeatedNoteController extends Controller
             'deputized_for'        =>implode(' ، ' , $request->deputized_for),
             'elementary_marks_late'=>implode(' ، ' , $request->elementary_marks_late),
         ]);
-         return redirect()->route('index');    
+         return redirect()->route('listNotes');    
     }
 
     

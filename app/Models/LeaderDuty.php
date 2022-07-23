@@ -26,7 +26,7 @@ class LeaderDuty extends Model
 
     public function Leader()
     {
-        return $this->belongsTo('App\Models\Leader','leader_id');
+        return $this->belongsTo('App\Models\Leader');
     }
     
     public function Week()
