@@ -34,9 +34,9 @@
 
 
                     <li class="sidebar-item  ">
-                        <a href="#" class='sidebar-link'>
+                        <a href="/" class='sidebar-link'>
                             <i class="bi bi-person-lines-fill"></i>
-                            <span>بياناتك الشخصية</span>
+                            <span>الرئيســـية </span>
                         </a>
 
                     </li>
@@ -49,11 +49,17 @@
                     </li>
 
                     <li class="sidebar-item  ">
-                        <a href="#" class='sidebar-link'>
+                        <a href="{{route('showInventoryResult')}}" class='sidebar-link'>
                             <i class="bi bi-receipt-cutoff"></i>
                             <span>عرض نتيجة الجرد</span>
                         </a>
 
+                    </li>
+                    <li class="sidebar-item  ">
+                        <a href="{{ route('createNotes') }}" class='sidebar-link'>
+                            <i class="bi bi-receipt-cutoff"></i>
+                            <span>ملاحظـات مكررة</span>
+                        </a>
                     </li>
 
                     <li class="sidebar-item ">
@@ -64,19 +70,18 @@
                     </li>
 
                     <li class="sidebar-item  ">
-                        <a href="form-layout.html" class='sidebar-link'>
-                            <i class="bi bi-reception-4"></i>
-                            <span>ترتيبك الرقابي</span>
+                        <a href="{{route('list-all-messages')}}" class='sidebar-link'>
+                            <i class="bi bi-chat-dots"></i>
+                            <span>صندوق الرسائل</span>
                         </a>
 
                     </li>
 
                     <li class="sidebar-item  ">
-                        <a href="{{ url('/chatbox') }}" class='sidebar-link'>
-                            <i class="bi bi-chat-dots"></i>
-                            <span>صندوق الرسائل</span>
+                        <a href="{{url('/')}}" class='sidebar-link'>
+                            <i class="bi bi-receipt-cutoff"></i>
+                            <span>الاضافات على عمل المراقب</span>
                         </a>
-
                     </li>
 
 
