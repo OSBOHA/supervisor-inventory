@@ -10,7 +10,7 @@ class leader extends Model
     use HasFactory;
 
     protected $fillable = [
-        ' supervisor_id',
+        'supervisor_id',
         'advisor_id',
         'team',
         'type',
