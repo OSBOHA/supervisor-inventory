@@ -126,7 +126,7 @@ function Check() {
     }
 
     if ( $('.audit_final_mark_done').is(':checked') &&
-         ( $('#leader_message_1').prop('required') || $('#leader_reply_message').prop('required')) ) {
+    ( $('#leader_message_1').prop('required') || $('#leader_reply_message').prop('required')) ) {
         $('#audit_final_mark_upload_pic_msg').text(' يجب إرفاق صورة واحدة على الأقل لتواصلك مع القائد وصورة لرد القائد');
     }
 

@@ -17,7 +17,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="stats-icon green">
-                                            <img src="https://img.icons8.com/wired/64/000000/checked-2.png" />
+                                            {{-- <img src="https://img.icons8.com/wired/64/000000/checked-2.png" /> --}}
                                         </div>
                                     </div>
                                     <div class="col-md-8">
@@ -96,9 +96,6 @@
                             <div class="card-header">
                                 <h4> معدلات الافرقة</h4>
                             </div>
-
-
-
                             <div class="card-body">
                                 <div id="chart-profile-visit"></div>
                             </div>
@@ -124,40 +121,24 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <h4> الاشعارات</h4>
+                        <h4>معلومات القادة</h4>
                     </div>
                     <div class="card-content pb-4">
+                        @foreach ($leader as $item)
                         <div class="recent-message d-flex px-4 py-3">
                             <div class="avatar avatar-lg">
-                                <img src="assets/images/faces/4.jpg">
+                                <img src="assets/images/faces/{{$item->id}}.jpg">
                             </div><br>
                             <div class="name ms-4" style="padding: 10px;">
-                                <h5 class="mb-1"> سارة</h5>
-                                <h6 class="text-muted mb-0">@سارة</h6>
+                                <h5 class="mb-1"> {{$item->name}}</h5>
+                                <h6 class="text-muted mb-0">{{$item->team}}</h6>
                             </div>
                         </div>
-                        <div class="recent-message d-flex px-4 py-3">
-                            <div class="avatar avatar-lg">
-                                <img src="assets/images/faces/5.jpg">
-                            </div>
-                            <div class="name ms-4" style="padding: 10px;">
-                                <h5 class="mb-1"> محمد </h5>
-                                <h6 class="text-muted mb-0">@محمد</h6>
-                            </div>
-                        </div>
-                        <div class="recent-message d-flex px-4 py-3">
-                            <div class="avatar avatar-lg">
-                                <img src="assets/images/faces/1.jpg">
-                            </div>
-                            <div class="name ms-4" style="padding: 10px;">
-                                <h5 class="mb-1">بتول </h5>
-                                <h6 class="text-muted mb-0">@بتول</h6>
-                            </div>
-                        </div>
-                        <div class="px-4">
+                        @endforeach
+                        {{-- <div class="px-4">
                             <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>
                                 المزيد </button>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -168,7 +149,10 @@
     @foreach ($leader as $item)
         <input type="hidden" class="leader" value="{{$item->name}}"><br>
         @php
-            $final_mark = DB::table('leader_duties')->where('supervisor_id' ,Auth::id())->where('leader_id', $item->id)->orderBy('created_at', 'DESC')->paginate(1);
+            $final_mark = DB::table('leader_duties')->where('supervisor_id' ,Auth::id())
+            ->where('leader_id', $item->id)
+            ->where('week_id', DB::table('Weeks')->latest('id')->first()->id)
+            ->orderBy('created_at', 'DESC')->paginate(1);
         @endphp
         @if ($final_mark->isempty())
          <input type="hidden" class="final_mark" value= "0" > <br>
