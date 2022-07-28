@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\File;
 Trait MediaTraits{
 
     function createMedia($media){
-        $imageName = time().'.'. $media->extension();
+        $imageName = rand(100000, 999999).'.'. $media->extension();
         $media->move(public_path('assets/images'), $imageName);
         // return media name
         return $imageName;

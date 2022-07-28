@@ -134,7 +134,7 @@ class LeaderDutyController extends Controller
             'withdrawn_ambassadors' =>$withdrawn_ambassadors_array
         ]);
 
-              // dd($leaderduty);
+             // dd($leaderduty);
 
         return redirect()->route('index')->with('message', 'Your Entry Saved');
     }
