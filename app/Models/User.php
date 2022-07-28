@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 
+
 class User extends Authenticatable
 {
     use HasRoles, HasApiTokens, HasFactory, Notifiable;
@@ -23,6 +24,12 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+    public function Message() 
+    {
+        return $this->hasMany(App\Models\Message::class,'sender_id','id')
+        ->where('id', '=', 'sender_id')->get('name');
+        
+    }
     public function LeaderDuty()
     {
         return $this->hasMany('App\Models\LeaderDuty','user_id');
@@ -47,7 +54,5 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function Message() {
-        return $this->hasMany('\App\Models\Message');
-    }
+    
 }

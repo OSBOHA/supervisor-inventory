@@ -142,28 +142,22 @@ class LeaderDutyController extends Controller
 
     public function show( leaderduty $leaderduty,Request $request )
     {
-       $week=Week::latest()->first();
-       $originalLeaderduty=LeaderDuty::where('week_id',$week->id)->where('supervisor_id',Auth::id())->get();
-       $duty=[];
-       $leaderduty['originalLeaderduty']=$originalLeaderduty;
-        // print_r($leaderduty['originalLeaderduty'][0]->leader_id); die();
-        foreach( $leaderduty['originalLeaderduty'] as $duty){
-           // print_r($duty->follow_up_post); die();
+        $week=Week::latest()->first();
+       $leaderduty=LeaderDuty::where('week_id',$week->id)->where('supervisor_id',Auth::id())->get();
+         //print_r($leaderduty['originalLeaderduty'][0]->leader_id); die();
 
+        foreach( $leaderduty as $duty){           
             $duty->follow_up_post= unserialize($duty->follow_up_post);
             $duty->support_post=unserialize($duty->support_post);
-            $duty->news_leader=unserialize($duty->news_leader);
+            $duty->news=unserialize($duty->news);
             $duty->elementary_mark=unserialize($duty->elementary_mark);
             $duty->audit_final_mark=unserialize($duty->audit_final_mark);
             $duty->withdrawn_ambassadors=unserialize($duty->withdrawn_ambassadors);
+            
         }
-        //print_r($leaderduty['originalLeaderduty'][0]->follow_up_post); die();
-        return view('result')->with('leaderduty',$leaderduty);
-
-
+        return view('inventory_result',compact('leaderduty',$leaderduty));
 
     }
-
 
     public function edit(leaderduty $leaderduty)
     {

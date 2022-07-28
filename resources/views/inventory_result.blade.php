@@ -17,7 +17,7 @@
 
 <div class="page-content">
     <section class="row">
-        <div class="col-12 col-lg-9">
+        <div class="col-12">
             <div class="row">
 
                 <div class="card">
@@ -35,7 +35,7 @@
                                 <a class="nav-link" id="basic_tasks" data-bs-toggle="tab" href="#basicTasks" role="tab" aria-controls="basicTasks" aria-selected="false">المهام الأساسية</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="leader_news" data-bs-toggle="tab" href="#audit" role="tab" aria-controls="audit" aria-selected="false">التدقيق للمراقب</a>
+                                <a class="nav-link" id="leader_news" data-bs-toggle="tab" href="#audit" role="tab" aria-controls="audit" aria-selected="false">تدقيق المراقب</a>
                             </li>
 
                         </ul>
@@ -65,24 +65,26 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            @php
-                                            $i=0;
-                                            @endphp
-                                            @foreach($leaderduty as $item)
-
+                                        @php
+                                             $i=0;
+                                             @endphp
+                                        @foreach($leaderduty as $item)
+                                        
                                             <tr>
-                                                <td class="text-bold-500"> {{++ $i}} </td>
+                                            <td class="text-bold-500">  {{++ $i}}</td>
+                                            
                                                 <td>{{$item->leader->name}}</td>
                                                 <td class="text-bold-500">{{$item->leader_id}}</td>
                                                 <td>{{$item->current_team_members}}</td>
-                                                <td></td>
+                                                @if(($item->withdrawn_ambassadors['withdrawn_ambassadors'])==='done')
+                                                    <td>{{$item->withdrawn_ambassadors['defective_num']}}</td>
+                                                @else
+                                                    <td>{{'لا يوجد منسحبين'}}</td>
+                                                @endif
                                                 <td>{{$item->team_final_mark}}</td>
+
                                             </tr>
-
-
-                                            @endforeach
-
+                                         @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -108,23 +110,23 @@
                                         </thead>
                                         <tbody>
 
-                                            @php
-                                            $i=0;
-                                            print_r($elementary_mark);@endphp
-                                            @foreach($leaderduty as $item)
-                                            
+                                        @php
+                                             $i=0;
+                                             @endphp
+                                        @foreach($leaderduty as $item)
                                             <tr>
-                                                <td class="text-bold-500">{{++ $i}}</td>
-                                                <td>
-                                                    {{ $item->Leader->name}}
-                                                </td>
-                                                <td class="text-bold-500">{{$item->leader_reading}}</td>
-                                                <td>{{$item->$follow_up_post}}</td>
-                                                <td>{{$item->$support_post}}</td>
-                                                <td>{{$item->final_mark}}</td>
+                                            <td class="text-bold-500">  {{++ $i}}</td>
+                                                <td class="text-bold-500">{{$item->leader->name}}</td>
+                                                <td>  {{$item->leader_reading}} </td>
+                                                <td >{{$item->follow_up_post[0]['follow_up_post']}}</td>
+                                                <td>{{$item->support_post[0]['support_post']}}</td>
+                                                <td >{{$item->elementary_mark[0]['elementary_mark']}}</td>
+                                                <td>{{$item->withdrawn_ambassadors['withdrawn_ambassadors']}}</td
+                                                
+                                                
+                                                
                                             </tr>
-
-                                            @endforeach
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -134,31 +136,39 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped mb-0" dir="rtl">
                                         <thead>
+                                       
                                             <tr>
                                                 <th>#</th>
                                                 <th>القائد</th>
                                                 <th>التواصل مع المنسحبين</th>
                                                 <th>تدقيق العلامات النهائية </th>
-                                                <th>ارفاق سكرين </th>
+                                                <th>سكرين شوت للتدقيق</th>
                                             </tr>
+                                            
                                         </thead>
                                         <tbody>
-                                            @php
-                                            $i=0;
-                                            @endphp
-                                            @foreach($leaderduty as $item)
+                                        @php
+                                             $i=0;
+                                             @endphp
+                                        @foreach($leaderduty as $item)
                                             <tr>
-                                                <td class="text-bold-500"> {{++ $i}}</td>
-                                                <td>{{$item->Leader->name}}</td>
-                                                <td class="text-bold-500"></td>
-                                                <td>{{$item->audit_final_mark}}</td>
+                                                <td class="text-bold-500">{{++ $i}} </td>
+                                                <td>{{$item->leader->name}}</td>
+                                                <td class="text-bold-500">{{$item->withdrawn_ambassadors['withdrawn_ambassadors']}}</td>
+                                                <td>{{$item->audit_final_mark[0]['audit_final_mark']}}</td>
+                                                @if(($item->audit_final_mark[0]['leader_message_1'])!=='null')
+                                                <td>
+                                                    <img src="..\assets\images\{{$item->audit_final_mark[0]['leader_message_1']}}" class="img-tumbnail" width="100" height="100"> 
 
-                                                <td></td>
+                                                </td>
+                                                @else
+                                                       <td> {{" لا يوجد سكرين شوت "}}</td>
+                                                    
+                                                @endif
+                                                
                                             </tr>
 
-                                            @endforeach
-
-
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>

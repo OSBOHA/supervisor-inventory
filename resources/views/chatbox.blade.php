@@ -92,7 +92,11 @@
                         <div class="message-form d-flex flex-direction-column align-items-center">
                             <a href="http://" class="black"><i data-feather="smile"></i></a>
                             <div class="d-flex flex-grow-1 ml-4">
-                                <input type="text" class="form-control" placeholder="اكتب رسالتك هنا..">
+                                <form action="addM" method="POST">
+                                    @csrf
+                                    <input type="text" class="form-control" name="body" placeholder="اكتب رسالتك هنا.." style="display:inline-block; width:380px;">
+                                    <button type="submit" class="bi bi-telegram" style="font-size:28px; padding-top: -3px; display:inline-block; color: #5a8dee; border:none; background:none"></button>
+                                </form>
                             </div>
                         </div>
                     </div>

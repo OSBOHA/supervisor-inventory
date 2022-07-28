@@ -31,7 +31,7 @@ class leader extends Model
 
     public function LeaderDuty()
     {
-        return $this->hasMany('App\Models\LeaderDuty','leader_id');
+        return $this->hasMany('App\Models\LeaderDuty');
     }
 
     // public function Advisor()
@@ -43,4 +43,5 @@ class leader extends Model
     // {
     //     return $this->belongsTo('App\Models\Supervisor','supervisor_id');
     // }
+    
 }
