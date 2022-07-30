@@ -13,7 +13,7 @@ class CreateLeadresTable extends Migration
      */
     public function up()
     {
-        Schema::create('leadres', function (Blueprint $table) {
+        Schema::create('leaders', function (Blueprint $table) {
             $table->id();  
             $table->string('name');
             $table->integer('advisor_id');
