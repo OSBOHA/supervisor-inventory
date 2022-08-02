@@ -1,15 +1,15 @@
-function newrecord() {
-    var leader_id = document.getElementById('leader_id').value;
-    document.getElementById('leader_duty').reset();
-    document.getElementById('leader_id_set').value = leader_id;
-    document.getElementById('leader_duty').hidden = false;
-    if ( leader_id == 'empty') {
-        document.getElementById('leader_duty').hidden = true;
-        document.getElementById('leader_name_select').style.display = 'block';
-    } else{
-        document.getElementById('leader_name_select').style.display = 'none';
-    }
-}
+// function newrecord() {
+//     var leader_id = document.getElementById('leader_id').value;
+//     document.getElementById('leader_duty').reset();
+//     document.getElementById('leader_id_set').value = leader_id;
+//     document.getElementById('leader_duty').hidden = false;
+//     if ( leader_id == 'empty') {
+//         document.getElementById('leader_duty').hidden = true;
+//         document.getElementById('leader_name_select').style.display = 'block';
+//     } else{
+//         document.getElementById('leader_name_select').style.display = 'none';
+//     }
+// }
 
 
 function follow_up_enable() {
@@ -166,8 +166,23 @@ function Check() {
 
 }
 
-
 $(document).ready(function() {
+
+    $("#leader_id").on('change', (function() {
+        $('.leader_duty_form').trigger("reset");
+        var leader_id = $("#leader_id").val();
+        if (leader_id == '' || leader_id == 'empty') {
+            $('.leader_duty_form').hide();
+            $('#leader_name_select').show();
+        }
+        else {
+            $('#leader_name_select').hide();
+            $('.leader_duty_form').show();
+            $('#leader_id_set').val(leader_id);
+
+        }
+    }));
+
     $("#newselect").on('change', (function() {
         var valueselect = $("#newselect").val();
         if (valueselect == 'empty') {
@@ -233,10 +248,4 @@ $(document).ready(function() {
     }
     });
 
-    // $('.form_hidden').hide();
-    // $('#leader_id').on('change', function() {
-    //     let id = $(this).val();
-    //     $('.form_hidden').hide();
-    //     $('#leader_duty_' + id).css('display', 'block');
-    // })
 });
