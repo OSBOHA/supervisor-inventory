@@ -42,7 +42,7 @@
                     </li>
 
                     <li class="sidebar-item ">
-                        <a href="leaderduty" class='sidebar-link'>
+                        <a href="{{route('leaderdutyCreate')}}" class='sidebar-link'>
                             <i class="bi bi-pencil-square"></i>
                             <span>الجرد لأسبوعي</span>
                         </a>

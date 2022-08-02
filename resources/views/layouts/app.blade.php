@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="{{asset('assets/css/app.rtl.css')}}">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.svg')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('assets/vendors/toastify/toastify.css')}}">
-    <link rel="stylesheet" href="assets/vendors/choices.js/choices.min.css" />
-    <link rel="stylesheet" href="assets/css/pages/email.css">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/choices.js/choices.min.css')}}" />
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/email.css')}}">
 </head>
 
 <body>
@@ -53,10 +53,10 @@
                     console.error(error);
                 });
         </script> --}}
-        <script src="assets/js/leaderduty.js"></script>
-        <script src="assets/js/pages/form-element-select.js"></script>
-        <script src="assets/js/mazer.js"></script>
-        <script src="assets/vendors/choices.js/choices.min.js"></script>
+        <script src="{{asset('assets/js/leaderduty.js')}}"></script>
+        <script src="{{asset('assets/js/pages/form-element-select.js')}}"></script>
+        <script src="{{asset('assets/js/mazer.js')}}"></script>
+        <script src="{{asset('assets/vendors/choices.js/choices.min.js')}}"></script>
 
 
 </body>

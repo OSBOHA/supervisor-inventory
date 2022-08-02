@@ -19,11 +19,20 @@ class PermissionsSeeder extends Seeder
         // Reset cached roles and permissions
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
+        // create permissions
+        
+        ###### OBJECTION ######
+        Permission::create(['name' => ' objection_audit']);
+        
+
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'admin']);
 
         $role2 = Role::create(['name' => 'supervisor']);
         $role3 = Role::create(['name' => 'advisor']);
+
+        $role1->givePermissionTo(Permission::all());
+
     }
 }
 

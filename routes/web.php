@@ -19,7 +19,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 //Route::get('/leaderduty', [App\Http\Controllers\LeaderDutyController::class, 'index']);
 Route::group(['prefix'=>'leaderduty'], function(){
     Route::get('/', [App\Http\Controllers\LeaderDutyController::class, 'index'])->name('index');
-    Route::post('/create', [App\Http\Controllers\LeaderDutyController::class, 'create']);
+    Route::get('/create', [App\Http\Controllers\LeaderDutyController::class, 'create'])->name('leaderdutyCreate');
     Route::post('/duty-store', [App\Http\Controllers\LeaderDutyController::class, 'store'])->name('store');
     Route::get('/show', [App\Http\Controllers\LeaderDutyController::class, 'show'])->name('showInventoryResult');
     Route::post('/update', [App\Http\Controllers\LeaderDutyController::class, 'update']);

@@ -54,5 +54,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+    public function objections()
+    {
+        return $this->hasMany('App\Models\Objection');
+    }
 }

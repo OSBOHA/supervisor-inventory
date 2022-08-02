@@ -14,6 +14,7 @@ class LeaderDutyController extends Controller
 {
     use MediaTraits;
 
+    //repeated
     public function index()
     {
         $leader= Leader::where('supervisor_id' ,Auth::id())->latest()->orderBy('created_at', 'DESC')->paginate(6);
@@ -25,7 +26,10 @@ class LeaderDutyController extends Controller
 
     public function create()
     {
-       //
+        $leader= Leader::where('supervisor_id' ,Auth::id())->latest()->orderBy('created_at', 'DESC')->paginate(6);
+        $week_id= Week::latest('id')->first()->id;
+        $news= News::where('week_id', $week_id)->orderBy('created_at', 'DESC')->paginate(3);
+        return view('LeaderDuty', compact('leader', 'news'));
     }
 
 

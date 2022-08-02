@@ -74,9 +74,9 @@
                                             <td class="text-bold-500">  {{++ $i}}</td>
                                             
                                                 <td>{{$item->leader->name}}</td>
-                                                <td class="text-bold-500">{{$item->leader_id}}</td>
+                                                <td class="text-bold-500">{{$item->leader->team}}</td>
                                                 <td>{{$item->current_team_members}}</td>
-                                                @if(($item->withdrawn_ambassadors['withdrawn_ambassadors'])==='done')
+                                                @if(($item->withdrawn_ambassadors['withdrawn_ambassadors'])!='لا يوجد منسحبين')
                                                     <td>{{$item->withdrawn_ambassadors['defective_num']}}</td>
                                                 @else
                                                     <td>{{'لا يوجد منسحبين'}}</td>
@@ -115,13 +115,105 @@
                                              @endphp
                                         @foreach($leaderduty as $item)
                                             <tr>
+                                            
                                             <td class="text-bold-500">  {{++ $i}}</td>
                                                 <td class="text-bold-500">{{$item->leader->name}}</td>
                                                 <td>  {{$item->leader_reading}} </td>
-                                                <td >{{$item->follow_up_post[0]['follow_up_post']}}</td>
-                                                <td>{{$item->support_post[0]['support_post']}}</td>
-                                                <td >{{$item->elementary_mark[0]['elementary_mark']}}</td>
-                                                <td>{{$item->withdrawn_ambassadors['withdrawn_ambassadors']}}</td
+                                                <td >
+                                                    {{$item->follow_up_post[0]['follow_up_post']}}
+                                                    @if($item->follow_up_post[0]['follow_up_post'] == "غير مستوف المعايير")
+                                                            <br/>
+                                                            ـــــــــــــــــــ
+                                                            <br/>
+                                                            @if($item->follow_up_post[0]['follow_up_standard_1'] != "")
+                                                                <p> {{$item->follow_up_post[0]['follow_up_standard_1']}} </p>
+                                                            @endif
+                                                            @if($item->follow_up_post[0]['follow_up_standard_2'] != "")
+                                                                <p> {{$item->follow_up_post[0]['follow_up_standard_2']}} </p>
+                                                            @endif
+                                                            @if($item->follow_up_post[0]['follow_up_standard_3'] != "")
+                                                                <p> {{$item->follow_up_post[0]['follow_up_standard_3']}} </p>
+                                                            @endif
+                                                            @if($item->follow_up_post[0]['follow_up_standard_4'] != "")
+                                                                <p> {{$item->follow_up_post[0]['follow_up_standard_4']}} </p>
+                                                            @endif
+                                                            @if($item->follow_up_post[0]['follow_up_standard_5'] != "")
+                                                                <p> {{$item->follow_up_post[0]['follow_up_standard_5']}} </p>
+                                                            @endif
+                                                            @if($item->follow_up_post[0]['follow_up_standard_6'] != "")
+                                                                <p> {{$item->follow_up_post[0]['follow_up_standard_6']}} </p>
+                                                            @endif
+                                                            @if($item->follow_up_post[0]['follow_up_standard_7'] != "")
+                                                                <p> {{$item->follow_up_post[0]['follow_up_standard_7']}} </p>
+                                                            @endif
+                                                            @if($item->follow_up_post[0]['follow_up_standard_8'] != "")
+                                                                <p> {{$item->follow_up_post[0]['follow_up_standard_8']}} </p>
+                                                            @endif
+                                                            @if($item->follow_up_post[0]['follow_up_standard_9'] != "")
+                                                                <p> {{$item->follow_up_post[0]['follow_up_standard_9']}} </p>
+                                                            @endif
+                                                            @if($item->follow_up_post[0]['follow_up_standard_10'] != "")
+                                                                <p> {{$item->follow_up_post[0]['follow_up_standard_10']}} </p>
+                                                            @endif
+
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    {{$item->support_post[0]['support_post']}}
+                                                    @if($item->support_post[0]['support_post'] == "غير مستوف المعايير")
+                                                        <br/>
+                                                        ـــــــــــــــــــ
+                                                        <br/>
+
+                                                        @if($item->support_post[0]['support_standard_1'] != "")
+                                                            <p> {{$item->support_post[0]['support_standard_1']}} </p>
+                                                        @endif
+                                                        @if($item->support_post[0]['support_standard_2'] != "")
+                                                            <p> {{$item->support_post[0]['support_standard_2']}} </p>
+                                                        @endif
+                                                        @if($item->support_post[0]['support_standard_3'] != "")
+                                                            <p> {{$item->support_post[0]['support_standard_3']}} </p>
+                                                        @endif
+                                                        @if($item->support_post[0]['support_standard_4'] != "")
+                                                            <p> {{$item->support_post[0]['support_standard_4']}} </p>
+                                                        @endif
+                                                        @if($item->support_post[0]['support_standard_5'] != "")
+                                                            <p> {{$item->support_post[0]['support_standard_5']}} </p>
+                                                        @endif
+                                                        @if($item->support_post[0]['support_standard_6'] != "")
+                                                            <p> {{$item->support_post[0]['support_standard_6']}} </p>
+                                                        @endif
+                                                        @if($item->support_post[0]['support_standard_7'] != "")
+                                                            <p> {{$item->support_post[0]['support_standard_7']}} </p>
+                                                        @endif
+
+                                                    @endif
+                                                </td>
+                                                <td >
+                                                    {{$item->elementary_mark[0]['elementary_mark']}}
+                                                    @if($item->elementary_mark[0]['elementary_mark'] == "غير مستوف المعايير")
+                                                            <br/>
+                                                            ـــــــــــــــــــ
+                                                            <br/>
+                                                            @if($item->elementary_mark[0]['elementary_standard_1'] != "")
+                                                                <p> {{$item->elementary_mark[0]['elementary_standard_1']}} </p>
+                                                            @endif
+                                                            @if($item->elementary_mark[0]['elementary_standard_2'] != "")
+                                                                <p> {{$item->elementary_mark[0]['elementary_standard_2']}} </p>
+                                                            @endif
+                                                            @if($item->elementary_mark[0]['elementary_standard_3'] != "")
+                                                                <p> {{$item->elementary_mark[0]['elementary_standard_3']}} </p>
+                                                            @endif
+                                                            @if($item->elementary_mark[0]['elementary_standard_4'] != "")
+                                                                <p> {{$item->elementary_mark[0]['elementary_standard_4']}} </p>
+                                                            @endif
+                                                            @if($item->elementary_mark[0]['elementary_standard_5'] != "")
+                                                                <p> {{$item->elementary_mark[0]['elementary_standard_5']}} </p>
+                                                            @endif
+
+                                                    @endif
+                                                </td>
+                                                <td>{{$item->withdrawn_ambassadors['withdrawn_ambassadors']}}</td>
                                                 
                                                 
                                                 
