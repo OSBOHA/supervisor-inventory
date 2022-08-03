@@ -124,6 +124,7 @@
                         <h4>معلومات القادة</h4>
                     </div>
                     <div class="card-content pb-4">
+                        @if ( count($leader) > 0)
                         @foreach ($leader as $item)
                         <div class="recent-message d-flex px-4 py-3">
                             <div class="avatar avatar-lg">
@@ -135,6 +136,12 @@
                             </div>
                         </div>
                         @endforeach
+                        @else
+                        <div class="recent-message px-4 py-3">
+                            <h4 style="color: red"> لا يوجد لديك قادة </h4>
+                            <p>  تواصل مع الموجه المسؤول عنك ليتم فرز قادة إلى فريقك</p>
+                        </div>
+                        @endif
                         {{-- <div class="px-4">
                             <button class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>
                                 المزيد </button>

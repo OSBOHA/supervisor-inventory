@@ -27,12 +27,15 @@ class HomeController extends Controller
     public function index()
     {
         $leader= Leader::where('supervisor_id' ,Auth::id())->latest()->orderBy('created_at', 'DESC')->paginate(6);
-        $mark= LeaderDuty::where('supervisor_id' ,Auth::id())
-        ->where('leader_id', Leader::where('supervisor_id' ,Auth::id())->latest()->first()->id)
-        ->where('week_id', Week::latest('id')->first()->id)
-        ->orderBy('created_at', 'DESC')->paginate(6);
-
-        // print_r($data);
-        return view('front' , compact ('leader', 'mark'));
+        if (count($leader) > 0 ) {
+            $mark= LeaderDuty::where('supervisor_id' ,Auth::id())
+            ->where('leader_id', Leader::where('supervisor_id' ,Auth::id())->latest()->first()->id)
+            ->where('week_id', Week::latest('id')->first()->id)
+            ->orderBy('created_at', 'DESC')->paginate(6);
+            return view('front' , compact ('leader', 'mark'));
+        }
+        else {
+            return view('front' , compact ('leader'));
+        }
     }
 }

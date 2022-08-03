@@ -54,8 +54,6 @@ class LeaderDutyController extends Controller
 
         ]);
 
-
-
         if ($request->hasFile('leader_message_1')){
             $leader_message_1 = $this->createMedia($request->file('leader_message_1'));
         } else {$leader_message_1= "null";}
@@ -72,8 +70,6 @@ class LeaderDutyController extends Controller
             $leader_reply_message = $this->createMedia($request->file('leader_reply_message'));
         } else {$leader_reply_message= "null";}
 
-
-
          $follow_up_array = serialize(array([
             "follow_up_post" =>"$request->follow_up_post",
             "follow_up_standard_1" => "$request->follow_up_standard_1",
@@ -85,8 +81,7 @@ class LeaderDutyController extends Controller
             "follow_up_standard_7" => "$request->follow_up_standard_7",
             "follow_up_standard_8" => "$request->follow_up_standard_8",
             "follow_up_standard_9" => "$request->follow_up_standard_9",
-            "follow_up_standard_10" => "$request->follow_up_standard_10"
-        ]));
+            "follow_up_standard_10" => "$request->follow_up_standard_10"]));
 
          $support_array = serialize(array([
             "support_post" =>"$request->support_post",
@@ -122,9 +117,16 @@ class LeaderDutyController extends Controller
             "withdrawn_ambassadors" => "$request->withdrawn_ambassadors",
             "defective_num" => "$request->num_defective"));
 
+
+
+         $week_id =Week::latest('id')->first()->id;
+         $leader_id =$request->leader_id;
+
+        $exist_record = LeaderDuty::where('week_id', $week_id)->where('leader_id', $leader_id)->exists();
+        if ($exist_record == null) {
           $leaderduty= LeaderDuty::create([
-            'leader_id'=> $request->leader_id ,
-            'week_id'=> Week::latest('id')->first()->id,
+            'leader_id'=> $leader_id ,
+            'week_id'=> $week_id,
             'supervisor_id'=>Auth::id(),
             'team_final_mark' =>$request->team_final_mark,
             'current_team_members' =>$request->current_team_members,
@@ -137,10 +139,28 @@ class LeaderDutyController extends Controller
             'audit_final_mark' =>$audit_final_mark_array,
             'withdrawn_ambassadors' =>$withdrawn_ambassadors_array
         ]);
-
-             // dd($leaderduty);
-
         return redirect()->route('index')->with('message', 'Your Entry Saved');
+    }
+    else {
+        LeaderDuty::where('week_id', $week_id)->where('leader_id', $leader_id)->delete();
+        $leaderduty= LeaderDuty::create([
+            'leader_id'=> $request->leader_id ,
+            'week_id'=> $week_id,
+            'supervisor_id'=>Auth::id(),
+            'team_final_mark' =>$request->team_final_mark,
+            'current_team_members' =>$request->current_team_members,
+            'follow_up_post'=>$follow_up_array,
+            'support_post' =>$support_array,
+            'news' =>$news_array,
+            'leader_reading' =>$request->leader_reading,
+            'elementary_mark' =>$elementary_mark_array,
+            'final_mark' =>$request->final_mark,
+            'audit_final_mark' =>$audit_final_mark_array,
+            'withdrawn_ambassadors' =>$withdrawn_ambassadors_array
+        ]);
+        return redirect()->route('index')->with('message', 'Your Entry updated');
+    }
+
     }
 
 
@@ -150,14 +170,14 @@ class LeaderDutyController extends Controller
        $leaderduty=LeaderDuty::where('week_id',$week->id)->where('supervisor_id',Auth::id())->get();
          //print_r($leaderduty['originalLeaderduty'][0]->leader_id); die();
 
-        foreach( $leaderduty as $duty){           
+        foreach( $leaderduty as $duty){
             $duty->follow_up_post= unserialize($duty->follow_up_post);
             $duty->support_post=unserialize($duty->support_post);
             $duty->news=unserialize($duty->news);
             $duty->elementary_mark=unserialize($duty->elementary_mark);
             $duty->audit_final_mark=unserialize($duty->audit_final_mark);
             $duty->withdrawn_ambassadors=unserialize($duty->withdrawn_ambassadors);
-            
+
         }
         return view('inventory_result',compact('leaderduty',$leaderduty));
 
