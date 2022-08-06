@@ -26,23 +26,56 @@ class repeatedNoteController extends Controller
    
     public function create()
     {
-        $leaders = Leader::all();
+        $leaders = Leader::where('supervisor_id' ,Auth::id())->latest()->orderBy('created_at', 'DESC')->paginate(6);
         return view('repeatNotes.create' , compact('leaders'));
     }
 
     
     public function store(Request $request)
     {   
-        $data = RepeatedNote::create([     
-            'supervisor_id'        =>Auth::id(),
-            'week_id'              =>Week::latest('id')->first()->id,
-            'post_late'            =>implode(' ، ' , $request->post_late),
-            'light_week'           =>implode(' ، ' , $request->light_week),
-            'didnt_publish_news'   =>implode(' ، ' , $request->didnt_publish_news),
-            'deputized_for'        =>implode(' ، ' , $request->deputized_for),
-            'elementary_marks_late'=>implode(' ، ' , $request->elementary_marks_late),
-        ]);
-         return redirect()->route('listNotes');    
+        if ($request->post_late){
+           $post_late = implode(' ، ' , $request->post_late);
+        } 
+        else {$post_late= "لا يوجد";}
+
+        if ($request->light_week){
+            $light_week = implode(' ، ' , $request->light_week);
+        } 
+        else {$light_week= "لا يوجد";}
+
+        if ($request->didnt_publish_news){
+            $didnt_publish_news = implode(' ، ' , $request->didnt_publish_news);
+        } 
+        else {$didnt_publish_news= "لا يوجد";}
+
+        if ($request->deputized_for){
+            $deputized_for = implode(' ، ' , $request->deputized_for);
+        } 
+        else {$deputized_for= "لا يوجد";}
+
+        if ($request->elementary_marks_late){
+            $elementary_marks_late = implode(' ، ' , $request->elementary_marks_late);
+        } 
+        else {$elementary_marks_late= "لا يوجد";}
+
+        $week_id =Week::latest('id')->first()->id;
+        $supervisor_id =Auth::id();
+
+        $data = RepeatedNote::updateOrCreate(
+            [ 'supervisor_id' => $supervisor_id,
+              'week_id' =>$week_id
+            ],
+            [ 'post_late'            =>$post_late,
+              'light_week'           =>$light_week,
+              'didnt_publish_news'   =>$didnt_publish_news,
+              'deputized_for'        =>$deputized_for,
+              'elementary_marks_late'=>$elementary_marks_late,
+
+             ]);
+
+         return redirect()->route('listNotes')->with('message', 'Your Entry Saved');
+         
+       
     }
 
     

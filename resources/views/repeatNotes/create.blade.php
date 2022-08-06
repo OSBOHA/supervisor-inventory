@@ -34,7 +34,7 @@
 
 @section('content')  
  <div id="basic-horizontal-layouts">
-    <form action="{{route('store')}}" enctype="multipart/form-data" method="POST">
+    <form action="{{route('storeNotes')}}" enctype="multipart/form-data" method="POST">
         @csrf
 
     <div class="row match-height">  
