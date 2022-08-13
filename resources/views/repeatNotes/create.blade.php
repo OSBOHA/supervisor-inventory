@@ -11,7 +11,7 @@
         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-start">
             <ol class="breadcrumb">
                 {{-- <li class="breadcrumb-item active" aria-current="page">Repeated Notes</li> --}}
-                <li class="breadcrumb-item"><a href="{{route('index')}}">عرض الملاحظات</a></li>
+                <li class="breadcrumb-item"><a href="{{route('listNotes')}}">عرض الملاحظات</a></li>
             </ol>
         </nav>
     </div>

@@ -11,7 +11,6 @@
 //     }
 // }
 
-
 function follow_up_enable() {
     for (i = 1; i < 11; i++) {
         var follow_up_standard = "follow_up_standard_" + i;
@@ -95,7 +94,7 @@ function withdrawn_number_disable() {
     document.getElementById('withdrawn_number').required = false;
 }
 
-function Check() {
+function duty_Check() {
     var newsLeaderSelected = document.querySelector('input[name="news_leader"]:checked');
     var newsDiscussionSelected = document.querySelector('input[name="news_discussion"]:checked');
     var newsWritingSelected = document.querySelector('input[name="news_writing"]:checked');
@@ -209,7 +208,7 @@ $(document).ready(function() {
     }));
 
     if ($('.leader').length > 0) {
-        $('news_leader').attr('required', 'required');
+        $('.news_leader').attr('required', 'required');
     }
 
     if ($('.discussion').length > 0) {
