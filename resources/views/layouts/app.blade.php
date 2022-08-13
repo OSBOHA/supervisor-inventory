@@ -54,6 +54,7 @@
                 });
         </script> --}}
         <script src="{{asset('assets/js/leaderduty.js')}}"></script>
+        <script src="{{asset('assets/js/extrawork.js')}}"></script>
         <script src="{{asset('assets/js/pages/form-element-select.js')}}"></script>
         <script src="{{asset('assets/js/mazer.js')}}"></script>
         <script src="{{asset('assets/vendors/choices.js/choices.min.js')}}"></script>

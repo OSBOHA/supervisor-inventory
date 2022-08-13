@@ -438,7 +438,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-4">
-                <button id="save" type="submit"  onclick="Check()" class="btn btn-outline-success btn-block btn-lg rounded-pill" {{--style="width:575px"--}}>حفظ</button>
+                <button id="save" type="submit"  onclick="duty_Check()" class="btn btn-outline-success btn-block btn-lg rounded-pill">حفظ</button>
             </div>
         </div>
     </form>

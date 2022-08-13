@@ -70,7 +70,7 @@ class LeaderDutyController extends Controller
             $leader_reply_message = $this->createMedia($request->file('leader_reply_message'));
         } else {$leader_reply_message= "null";}
 
-         $follow_up_array = serialize(array([
+        $follow_up_array = serialize(array([
             "follow_up_post" =>"$request->follow_up_post",
             "follow_up_standard_1" => "$request->follow_up_standard_1",
             "follow_up_standard_2" => "$request->follow_up_standard_2",
@@ -83,7 +83,7 @@ class LeaderDutyController extends Controller
             "follow_up_standard_9" => "$request->follow_up_standard_9",
             "follow_up_standard_10" => "$request->follow_up_standard_10"]));
 
-         $support_array = serialize(array([
+        $support_array = serialize(array([
             "support_post" =>"$request->support_post",
             "support_standard_1" => "$request->support_standard_1",
             "support_standard_2" =>"$request->support_standard_2",
@@ -93,12 +93,12 @@ class LeaderDutyController extends Controller
             "support_standard_6" =>"$request->support_standard_6",
             "support_standard_7" =>"$request->support_standard_7"]));
 
-         $news_array = serialize(array([
+        $news_array = serialize(array([
             "leader" => "$request->news_leader",
             "discussion" => "$request->news_discussion",
             "writing"=> "$request->news_writing" ]));
 
-         $elementary_mark_array = serialize(array([
+        $elementary_mark_array = serialize(array([
             "elementary_mark"=> "$request->elementary_mark",
             "elementary_standard_1" => "$request->elementary_standard_1",
             "elementary_standard_2" => "$request->elementary_standard_2",
@@ -106,61 +106,37 @@ class LeaderDutyController extends Controller
             "elementary_standard_4" => "$request->elementary_standard_4",
             "elementary_standard_5" => "$request->elementary_standard_5"]));
 
-         $audit_final_mark_array = serialize(array([
+        $audit_final_mark_array = serialize(array([
             "audit_final_mark" => $request->audit_final_mark,
             "leader_message_1" => $leader_message_1,
             "leader_message_2" => $leader_message_2,
             "leader_message_3" => $leader_message_3,
             "leader_reply_message" => $leader_reply_message ]));
 
-         $withdrawn_ambassadors_array = serialize(array(
+        $withdrawn_ambassadors_array = serialize(array(
             "withdrawn_ambassadors" => "$request->withdrawn_ambassadors",
             "defective_num" => "$request->num_defective"));
 
+        $week_id =Week::latest('id')->first()->id;
+        $leader_id =$request->leader_id;
 
-
-         $week_id =Week::latest('id')->first()->id;
-         $leader_id =$request->leader_id;
-
-        $exist_record = LeaderDuty::where('week_id', $week_id)->where('leader_id', $leader_id)->exists();
-        if ($exist_record == null) {
-          $leaderduty= LeaderDuty::create([
-            'leader_id'=> $leader_id ,
-            'week_id'=> $week_id,
-            'supervisor_id'=>Auth::id(),
-            'team_final_mark' =>$request->team_final_mark,
-            'current_team_members' =>$request->current_team_members,
-            'follow_up_post'=>$follow_up_array,
-            'support_post' =>$support_array,
-            'news' =>$news_array,
-            'leader_reading' =>$request->leader_reading,
-            'elementary_mark' =>$elementary_mark_array,
-            'final_mark' =>$request->final_mark,
-            'audit_final_mark' =>$audit_final_mark_array,
-            'withdrawn_ambassadors' =>$withdrawn_ambassadors_array
-        ]);
-        return redirect()->route('index')->with('message', 'Your Entry Saved');
-    }
-    else {
-        LeaderDuty::where('week_id', $week_id)->where('leader_id', $leader_id)->delete();
-        $leaderduty= LeaderDuty::create([
-            'leader_id'=> $request->leader_id ,
-            'week_id'=> $week_id,
-            'supervisor_id'=>Auth::id(),
-            'team_final_mark' =>$request->team_final_mark,
-            'current_team_members' =>$request->current_team_members,
-            'follow_up_post'=>$follow_up_array,
-            'support_post' =>$support_array,
-            'news' =>$news_array,
-            'leader_reading' =>$request->leader_reading,
-            'elementary_mark' =>$elementary_mark_array,
-            'final_mark' =>$request->final_mark,
-            'audit_final_mark' =>$audit_final_mark_array,
-            'withdrawn_ambassadors' =>$withdrawn_ambassadors_array
-        ]);
-        return redirect()->route('index')->with('message', 'Your Entry updated');
-    }
-
+        $leaderduty= LeaderDuty::updateOrCreate(
+            ['leader_id'=> $leader_id ,
+             'week_id'=> $week_id
+            ],
+            ['supervisor_id'=>Auth::id(),
+             'team_final_mark' =>$request->team_final_mark,
+             'current_team_members' =>$request->current_team_members,
+             'follow_up_post'=>$follow_up_array,
+             'support_post' =>$support_array,
+             'news' =>$news_array,
+             'leader_reading' =>$request->leader_reading,
+             'elementary_mark' =>$elementary_mark_array,
+             'final_mark' =>$request->final_mark,
+             'audit_final_mark' =>$audit_final_mark_array,
+             'withdrawn_ambassadors' =>$withdrawn_ambassadors_array
+            ]);
+        return redirect()->route('index')->with('message', 'Your Entry saved');
     }
 
 

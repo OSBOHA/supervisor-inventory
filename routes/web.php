@@ -26,6 +26,15 @@ Route::group(['prefix'=>'leaderduty'], function(){
     Route::post('/delete', [App\Http\Controllers\LeaderDutyController::class, 'delete']);
 });
 
+Route::group(['prefix'=>'extrawork'], function(){
+    Route::get('/', [App\Http\Controllers\ExtraWorkController::class, 'index'])->name('index');
+    Route::get('/create', [App\Http\Controllers\ExtraWorkController::class, 'create'])->name('');
+    Route::post('/store', [App\Http\Controllers\ExtraWorkController::class, 'store'])->name('extra_work_sotre');
+    Route::get('/show', [App\Http\Controllers\ExtraWorkController::class, 'show'])->name('');
+    Route::post('/update', [App\Http\Controllers\ExtraWorkController::class, 'update']);
+    Route::post('/delete', [App\Http\Controllers\ExtraWorkController::class, 'delete']);
+});
+
 Route::get('/chatbox', [App\Http\Controllers\MessageController::class, 'listMessage']);
 Route::view('/addM', 'chatbox');
 Route::post('/addM', [App\Http\Controllers\MessageController::class, 'addMessage']);
