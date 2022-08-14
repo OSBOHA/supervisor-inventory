@@ -11,15 +11,17 @@ class Objection extends Model
         'title',
         'body',
         'objector_id',
-        
+        'reviewer_id',
+        'status',
+        'reviewer_note',        
     ];
     use HasFactory;
     public function objector()
     {
-        return $this->belongsTo('App\Models\User','objector_id');
+        return $this->belongsTo('App\Models\User');
     }
     public function reviewer()
     {
-        return $this->belongsTo('App\Models\User','reviewer_id');
+        return $this->belongsTo('App\Models\User');
     }
 }
