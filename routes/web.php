@@ -32,6 +32,19 @@ Route::group(['prefix'=>'extrawork'], function(){
     Route::post('/store', [App\Http\Controllers\ExtraWorkController::class, 'store'])->name('extra-work-sotre');
     Route::get('/show', [App\Http\Controllers\ExtraWorkController::class, 'show'])->name('extra-work-show');
 });
+Route::group(['prefix'=>'objection'], function(){
+    Route::get('/', [App\Http\Controllers\objectionController::class, 'listAllObjections'])->name('listAllObjections');
+    Route::post('/store', [App\Http\Controllers\objectionController::class, 'store'])->name('storeObjection');
+    Route::get('/create', [App\Http\Controllers\objectionController::class, 'create'])->name('create');
+    Route::get('/listOneObjection', [App\Http\Controllers\objectionController::class, 'listOneObjection'])->name('listOneObjection');
+    Route::get('/index', [App\Http\Controllers\objectionController::class, 'index'])->name('index');
+    //Route::view('/updateForm', 'objection.update');
+    Route::get('/edit/{id}', [App\Http\Controllers\objectionController::class, 'edit'])->name('editObjection');
+    Route::post('/update/{id}', [App\Http\Controllers\objectionController::class, 'update'])->name('updateObjection');
+    Route::get('/listUnReviwed', [App\Http\Controllers\LeaderDutyController::class, 'listUnReviwed'])->name('listUnReviwed');
+});
+
+
 
 Route::get('/chatbox', [App\Http\Controllers\MessageController::class, 'listMessage']);
 Route::view('/addM', 'chatbox');

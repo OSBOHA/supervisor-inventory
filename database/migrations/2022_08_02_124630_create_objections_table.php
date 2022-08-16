@@ -19,9 +19,12 @@ class CreateObjectionsTable extends Migration
             $table->text('body');
             $table->integer('objector_id');
             $table->integer('reviewer_id')->default(0);
+            $table->text('reviewer_note')->nullable;
             $table->boolean('status')->default(0);
             $table->timestamps();
         });
+        
+
     }
 
     /**
