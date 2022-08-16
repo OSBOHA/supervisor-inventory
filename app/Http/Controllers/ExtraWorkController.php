@@ -14,7 +14,7 @@ class ExtraWorkController extends Controller
     public function index()
     {
         $leader= Leader::where('supervisor_id' ,Auth::id())->latest()->orderBy('created_at', 'DESC')->paginate(6);
-        return view('supervisor', compact('leader'));
+        return view('ExtraWork', compact('leader'));
     }
 
 
@@ -27,10 +27,11 @@ class ExtraWorkController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-
-            'leaders_didnt_enter_withdraw_id'=>'required',
             'leaders_didnt_enter_withdraw_img'=>'image|mimes:jpeg,png,jpg,gif,svg',
-            'Leader_communicat_status' => 'required',
+            'communicate_with_leaders_img'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'activity_img_1'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'activity_img_2'=>'image|mimes:jpeg,png,jpg,gif,svg',
+            'activity_img_3'=>'image|mimes:jpeg,png,jpg,gif,svg',
         ]);
 
         if ($request->hasFile('leaders_didnt_enter_withdraw_img')){
@@ -41,6 +42,10 @@ class ExtraWorkController extends Controller
             $communicate_with_leaders_img = $this->createMedia($request->file('communicate_with_leaders_img'));
         } else {$communicate_with_leaders_img= "null";}
 
+        if ($request->hasFile('activity_img_0')){
+            $activity_img_0 = $this->createMedia($request->file('activity_img_0'));
+        } else {$activity_img_0= "null";}
+
         if ($request->hasFile('activity_img_1')){
             $activity_img_1 = $this->createMedia($request->file('activity_img_1'));
         } else {$activity_img_1= "null";}
@@ -48,10 +53,6 @@ class ExtraWorkController extends Controller
         if ($request->hasFile('activity_img_2')){
             $activity_img_2 = $this->createMedia($request->file('activity_img_2'));
         } else {$activity_img_2= "null";}
-
-        if ($request->hasFile('activity_img_3')){
-            $activity_img_3 = $this->createMedia($request->file('activity_img_3'));
-        } else {$activity_img_3= "null";}
 
         $array['leaders_didnt_enter_withdraw_id'] = $request->input('leaders_didnt_enter_withdraw_id');
         $array['communicate_with_leaders_id'] = $request->input('communicate_with_leaders_id');
@@ -63,16 +64,15 @@ class ExtraWorkController extends Controller
         ]));
 
         $communicate_with_leaders_array = serialize(array([
-            'Leader_communicat_status' => $request->Leader_communicat_status,
             'communicate_with_leaders_id' => $array['communicate_with_leaders_id'],
             'communicate_with_leaders_img' => $communicate_with_leaders_img,
         ]));
 
         $activities_array = serialize(array([
             'activity_description' => $array['activity_description'],
+            'activity_img_0' => $activity_img_0,
             'activity_img_1' => $activity_img_1,
             'activity_img_2' => $activity_img_2,
-            'activity_img_3' => $activity_img_3,
         ]));
 
         $week_id =Week::latest('id')->first()->id;
@@ -88,13 +88,26 @@ class ExtraWorkController extends Controller
             ]);
 
            //dd($extrawork);
-        return redirect()->route('index')->with('message', 'Your Entry saved');
+        return redirect()->route('extra-work')->with('message', 'Your Entry saved');
     }
 
 
-    public function show($id)
+    public function show(extrawork $extraWork,Request $request)
     {
-        //
+        $week=Week::latest()->first();
+       $extraWork=ExtraWork::where('week_id',$week->id)->where('supervisor_id',Auth::id())->get();
+       //dd($extraWork);
+        foreach( $extraWork as $item){
+            $item->leaders_didnt_enter_withdraw= unserialize($item->leaders_didnt_enter_withdraw);
+            $item->communicate_with_leaders=unserialize($item->communicate_with_leaders);
+            $item->activities=unserialize($item->activities);
+        }
+        //$id= array(($item->leaders_didnt_enter_withdraw[0]['leaders_didnt_enter_withdraw_id']));
+       //print_r($id); die;
+       //dd($item->communicate_with_leaders[0]['communicate_with_leaders_id']);
+       //dd( $item->activities[0]['activity_description']);
+
+        return view('ExtraWorkResult',compact('extraWork', $extraWork));
     }
 
 
@@ -103,15 +116,4 @@ class ExtraWorkController extends Controller
         //
     }
 
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -42,7 +42,7 @@
                     </li>
 
                     <li class="sidebar-item ">
-                        <a href="{{route('leaderdutyCreate')}}" class='sidebar-link'>
+                        <a href="{{route('duty-create')}}" class='sidebar-link'>
                             <i class="bi bi-pencil-square"></i>
                             <span>الجرد لأسبوعي</span>
                         </a>
@@ -78,7 +78,7 @@
                     </li>
 
                     <li class="sidebar-item  ">
-                        <a href="{{url('/')}}" class='sidebar-link'>
+                        <a href="{{route('extra-work')}}" class='sidebar-link'>
                             <i class="bi bi-receipt-cutoff"></i>
                             <span>الاضافات على عمل المراقب</span>
                         </a>
