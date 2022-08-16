@@ -19,20 +19,18 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 //Route::get('/leaderduty', [App\Http\Controllers\LeaderDutyController::class, 'index']);
 Route::group(['prefix'=>'leaderduty'], function(){
     Route::get('/', [App\Http\Controllers\LeaderDutyController::class, 'index'])->name('index');
-    Route::get('/create', [App\Http\Controllers\LeaderDutyController::class, 'create'])->name('leaderdutyCreate');
-    Route::post('/duty-store', [App\Http\Controllers\LeaderDutyController::class, 'store'])->name('store');
+    Route::get('/create', [App\Http\Controllers\LeaderDutyController::class, 'create'])->name('duty-create');
+    Route::post('/duty-store', [App\Http\Controllers\LeaderDutyController::class, 'store'])->name('duty-store');
     Route::get('/show', [App\Http\Controllers\LeaderDutyController::class, 'show'])->name('showInventoryResult');
     Route::post('/update', [App\Http\Controllers\LeaderDutyController::class, 'update']);
     Route::post('/delete', [App\Http\Controllers\LeaderDutyController::class, 'delete']);
 });
 
 Route::group(['prefix'=>'extrawork'], function(){
-    Route::get('/', [App\Http\Controllers\ExtraWorkController::class, 'index'])->name('index');
-    Route::get('/create', [App\Http\Controllers\ExtraWorkController::class, 'create'])->name('');
-    Route::post('/store', [App\Http\Controllers\ExtraWorkController::class, 'store'])->name('extra_work_sotre');
-    Route::get('/show', [App\Http\Controllers\ExtraWorkController::class, 'show'])->name('');
-    Route::post('/update', [App\Http\Controllers\ExtraWorkController::class, 'update']);
-    Route::post('/delete', [App\Http\Controllers\ExtraWorkController::class, 'delete']);
+    Route::get('/', [App\Http\Controllers\ExtraWorkController::class, 'index'])->name('extra-work');
+    Route::get('/create', [App\Http\Controllers\ExtraWorkController::class, 'create'])->name('extra-work-create');
+    Route::post('/store', [App\Http\Controllers\ExtraWorkController::class, 'store'])->name('extra-work-sotre');
+    Route::get('/show', [App\Http\Controllers\ExtraWorkController::class, 'show'])->name('extra-work-show');
 });
 
 Route::get('/chatbox', [App\Http\Controllers\MessageController::class, 'listMessage']);

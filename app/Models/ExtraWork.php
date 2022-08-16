@@ -16,4 +16,9 @@ class ExtraWork extends Model
              'communicate_with_leaders',
              'activities',
     ];
+
+    public function Leader()
+    {
+        return $this->belongsTo('App\Models\Leader');
+    }
 }
