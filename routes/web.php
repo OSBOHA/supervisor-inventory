@@ -41,7 +41,7 @@ Route::group(['prefix'=>'objection'], function(){
     //Route::view('/updateForm', 'objection.update');
     Route::get('/edit/{id}', [App\Http\Controllers\objectionController::class, 'edit'])->name('editObjection');
     Route::post('/update/{id}', [App\Http\Controllers\objectionController::class, 'update'])->name('updateObjection');
-    Route::get('/listUnReviwed', [App\Http\Controllers\LeaderDutyController::class, 'listUnReviwed'])->name('listUnReviwed');
+    Route::get('/listAllObjections', [App\Http\Controllers\objectionController::class, 'listAllObjections'])->name('listAllObjections');
 });
 
 

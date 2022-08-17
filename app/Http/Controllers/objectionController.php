@@ -24,7 +24,7 @@ class objectionController extends Controller
         
            $Objection=Objection::where('objector_id',Auth::id())->paginate(4);
             if($Objection){
-                if(Auth::user()->can('objection_audit')){
+                if(Auth::user()->can(' objection_audit')){
                     $Objection=Objection::all();
                     return view('objection.listAll',compact('Objection'));
                 } 
