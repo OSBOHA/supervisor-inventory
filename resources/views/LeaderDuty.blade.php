@@ -64,7 +64,7 @@
             </div>
         </div>
     </div>
-    <form class="leader_duty_form" action="{{route('duty-store')}}" enctype="multipart/form-data" method="POST" style="display: none">
+    <form class="leader_duty_form" action="{{route('store')}}" enctype="multipart/form-data" method="POST" style="display: none">
         @csrf
         <input type="hidden" name="leader_id" id="leader_id_set">
         <div class="card-body">
