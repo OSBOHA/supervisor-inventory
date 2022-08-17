@@ -56,6 +56,6 @@ class User extends Authenticatable
     ];
     public function objections()
     {
-        return $this->hasMany('App\Models\Objection');
+        return $this->hasMany('App\Models\Objection', 'objector_id');
     }
 }

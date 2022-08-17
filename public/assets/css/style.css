@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Tajawal&display=swap');
-html{
+html, body{
     font-family: 'Tajawal', sans-serif;
 }
 .Title {

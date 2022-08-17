@@ -63,7 +63,7 @@
                     </li>
 
                     <li class="sidebar-item ">
-                        <a href="form-layout.html" class='sidebar-link'>
+                        <a href="{{route('objections.my_objections')}}" class='sidebar-link'>
                             <i class="bi bi-exclamation-circle-fill"></i>
                             <span>صندوق اعتراضاتك</span>
                         </a>

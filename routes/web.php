@@ -26,16 +26,14 @@ Route::group(['prefix'=>'leaderduty'], function(){
     Route::post('/delete', [App\Http\Controllers\LeaderDutyController::class, 'delete']);
 });
 
-Route::group(['prefix'=>'objection'], function(){
-    Route::get('/', [App\Http\Controllers\objectionController::class, 'listAllObjections'])->name('listAllObjections');
-    Route::post('/store', [App\Http\Controllers\objectionController::class, 'store'])->name('storeObjection');
-    Route::get('/create', [App\Http\Controllers\objectionController::class, 'create'])->name('create');
-    Route::get('/listOneObjection', [App\Http\Controllers\objectionController::class, 'listOneObjection'])->name('listOneObjection');
-    Route::get('/index', [App\Http\Controllers\objectionController::class, 'index'])->name('index');
-    //Route::view('/updateForm', 'objection.update');
-    Route::get('/edit/{id}', [App\Http\Controllers\objectionController::class, 'edit'])->name('editObjection');
-    Route::post('/update/{id}', [App\Http\Controllers\objectionController::class, 'update'])->name('updateObjection');
-    Route::get('/listAllObjections', [App\Http\Controllers\objectionController::class, 'listAllObjections'])->name('listAllObjections');
+Route::group(['prefix'=>'objections'], function(){
+    Route::get('/all_objections', [App\Http\Controllers\ObjectionController::class, 'listAllObjections'])->name('objections.all_objections');
+    Route::get('/my_objections', [App\Http\Controllers\ObjectionController::class, 'listMyObjections'])->name('objections.my_objections');
+    Route::get('/create', [App\Http\Controllers\ObjectionController::class, 'create'])->name('objections.create');
+    Route::post('/store', [App\Http\Controllers\ObjectionController::class, 'store'])->name('objections.store');
+    Route::get('/edit/{id}', [App\Http\Controllers\ObjectionController::class, 'edit'])->name('edit_objection');
+    Route::post('/update/{id}', [App\Http\Controllers\ObjectionController::class, 'update'])->name('update_objection');
+    Route::get('/delete/{id}', [App\Http\Controllers\ObjectionController::class, 'delete'])->name('delete_objection');
 });
 
 
@@ -56,14 +54,3 @@ Route::get('/list-all-messages', 'MessageController@listAllMessages')->name('lis
      Route::post('/update',     'repeatedNoteController@update')->name('updateNotes');
      Route::post('/delete/{id}','repeatedNoteController@delete')->name('deleteNotes');
     });
-    // Route::resource('notes', repeatedNoteController::class);
-
-
-// Route::group(['prefix'=>'inventory'], function(){
-//     Route::get('/', [InventoryController::class, 'index']);
-//     Route::post('/create', [InventoryController::class, 'create']);
-//     Route::post('/show', [InventoryController::class, 'show']);
-//     Route::post('/update', [InventoryController::class, 'update']);
-//     Route::post('/delete', [InventoryController::class, 'delete']);
-
-// });
