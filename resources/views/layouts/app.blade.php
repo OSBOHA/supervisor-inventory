@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css')}}">
 
     <!-- Styles -->
+    <link rel="stylesheet" href="{{('assets/css/widgets/chat.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.css')}}">
     <link rel="stylesheet" href="{{asset('assets/vendors/bootstrap-icons/bootstrap-icons.css')}}">
@@ -22,11 +23,18 @@
     <link rel="stylesheet" href="{{ asset('assets/vendors/toastify/toastify.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/choices.js/choices.min.css')}}" />
     <link rel="stylesheet" href="{{ asset('assets/css/pages/email.css')}}">
+
 </head>
 
 <body>
-    @yield('sidebar')
-
+    <input id="APP_URL" type="hidden" value="{{ url('/')}}">
+    @if (auth()->user()->hasRole('admin'))
+    @include('layouts.AdminSidebar')
+    @elseif (auth()->user()->hasRole('advisor'))
+    @include('layouts.AdvisorSidebar')
+    @else
+    @include('layouts.sidebar')
+    @endif
     <div id="main" class='layout-navbar' style="overflow-x:hidden !important">
         @yield('header')
         <div id="main-content">
@@ -43,7 +51,7 @@
         <!-- Script -->
         <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-        <script src="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+        <!-- <script src="{{asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script> -->
         <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('assets/vendors/ckeditor/ckeditor.js')}}"></script>
         {{-- <script>
@@ -53,11 +61,27 @@
                     console.error(error);
                 });
         </script> --}}
+
+
         <script src="{{asset('assets/js/leaderduty.js')}}"></script>
         <script src="{{asset('assets/js/extrawork.js')}}"></script>
         <script src="{{asset('assets/js/pages/form-element-select.js')}}"></script>
         <script src="{{asset('assets/js/mazer.js')}}"></script>
         <script src="{{asset('assets/vendors/choices.js/choices.min.js')}}"></script>
+        <script src="{{asset('assets/vendors/apexcharts/apexcharts.js')}}"></script>
+        <script src="{{asset('assets/js/pages/dashboard.js')}}"></script>
+        <script src="{{asset('assets/vendors/jquery/jquery.min.js'
+        )}}"></script>
+        <script src="{{asset('assets/vendors/jquery-datatables/jquery.dataTables.min.js0'
+    )}}"></script>
+        <script src="{{asset('assets/vendors/jquery-datatables/custom.jquery.dataTables.bootstrap5.min.js0'
+    )}}"></script>
+        <script src="{{asset('assets/vendors/fontawesome/all.min.js0'
+    )}}"></script>
+
+
+        <!-- <script src="{{asset('assets/js/main.js')}}"></script> -->
+
 
 
 </body>

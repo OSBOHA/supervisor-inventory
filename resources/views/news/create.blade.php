@@ -8,10 +8,10 @@
     <div class="col">
         <div class="card">
             <div class="card-header">
-                اكتب اعتراضك هنا
+                ادخل عنوان هنا
             </div>
             <div class="card-body">
-                <form action="{{route('objections.store')}}" method="post">
+                <form action="{{route('news.store')}}" method="post">
                     @csrf
                     @if ($errors->any())
                     <div class="alert alert-light-danger color-danger">
@@ -25,12 +25,8 @@
 
                     <div class="form-group">
                         <div class="form-group mb-3">
-                            <label for="objectionTitle" class="form-label">عنوان الاعتراض</label>
-                            <input type="=text" name='title' class="form-control" id="objectionTitle" rows="3"></textarea>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="objectionBody" class="form-label">وصف الاعتراض</label>
-                            <textarea name='body' class="form-control" id="objectionBody" rows="3"></textarea>
+                            <label for="newsTilte" class="form-label">عنوان الخبر</label>
+                            <input type="=text" name='title' class="form-control" id="newsTilte" rows="3"></textarea>
                         </div>
                         <div class="form-group mb-3">
                             <button type="submit" class="btn btn-primary">حفظ</button>

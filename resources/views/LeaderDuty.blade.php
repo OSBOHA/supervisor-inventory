@@ -200,19 +200,19 @@
                                 <select class="form-select" id="newselect" onselect="newsSelect()" style="direction: rtl">
                                     <option value="empty" >اختر خبر الأسبوع من قائمة الأخبار</option>
                                     @foreach ($news as $item)
-                                    @if ($item->title == 'leader')
+                                    @if ($item->title == 'دورة القادة')
                                         <option class="dropdown-item leader" id="leader" value="leader" style="text-align: right"><span
                                                   class="dropdown-item-emoji"> &nbsp; 👩‍💻 &nbsp;</span>
                                                     دورة القادة
                                         </option>
                                     @endif
-                                    @if ($item->title == 'discussion')
+                                    @if ($item->title == 'النقاش المنهجي')
                                         <option class="dropdown-item discussion" id="discussion" value="discussion" style="text-align: right" ><span
                                             class="dropdown-item-emoji">&nbsp; 👥 &nbsp;</span>
                                          النقاش المنهجي
                                         </option>
                                     @endif
-                                    @if ($item->title == 'writing')
+                                    @if ($item->title == 'دورة كتابة الأطروحة')
                                         <option class="dropdown-item writing" id="writing" value="writing" style="text-align: right"><span
                                             class="dropdown-item-emoji">&nbsp; 🖋 &nbsp; </span>
                                         دورة كتابة الأطروحة

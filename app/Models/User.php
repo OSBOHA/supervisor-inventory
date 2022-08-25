@@ -24,17 +24,6 @@ class User extends Authenticatable
         'email',
         'password',
     ];
-    public function Message() 
-    {
-        return $this->hasMany(App\Models\Message::class,'sender_id','id')
-        ->where('id', '=', 'sender_id')->get('name');
-        
-    }
-    public function LeaderDuty()
-    {
-        return $this->hasMany('App\Models\LeaderDuty','user_id');
-    }
-
 
     /**
      * The attributes that should be hidden for serialization.
@@ -54,8 +43,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function messages()
+    {
+        return $this->hasMany(Message::class,'sender_id');
+    }
+    public function LeaderDuty()
+    {
+        return $this->hasMany('App\Models\LeaderDuty','user_id');
+    }
+
     public function objections()
     {
-        return $this->hasMany('App\Models\Objection');
+        return $this->hasMany('App\Models\Objection', 'objector_id');
+    }
+
+    public function supervisor()
+    {
+        return $this->hasOne(Supervisor::class, 'user_id');
+    }
+    public function advisor()
+    {
+        return $this->hasOne(Advisor::class, 'user_id');
     }
 }

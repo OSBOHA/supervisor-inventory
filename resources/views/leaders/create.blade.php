@@ -8,10 +8,10 @@
     <div class="col">
         <div class="card">
             <div class="card-header">
-                اكتب اعتراضك هنا
+                أدخل معلومات القائد
             </div>
             <div class="card-body">
-                <form action="{{route('objections.store')}}" method="post">
+                <form action="{{route('leaders.store')}}" method="post">
                     @csrf
                     @if ($errors->any())
                     <div class="alert alert-light-danger color-danger">
@@ -25,15 +25,22 @@
 
                     <div class="form-group">
                         <div class="form-group mb-3">
-                            <label for="objectionTitle" class="form-label">عنوان الاعتراض</label>
-                            <input type="=text" name='title' class="form-control" id="objectionTitle" rows="3"></textarea>
+                            <label for="name" class="form-label">اسم القائد</label>
+                            <input type="text" name='name' class="form-control" id="leaderName" rows="3">
                         </div>
                         <div class="form-group mb-3">
-                            <label for="objectionBody" class="form-label">وصف الاعتراض</label>
-                            <textarea name='body' class="form-control" id="objectionBody" rows="3"></textarea>
+                            <label for="team" class="form-label">فريق المتابعة</label>
+                            <input type="text" name='team' class="form-control" id="leaderTeam" rows="3">
                         </div>
                         <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-primary">حفظ</button>
+                            <label for="type" class="form-label">نوع القائد</label>
+                            <select name='type' class="form-control form-select" id="leaderType" >
+                            <option value="دائم">دائم</option>
+                            <option value="دعم">دعم </option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-primary">اضافة</button>
                         </div>
                     </div>
 

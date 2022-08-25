@@ -4,85 +4,105 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\LeaderDuty;
-use App\Models\Objection ;
+use App\Models\Objection;
 use App\Traits\MediaTraits;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
-class objectionController extends Controller
+class ObjectionController extends Controller
 {
     use MediaTraits;
 
-    public function index()
+    public function listAllObjections()
     {
-        $Objection=Objection::where('objector_id',Auth::id())->paginate(4);
-        return view('objection.index',compact('Objection'));
-           
+        if (Auth::user()->can('objection_audit')) {
+            $objections = Objection::all();
+            return view('objection.all_objections', compact('objections'));
+        }
+        else{ 
+            return view('errors.unauthorized');
+        }
     }
 
-    public function listAllObjections(Objection $Objection)
+    public function listMyObjections()
     {
-        
-           $Objection=Objection::where('objector_id',Auth::id())->paginate(4);
-            if($Objection){
-                if(Auth::user()->can('objection_audit')){
-                    $Objection=Objection::all();
-                    return view('objection.listAll',compact('Objection'));
-                } 
-                    return redirect()->route('index');
-            }
+        $objections = Objection::where('objector_id', Auth::id())->orderBy('created_at', 'DESC')->get();
+        return view('objection.my_objections', compact('objections'));
     }
 
-   
+
     public function create()
     {
         return view('objection.create');
     }
 
-    
+
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>'required',
-            'body'=>'required',
+            'title' => 'required',
+            'body' => 'required',
         ]);
-        $Objection=Objection::create([
-            'objector_id'=>Auth::id(),
-            'title'=>$request->title,
-            'body'=>$request->body,
+
+        Objection::create([
+            'objector_id' => Auth::id(),
+            'title' => $request->title,
+            'body' => $request->body,
         ]);
-        return redirect()->route('index');
+        return redirect()->route('objections.my_objections', ['messages' => 'objection added']);
     }
 
-    
-   
-
-    
     public function edit($id)
     {
-        //if(Auth::user()->can('objection_audit')){
-            $Objection=Objection::find($id);
-        return view('objection.update',compact('Objection'));
-      // }else{
-           //return redirect()->route('index');
-
-       // }
+        $objection = Objection::find($id);
+        if($objection){
+            return view('objection.update_objection', compact('objection'));
+        } 
+        else{ 
+            return view('errors.not_found');
+        }
     }
 
-   
-    public function update(Request $request,$id )
+
+    public function update(Request $request, $id)
     {
-      
-            $Objection = Objection::find($request->id);
-            $Objection->reviewer_id = Auth::id();
-             $Objection->status = 1;
-             $Objection->reviewer_note = $request->reviewer_note;
-             $Objection->save();
-             
-             return redirect()->route('listAllObjections');
+
+        $request->validate([
+            'reviewer_note' => 'required_without_all:body',
+            'body' => 'required_without_all:reviewer_note',
+        ]);
+        
+        $objection = Objection::find($id);
+        if (Auth::user()->can('objection_audit') && $request->has('reviewer_note')) {
+
+            $objection->reviewer_id = Auth::id();
+            $objection->status = 1;
+            $objection->reviewer_note = $request->reviewer_note;
+            $objection->save();
+
+            return redirect()->route('objections.all_objections', ['messages' => 'objection updated']);
+        }
+        else{
+            if (Auth::id() == $objection->objector_id && $objection->status == 0) {
+                $objection->body = $request->body;
+                $objection->save();
+                return redirect()->route('objections.my_objections' , ['messages' => 'objection updated']);
+            }
+        }
     }
 
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+
+        $objection = Objection::find($id);
+        if (Auth::id() == $objection->objector_id && $objection->status == 0) {
+                $objection->delete();
+                return redirect()->route('objections.my_objections' , ['messages' => 'objection deleted']);
+            }
     }
-}
+
+}//class
+
+

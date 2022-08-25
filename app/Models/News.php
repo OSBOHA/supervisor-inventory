@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class News extends Model
 {
     use HasFactory;
+    protected $fillable=[
+        'title',
+        'week_id',
+    ];
+
+    public function week()
+    {
+        return $this->belongsTo(Week::class);
+    }
 }
