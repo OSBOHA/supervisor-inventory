@@ -13,7 +13,7 @@
                 <p> صاحب الاعتراض  ||  {{$objection->objector->name}}</p>
             </div>
             <div class="card-body">
-                <form action="{{route('objections.store')}}" method="post">
+                <form action="{{route('update_objection',  ['id' => $objection->id])}}" method="post">
                     @csrf
                     @if ($errors->any())
                     <div class="alert alert-light-danger color-danger">

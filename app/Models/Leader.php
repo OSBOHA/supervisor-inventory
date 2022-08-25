@@ -14,11 +14,12 @@ class leader extends Model
         'advisor_id',
         'team',
         'type',
+        'name',
     ];
 
   public function supervisor()
   {
-      return $this->belongsTo('\App\Models\Supervisor', 'supervisor_id');
+      return $this->belongsTo(Supervisor::class,'id');
   }
 
   public function advisor()
@@ -29,9 +30,9 @@ class leader extends Model
 
     // public function duty(){
 
-    public function LeaderDuty()
+    public function leaderDuty()
     {
-        return $this->hasMany('App\Models\LeaderDuty');
+        return $this->hasMany('App\Models\LeaderDuty', 'leader_id');
     }
 
     // public function Advisor()

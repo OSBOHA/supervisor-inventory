@@ -15,28 +15,24 @@ class Week extends Model
         'advisor_timer ',
     ];
 
-    public function LeaderDuty()
+    public function leaderDuty()
     {
-        return $this->hasMany('App\Models\LeaderDuty','week_id');
+        return $this->hasMany(LeaderDuty::class,'week_id');
     }
 
-    public function ExtraWork()
+    public function extraWork()
     {
-        return $this->hasMany('App\Models\ExtraWork','week_id');
+        return $this->hasMany(ExtraWork::class,'week_id');
     }
 
-    public function RepeatedNote()
+    public function repeatedNote()
     {
-        return $this->hasMany('App\Models\RepeatedNote','week_id');
+        return $this->hasMany(RepeatedNote::class,'week_id');
     }
 
-    public function News()
+    public function news()
     {
-        return $this->hasMany('App\Models\News','week_id');
+        return $this->hasMany(News::class,'week_id');
     }
-        public function repeatnote()
-        {
-            return $this->hasMany('App\Models\RepeatedNote');
-        }
     
 }

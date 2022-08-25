@@ -1,17 +1,14 @@
 <?php
 namespace App\Models;
-use App\Traits\MediaTraits;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 class LeaderDuty extends Model
 {
     use HasFactory; 
-    use MediaTraits;
     protected $fillable=[
             'leader_id',
             'supervisor_id',
             'week_id',
-            'supervisor_id',
             'team_final_mark',
             'current_team_members',
             'follow_up_post',
@@ -24,14 +21,19 @@ class LeaderDuty extends Model
             'withdrawn_ambassadors',
     ];
 
-    public function Leader()
+    public function leader()
     {
-        return $this->belongsTo('App\Models\Leader');
+        return $this->belongsTo(Leader::class);
+    }
+
+    public function supervisor()
+    {
+        return $this->belongsTo(User::class);
     }
     
-    public function Week()
+    public function week()
     {
-        return $this->belongsTo('App\Models\Week','week_id');
+        return $this->belongsTo(Week::class);
     }
 
     public function week_num() {

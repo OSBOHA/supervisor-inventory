@@ -14,9 +14,10 @@ class Message extends Model
         'receiver_id',
         'status'
 ];
-    public $timestamps=false;
-    public function User() 
+
+    public function sender()
     {
-       return $this->belongsTo(App\Models\User::class);
+        return $this->belongsTo(User::class);
     }
+
 }

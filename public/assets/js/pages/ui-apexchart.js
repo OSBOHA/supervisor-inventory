@@ -1,3 +1,15 @@
+const supervisor =document.getElementsByClassName('supervisor');
+const supervisorName = [...supervisor].map(input => input.value);
+
+const freezed =document.getElementsByClassName('freezed');
+const freezedSummary = [...freezed].map(input => input.value);
+
+const fullMark =document.getElementsByClassName('fullMark');
+const fullMarkSummary = [...fullMark].map(input => input.value);
+
+const withdrawn_ambassadors =document.getElementsByClassName('withdrawn_ambassadors');
+const withdrawnAmbassadorsSummary = [...withdrawn_ambassadors].map(input => input.value);
+
 var lineOptions = {
   chart: {
     type: "line",
@@ -308,16 +320,16 @@ yaxis: {
 var barOptions = {
   series: [
     {
-      name: "Net Profit",
-      data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
+      name: "عدد المجمدين",
+      data: freezedSummary,
     },
     {
-      name: "Revenue",
-      data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
+      name: "الحاصلين على 100",
+      data: fullMarkSummary,
     },
     {
-      name: "Free Cash Flow",
-      data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
+      name: "عدد المنسحبين",
+      data: withdrawnAmbassadorsSummary,
     },
   ],
   chart: {
@@ -340,11 +352,11 @@ var barOptions = {
     colors: ["transparent"],
   },
   xaxis: {
-    categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
+    categories: supervisorName,
   },
   yaxis: {
     title: {
-      text: "$ (thousands)",
+      text: "",
     },
   },
   fill: {

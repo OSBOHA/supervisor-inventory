@@ -15,40 +15,33 @@ class Supervisor extends Model
         'previous_advisor',
     ];
 
-    // public function Leader()
-    // {
-    //     return $this->hasMany('App\Models\Leader','supervisor_id');
-    // }
-
     public function RepeatedNote()
     {
         return $this->hasMany('App\Models\RepeatedNote','supervisor_id');
 
     }
 
-    public function leader()
+    public function leaders()
     {
-      return $this->hasMany('App\Models\Leader');
+        return $this->hasMany(Leader::class,'supervisor_id');
     }
 
     public function notes()
     {
         return $this->hasMany('App\Models\RepeatedNote');
     }
-
-    // public function user()
-    // {
-    //     return $this->belongsTo('\App\Models\User', 'user_id');
-    // }
-
-    public function Advisor()
+    
+    public function current_advisor_info()
     {
-        return $this->belongsTo('App\Models\Advisor','advisor_id');
+        return $this->belongsTo(Advisor::class,'current_advisor');
     }
-
-    public function User()
+    public function previous_advisor_info()
     {
-        return $this->belongsTo('App\Models\User','user_id');
-        return $this->belongsTo('\App\Models\Advisor', 'current_advisor');
+        return $this->belongsTo(Advisor::class,'previous_advisor');
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
     }
 }

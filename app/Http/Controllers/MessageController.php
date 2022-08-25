@@ -1,58 +1,78 @@
 <?php
+
 namespace App\Http\Controllers;
 
+use App\Models\Advisor;
 use App\Models\Supervisor;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-
-
 
 class MessageController extends Controller
 {
-    public function listMessage()
+    public function listMessage($partnerId)
     {
-        $id = Auth::id();
-        $messages = DB::table('messages')
-            ->select('body', 'sender_id', 'receiver_id', 'status')
-            ->where('sender_id' , 1)
-            ->orWhere('receiver_id' , 1)
-            ->get('body', 'sender_id', 'receiver_id', 'status');
-        return view('chatbox', compact(['messages']));
+        $partnerID = $partnerId;
+        $partner = User::find($partnerID);
+        //get and display all the messages between 2 users
+        $messages = Message::where(function ($q) {
+            $q->where('sender_id', Auth::id())
+                ->orWhere('receiver_id', Auth::id());
+        })
+            ->where(function ($q) use ($partnerID) {
+                $q->where('sender_id', $partnerID)
+                    ->orWhere('receiver_id', $partnerID);
+            })
+            ->get();
 
+        $supervisor = null;
+        $advisor = null;
+        if (Auth::user()->hasRole('advisor')) {
+            $advisor = Advisor::with('current_supervisors.user')->where('user_id', Auth::id())->first();
+        } else if (Auth::user()->hasRole('supervisor')) {
+            $supervisor = Supervisor::with('current_advisor_info.user')->where('user_id', Auth::id())->first();
+        }
+
+        //update status
+        Message::where('sender_id', $partnerId)->Where('receiver_id', Auth::id())->update(['status' => 1]);
+        
+        
+        return view('messages.list_all')->with(
+            [
+                'messages' => $messages,
+                'supervisor' => $supervisor,
+                'advisor' => $advisor,
+                'selected' => true,
+                'partner' => $partner
+            ]
+        );
     }
-    public function listAllMessages(){
-        
-        
-        $data = DB::table('messages')
-          ->select('sender_id','body','created_at')->groupBy('sender_id')
-          ->where('sender_id', Auth::id())
-          ->orWhere('receiver_id', Auth::id())
-          ->orderBy('created_at', 'DESC')->get('sender_id','body','created_at');
-        
-        return view('message', compact('data'));
-
-    }
-
-    public function addMessage(Request $req)
+    public function listAllMessages()
     {
-        //$id = Auth::id();
-        $id=1;
-        $supervisor = Supervisor::
-            select('current_advisor') ->where('user_id', $id)
-            ->value('current_advisor');
-        $message = new Message;
-        // $message->title=$req->name;
-        $message->body=$req->body;
-        $message->title ='';
-        $message->sender_id=$id;
-        $message->receiver_id=$supervisor;
-        $message->status=0;
-        $message->save();
-        return redirect('chatbox');
-
+        $supervisor = null;
+        $advisor = null;
+        if (Auth::user()->hasRole('advisor')) {
+            $advisor = Advisor::with('current_supervisors.user')->where('user_id', Auth::id())->first();
+        } else if (Auth::user()->hasRole('supervisor')) {
+            $supervisor = Supervisor::with('current_advisor_info.user')->where('user_id', Auth::id())->first();
+        }
+        return view('messages.list_all')->with('supervisor', $supervisor)->with('advisor', $advisor)
+            ->with('selected', false);
     }
 
+    public function sendMessage(Request $request)
+    {
+        $request->validate([
+            'receiver_id' => 'required',
+            'body' => 'required',
+        ]);
+
+        $newMessage = Message::create([
+            'sender_id' => Auth::id(),
+            'receiver_id' => $request->receiver_id,
+            'body' => $request->body,
+        ]);
+        return response()->json($newMessage);
+    }
 }

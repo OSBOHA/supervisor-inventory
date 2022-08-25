@@ -50,6 +50,7 @@ class PermissionsSeeder extends Seeder
 
         $role1->givePermissionTo(Permission::all());
         
+        $role2->givePermissionTo('objection_audit');
         $role2->givePermissionTo('transfer supervisor');
         $role2->givePermissionTo('delete supervisor');
         $role2->givePermissionTo('transfer leader');

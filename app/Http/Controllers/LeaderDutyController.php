@@ -155,7 +155,7 @@ class LeaderDutyController extends Controller
             $duty->withdrawn_ambassadors=unserialize($duty->withdrawn_ambassadors);
 
         }
-        return view('inventory_result',compact('leaderduty',$leaderduty));
+        return view('inventory_result')->with('leaderduty',$leaderduty);
 
     }
 
